@@ -8,15 +8,37 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "apphandler",
+"language": "GDScript",
+"path": "res://src/apphandler.gd"
+} ]
+_global_script_class_icons={
+"apphandler": ""
+}
+
 [application]
 
-config/name="ShepherdsPath"
-run/main_scene="res://scenes/TestScene.tscn"
-config/icon="res://icon.png"
+config/name="Godot Boids"
+run/main_scene="res://testscene.tscn"
+config/icon="res://Chick_Avatar.png"
 
-[physics]
+[autoload]
 
-common/enable_pause_aware_picking=true
+Apphandler="*res://apphandler.tscn"
+
+[display]
+
+window/size/width=1600
+window/size/height=900
+
+[layer_names]
+
+2d_physics/layer_1="Prey"
+2d_physics/layer_2="Hunter"
+2d_physics/layer_3="Object"
+2d_physics/layer_4="World"
 
 [rendering]
 
