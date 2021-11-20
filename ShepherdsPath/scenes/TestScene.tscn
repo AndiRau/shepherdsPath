@@ -19,7 +19,7 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.712345, 0.70183, 0, -0.70183, 0.712345, 0, 66.0117, 131.643 )
+transform = Transform( 1, 0, 0, 0, 0.712345, 0.70183, 0, -0.70183, 0.712345, 0, 22.7882, 34.3717 )
 near = 0.15
 far = 272.2
 script = ExtResource( 3 )

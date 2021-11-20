@@ -20,12 +20,11 @@ func _ready():
 	randomize()
 	_velocity = Vector3(rand_range(-1, 1), rand_range(-1, 1), rand_range(-1,1)).normalized() * max_speed
 
-func _on_FlockView_body_entered(body: PhysicsBody2D):
+func _on_FlockView_body_entered(body: PhysicsBody):
 	if self != body:
 		_flock.append(body)
 
-
-func _on_FlockView_body_exited(body: PhysicsBody2D):
+func _on_FlockView_body_exited(body: PhysicsBody):
 	_flock.remove(_flock.find(body))
 
 
@@ -41,6 +40,7 @@ func _physics_process(_delta):
 	var mouse_vector = Vector3.ZERO
 	if _mouse_target != Vector3.INF:
 		mouse_vector = global_transform.origin.direction_to(_mouse_target) * max_speed * mouse_follow_force
+		
 	
 	# get cohesion, alginment, and separation vectors
 	var vectors = get_flock_status(_flock)
@@ -52,7 +52,7 @@ func _physics_process(_delta):
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + mouse_vector
 	
-	var global_direction = Vector3(0,0,1)
+	var global_direction = Vector3(1,0,0)
 	var local_direction = global_direction.rotated(Vector3(0,1,0), rotation.y)
 	_velocity = (local_direction + acceleration)
 	
@@ -65,15 +65,20 @@ func get_flock_status(flock: Array):
 	var align_vector: = Vector3()
 	var avoid_vector: = Vector3()
 	
+	
 	for f in flock:
-		var neighbor_pos: Vector3 = f.global_position
-
+		var neighbor_pos: Vector3 = f.global_transform.origin
+		
 		align_vector += f._velocity
 		flock_center += neighbor_pos
+		
 
 		var d = global_transform.origin.distance_to(neighbor_pos)
+		
 		if d > 0 and d < avoid_distance:
-			avoid_vector -= (neighbor_pos - global_transform.origin).normalized() * (avoid_distance / d * max_speed)
+			avoid_vector -= (neighbor_pos - global_transform.origin).normalized() * (avoid_distance / d * max_speed) 
+			
+		
 	
 	var flock_size = flock.size()
 	if flock_size:
@@ -83,7 +88,7 @@ func get_flock_status(flock: Array):
 		var center_dir = global_transform.origin.direction_to(flock_center)
 		var center_speed = max_speed * (global_transform.origin.distance_to(flock_center) / $FlockView/ViewRadius.shape.radius)
 		center_vector = center_dir * center_speed
-
+		
 	return [center_vector, align_vector, avoid_vector]
 	
 
