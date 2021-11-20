@@ -7,9 +7,9 @@ export var algin_force: = 0.05
 export var separation_force: = 0.05
 export(float) var view_distance: = 50.0
 export(float) var avoid_distance: = 20.0
+export(float) var _width = 7
+export(float) var _height = 7
 
-var _width = ProjectSettings.get_setting("display/window/size/width")
-var _height = ProjectSettings.get_setting("display/window/size/height")
 
 var _flock: Array = []
 var _mouse_target: Vector3
