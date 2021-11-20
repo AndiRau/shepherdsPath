@@ -29,12 +29,12 @@ func _on_FlockView_body_exited(body: PhysicsBody2D):
 	_flock.remove(_flock.find(body))
 
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.get_button_index() == BUTTON_LEFT:
-			_mouse_target = event.position
-		elif event.get_button_index() == BUTTON_RIGHT:
-			_mouse_target = get_random_target()
+#func _input(event):
+	#if event is InputEventMouseButton:
+	#	if event.get_button_index() == BUTTON_LEFT:
+	#		_mouse_target = event.position
+	#	elif event.get_button_index() == BUTTON_RIGHT:
+	#		_mouse_target = get_random_target()
 
 
 func _physics_process(_delta):
