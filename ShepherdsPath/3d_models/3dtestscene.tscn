@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://3d_models/npc/sheep.glb" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.591802, 0.455085, 0.665333, 0, -0.825389, 0.564564, 0.806083, -0.33411, -0.488467, 2.92759, 2.86562, -0.00903344 )
+light_color = Color( 0.988235, 0.929412, 0.760784, 1 )
+light_energy = 1.294
+
+[node name="sheep" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.46853, 0, 0, 0, 0.46853, 0, 0, 0, 0.46853, 0, 0, 0 )
