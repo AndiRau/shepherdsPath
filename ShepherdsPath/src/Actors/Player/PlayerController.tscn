@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/godot-oculus/scenes/oculus_first_person.tscn" type="PackedScene" id=1]
+
+[node name="PlayerController" type="Spatial"]
+
+[node name="OculusFirstPerson" parent="." instance=ExtResource( 1 )]

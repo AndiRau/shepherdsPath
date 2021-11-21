@@ -45,6 +45,10 @@ Apphandler="*res://apphandler.tscn"
 window/size/width=1600
 window/size/height=900
 
+[gdnative]
+
+singletons=[ "res://addons/godot-oculus/godot_oculus.gdnlib" ]
+
 [global]
 
 engin=false
@@ -52,8 +56,11 @@ engin=false
 [layer_names]
 
 2d_physics/layer_1="Prey"
+3d_physics/layer_1="Player"
 2d_physics/layer_2="Hunter"
+3d_physics/layer_2="Environment"
 2d_physics/layer_3="Object"
+3d_physics/layer_3="Objects"
 2d_physics/layer_4="World"
 
 [physics]

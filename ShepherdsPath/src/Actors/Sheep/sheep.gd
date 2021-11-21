@@ -96,7 +96,8 @@ func get_flock_status(flock: Array) -> Array:
 	
 	for f in flock:
 		var neighbor_pos: Vector3 = f.global_transform.origin
-		align_vector += f._velocity
+#		align_vector += f._velocity			functioniert aus irgendwelchen gründen nicht
+		align_vector += Vector3(1,1,1)
 		flock_center += neighbor_pos
 
 		var d = global_transform.origin.distance_to(neighbor_pos)
