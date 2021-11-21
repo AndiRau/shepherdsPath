@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_cv1_controller_right/oculus_cv1_controller_right.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
+[ext_resource path="res://3d_models/inventory/staff.glb" type="PackedScene" id=3]
+[ext_resource path="res://3d_models/inventory/shaver.glb" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ARVRController
@@ -29,7 +31,20 @@ func _process(delta):
 	elif !visible:
 		# make it visible
 		visible = true
-		emit_signal(\"controller_activated\", self)"
+		emit_signal(\"controller_activated\", self)
+	
+	
+	# Item	switch stuff more functionality comes later
+	if Input.is_action_pressed(\"ui_swap_staff\"):
+		if get_node(\"shaver\").visible == true:
+			get_node(\"shaver\").visible = false
+			get_node(\"staff\").visible = true
+	if Input.is_action_pressed(\"ui_swap_razor\"):
+		if get_node(\"staff\").visible == true:
+			get_node(\"staff\").visible = false
+			get_node(\"shaver\").visible = true
+
+"
 
 [node name="oculus_right_touch_controller" type="ARVRController"]
 controller_id = 2
@@ -40,3 +55,8 @@ transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
 
+[node name="shaver" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+visible = false
+
+[node name="staff" parent="." instance=ExtResource( 3 )]

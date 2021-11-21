@@ -32,7 +32,7 @@ script = ExtResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0 )
 fov = 75.6
 near = 0.01
-far = 88.5
+far = 999.6
 
 [node name="ovr_shader_cache" parent="ARVRCamera" instance=ExtResource( 1 )]
 

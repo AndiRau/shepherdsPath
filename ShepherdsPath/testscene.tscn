@@ -14,7 +14,8 @@ Boid = ExtResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.460014, 0.330232, -0.824218, 0, 0.928265, 0.371919, 0.887912, -0.171088, 0.427015, -32.5046, -33.3332, -4.24666 )
 visible = false
-near = 0.5
+current = true
+near = 0.16
 far = 5000.0
 script = ExtResource( 4 )
 sensitivity = 0.75
