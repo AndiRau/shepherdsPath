@@ -11,7 +11,9 @@
 [node name="Sheep" type="KinematicBody" groups=["prey"]]
 collision_mask = 8
 script = ExtResource( 1 )
-max_speed = 10.0
+max_speed = 5.0
+cohesion_force = 0.2
+avoid_distance = 3.0
 
 [node name="sheep" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.564414, 0, -4.93426e-08, 0, 0.564414, 0, 4.93426e-08, 0, -0.564414, -0.184563, 0, -0.0253986 )

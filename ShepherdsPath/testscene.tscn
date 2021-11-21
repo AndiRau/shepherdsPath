@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 Boid = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 

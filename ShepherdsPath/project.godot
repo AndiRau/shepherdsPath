@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Sheep",
+"language": "GDScript",
+"path": "res://src/actors/sheep/sheep.gd"
+}, {
 "base": "Node",
 "class": "apphandler",
 "language": "GDScript",
 "path": "res://src/apphandler.gd"
 } ]
 _global_script_class_icons={
+"Sheep": "",
 "apphandler": ""
 }
 

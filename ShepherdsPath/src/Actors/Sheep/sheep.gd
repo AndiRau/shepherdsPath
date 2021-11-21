@@ -1,12 +1,14 @@
 extends KinematicBody
 
-export var max_speed: = 200.0
-export var mouse_follow_force: = 0.05
-export var cohesion_force: = 0.05
-export var algin_force: = 0.05
-export var separation_force: = 0.05
-export(float) var view_distance: = 50.0
-export(float) var avoid_distance: = 20.0
+class_name Sheep
+
+export var max_speed: float = 200.0
+export var mouse_follow_force: float = 0.05
+export var cohesion_force: float = 0.05
+export var algin_force: float = 0.05
+export var separate_force: float = 0.05
+export var view_distance: = 50.0
+export var avoid_distance: = 20.0
 
 
 
@@ -52,11 +54,11 @@ func _physics_process(_delta):
 	# steer towards vectors
 	var cohesion_vector = vectors[0] * cohesion_force
 	var align_vector = vectors[1] * algin_force
-	var separation_vector = vectors[2] * separation_force
+	var separation_vector = vectors[2] * separate_force
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + mouse_vector
 	
-	_velocity = (_velocity + acceleration).normalized() * max_speed
+	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * max_speed
 	
 	_velocity = move_and_slide(_velocity)
 	look_at(global_transform.origin + _velocity, Vector3(0, 1, 0))
