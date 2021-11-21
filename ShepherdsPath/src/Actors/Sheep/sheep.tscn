@@ -1,9 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/Actors/Sheep/sheep.gd" type="Script" id=1]
-[ext_resource path="res://src/Actors/Sheep/ViewRadius.gd" type="Script" id=2]
-
-[sub_resource type="CapsuleMesh" id=1]
+[ext_resource path="res://src/actors/sheep/sheep.gd" type="Script" id=1]
+[ext_resource path="res://src/actors/sheep/ViewRadius.gd" type="Script" id=2]
+[ext_resource path="res://3d_models/npc/sheep.glb" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 
@@ -14,10 +13,8 @@ collision_mask = 8
 script = ExtResource( 1 )
 max_speed = 10.0
 
-[node name="Chick_Down" type="MeshInstance" parent="."]
-transform = Transform( 0.564414, 0, 0, 0, 0.564414, 0, 0, 0, 0.564414, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
+[node name="sheep" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.564414, 0, -4.93426e-08, 0, 0.564414, 0, 4.93426e-08, 0, -0.564414, -0.184563, 0, -0.0253986 )
 
 [node name="CollisionShape2D" type="CollisionShape" parent="."]
 transform = Transform( 0.635219, 0, 0, 0, 0.635219, 0, 0, 0, 0.635219, 0, 0, 0 )

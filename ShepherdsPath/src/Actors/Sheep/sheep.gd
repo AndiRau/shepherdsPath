@@ -59,6 +59,7 @@ func _physics_process(_delta):
 	_velocity = (_velocity + acceleration).normalized() * max_speed
 	
 	_velocity = move_and_slide(_velocity)
+	look_at(global_transform.origin + _velocity, Vector3(0, 1, 0))
 
 
 func get_flock_status(flock: Array) -> Array:

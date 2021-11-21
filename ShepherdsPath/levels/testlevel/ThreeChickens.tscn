@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/Terrain_Flat/GroundTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Sheep/Chicken.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/actors/flag/Flag.tscn" type="PackedScene" id=3]
 
 
 [node name="ThreeChickens" type="Node2D"]

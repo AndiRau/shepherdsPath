@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot Boids"
+config/name="Shepherds Path"
 run/main_scene="res://testscene.tscn"
 config/icon="res://Chick_Avatar.png"
 
