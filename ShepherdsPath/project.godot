@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Sheep",
 "language": "GDScript",
-"path": "res://src/actors/sheep/sheep.gd"
+"path": "res://src/Actors/Sheep/sheep.gd"
 }, {
 "base": "Spatial",
 "class": "Terrain",

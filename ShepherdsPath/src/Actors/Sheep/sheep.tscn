@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/actors/sheep/sheep.gd" type="Script" id=1]
-[ext_resource path="res://src/actors/sheep/ViewRadius.gd" type="Script" id=2]
-[ext_resource path="res://3d_models/npc/sheep.glb" type="PackedScene" id=3]
+[ext_resource path="res://3d_models/npc/sheep.glb" type="PackedScene" id=1]
+[ext_resource path="res://src/Actors/Sheep/sheep.gd" type="Script" id=2]
+[ext_resource path="res://src/Actors/Sheep/ViewRadius.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 
@@ -11,12 +11,12 @@ radius = 8.0
 
 [node name="Sheep" type="KinematicBody" groups=["prey"]]
 collision_mask = 8
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 max_speed = 5.0
 cohesion_force = 0.2
 avoid_distance = 3.0
 
-[node name="sheep" parent="." instance=ExtResource( 3 )]
+[node name="sheep" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.564414, 0, -4.93426e-08, 0, 0.564414, 0, 4.93426e-08, 0, -0.564414, -0.184563, 0, -0.0253986 )
 
 [node name="CollisionShape2D" type="CollisionShape" parent="."]
@@ -30,7 +30,7 @@ monitorable = false
 [node name="ViewRadius" type="CollisionShape" parent="FlockView"]
 transform = Transform( 1.59905, 0, 0, 0, 1.59905, 0, 0, 0, 1.59905, 0, 0, 0 )
 shape = SubResource( 3 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00529, 0 )
