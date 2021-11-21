@@ -1,6 +1,6 @@
 extends Spatial
 
-class_name terrain
+class_name Terrain
 
 var heightmap = Image.new()
 

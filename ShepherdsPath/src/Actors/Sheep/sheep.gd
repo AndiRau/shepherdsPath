@@ -11,6 +11,7 @@ export var view_distance: = 50.0
 export var avoid_distance: = 20.0
 onready var rc: RayCast = $RayCast
 
+onready var terrain: Terrain = $terrains
 
 var _width = 22
 var _height = 22
