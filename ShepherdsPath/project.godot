@@ -45,6 +45,10 @@ Apphandler="*res://apphandler.tscn"
 window/size/width=1600
 window/size/height=900
 
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
+
 [global]
 
 engin=false
