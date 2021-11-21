@@ -32,5 +32,9 @@ transform = Transform( 1.59905, 0, 0, 0, 1.59905, 0, 0, 0, 1.59905, 0, 0, 0 )
 shape = SubResource( 3 )
 script = ExtResource( 2 )
 
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -2, 0 )
+
 [connection signal="body_entered" from="FlockView" to="." method="_on_FlockView_body_entered"]
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]

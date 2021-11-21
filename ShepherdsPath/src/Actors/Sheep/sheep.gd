@@ -9,7 +9,7 @@ export var algin_force: float = 0.05
 export var separate_force: float = 0.05
 export var view_distance: = 50.0
 export var avoid_distance: = 20.0
-
+onready var rc: RayCast = $RayCast
 
 
 var _width = 22
@@ -19,6 +19,15 @@ var _flock: Array = []
 var _mouse_target: Vector3
 var _velocity: Vector3
 
+func randomize_behaviour():
+	randomize()
+	max_speed = rand_range(2, 12)
+	randomize()
+	avoid_distance = rand_range(2, 20)
+	randomize()
+	cohesion_force = rand_range(0.02, 0.2)
+	randomize()
+	algin_force = rand_range(0.02, 0.2)
 
 func _ready():
 	randomize()
@@ -72,7 +81,6 @@ func get_flock_status(flock: Array) -> Array:
 	
 	for f in flock:
 		var neighbor_pos: Vector3 = f.global_transform.origin
-
 		align_vector += f._velocity
 		flock_center += neighbor_pos
 

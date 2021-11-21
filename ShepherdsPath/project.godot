@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "apphandler",
 "language": "GDScript",
 "path": "res://src/apphandler.gd"
+}, {
+"base": "Spatial",
+"class": "terrain",
+"language": "GDScript",
+"path": "res://src/scenery/terrain.gd"
 } ]
 _global_script_class_icons={
 "Sheep": "",
-"apphandler": ""
+"apphandler": "",
+"terrain": ""
 }
 
 [application]
@@ -39,12 +45,20 @@ Apphandler="*res://apphandler.tscn"
 window/size/width=1600
 window/size/height=900
 
+[global]
+
+engin=false
+
 [layer_names]
 
 2d_physics/layer_1="Prey"
 2d_physics/layer_2="Hunter"
 2d_physics/layer_3="Object"
 2d_physics/layer_4="World"
+
+[physics]
+
+3d/physics_engine="Bullet"
 
 [rendering]
 
