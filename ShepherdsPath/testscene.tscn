@@ -11,7 +11,7 @@ sheep_number = 25
 Boid = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.158916, -0.367193, 0.916469, 0, 0.928265, 0.371919, -0.987292, 0.059104, -0.147516, 17.7556, 11.6461, -4.24666 )
+transform = Transform( 0.460014, 0.330232, -0.824218, 0, 0.928265, 0.371919, 0.887912, -0.171088, 0.427015, -32.5046, -33.3332, -4.24666 )
 near = 0.5
 far = 5000.0
 script = ExtResource( 4 )

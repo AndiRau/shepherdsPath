@@ -14,5 +14,5 @@ func _ready():
 		randomize()
 		c_sheep.translation = Vector3(rand_range(0, _width), 1, rand_range(0, _height))
 		add_child(c_sheep)
-		get_node("/root/Apphandler").set_target(Vector3(5,1,1))
+		get_node("/root/Apphandler").set_target(Vector3(505,-5,1))
 		

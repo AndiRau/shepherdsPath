@@ -11,10 +11,10 @@ export var view_distance: = 50.0
 export var avoid_distance: = 20.0
 onready var rc: RayCast = $RayCast
 
-onready var terrain: Terrain = $terrains
+var terrainBody: StaticBody
 
-var _width = 22
-var _height = 22
+var _width = 3000
+var _height = 3000
 
 var _flock: Array = []
 var _mouse_target: Vector3
@@ -22,7 +22,7 @@ var _velocity: Vector3
 
 func randomize_behaviour():
 	randomize()
-	max_speed = rand_range(2, 12)
+	max_speed = rand_range(2, 8)
 	randomize()
 	avoid_distance = rand_range(2, 20)
 	randomize()
@@ -32,8 +32,10 @@ func randomize_behaviour():
 
 func _ready():
 	randomize()
+	terrainBody = get_tree().get_root().get_node("testscene/terrain/StaticBody") #HÄSSLICH PAH EKKELHAAAFT
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * max_speed
 	_mouse_target = get_node("/root/Apphandler").target
+
 
 func _on_FlockView_body_entered(body: PhysicsBody):
 	if self != body:
@@ -68,9 +70,18 @@ func _physics_process(_delta):
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + mouse_vector
 	
+
+	
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * max_speed
 	
 	_velocity = move_and_slide(_velocity)
+	
+	var down_force = -5
+	if rc.is_colliding():
+		down_force = 5
+		
+	move_and_slide(Vector3(0,down_force,0))
+		
 	look_at(global_transform.origin + _velocity, Vector3(0, 1, 0))
 
 

@@ -33,8 +33,10 @@ shape = SubResource( 3 )
 script = ExtResource( 2 )
 
 [node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00529, 0 )
 enabled = true
 cast_to = Vector3( 0, -2, 0 )
+collision_mask = 2
 
 [connection signal="body_entered" from="FlockView" to="." method="_on_FlockView_body_entered"]
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]
