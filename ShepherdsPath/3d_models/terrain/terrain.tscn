@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://3d_models/shader/terrainshader.tres" type="Shader" id=1]
 [ext_resource path="res://3d_models/terrain/terrain.glb" type="PackedScene" id=2]
-[ext_resource path="res://3d_models/inventory/rucksack.glb" type="PackedScene" id=3]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -141,7 +140,7 @@ void fragment() {
 	vec3 vpos = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
 	float n = fbm(vpos * noise_scale, noise_detail, noise_lacunarity, noise_gain);
-	float nrock = fbm(vpos * rock_noise_scale, roqck_noise_detail, rock_noise_lacunarity, rock_noise_gain);
+	float nrock = fbm(vpos * rock_noise_scale, rock_noise_detail, rock_noise_lacunarity, rock_noise_gain);
 	
 	float height = remap(vpos.y, heightmap_start, heightmap_end, 0.0, 1.0);
 	
@@ -152,6 +151,23 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
+shader_param/heightmap_start = 0.0
+shader_param/heightmap_end = 1.0
+shader_param/noise_influence = 0.2
+shader_param/noise_scale = 0.2
+shader_param/noise_lacunarity = 2.0
+shader_param/noise_gain = 0.5
+shader_param/noise_detail = 3
+shader_param/rock_noise_influence = 0.2
+shader_param/rock_noise_scale = 0.2
+shader_param/rock_noise_lacunarity = 2.0
+shader_param/rock_noise_gain = 0.5
+shader_param/rock_noise_detail = 3
+shader_param/amplitude = 40.0
+shader_param/rock_coverage = 0.8
+shader_param/rock_blend = 0.8
+shader_param/color_rocks = null
+shader_param/u_terrain_normal_basis = null
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
@@ -165,7 +181,7 @@ shader_param/rock_noise_scale = 0.005
 shader_param/rock_noise_lacunarity = 2.0
 shader_param/rock_noise_gain = 0.5
 shader_param/rock_noise_detail = 5
-shader_param/rock_coverage = 0.453
+shader_param/rock_coverage = 0.712
 shader_param/rock_blend = 0.099
 shader_param/color_rocks = null
 shader_param/u_terrain_normal_basis = null
@@ -181,5 +197,5 @@ material/0 = SubResource( 2 )
 transform = Transform( 59.758, 0, 0, 0, 59.758, 0, 0, 0, 59.758, 0, 0, 0 )
 material/0 = SubResource( 3 )
 
-[node name="rucksack" parent="." index="2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48187, 0.302661, 7.76458 )
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
+transform = Transform( 0.117323, 0.0135353, 3.36178e-09, -0.0110134, 0.0954633, 0.0686538, 0.00786825, -0.0682015, 0.0960964, 0, 176.8, 0 )

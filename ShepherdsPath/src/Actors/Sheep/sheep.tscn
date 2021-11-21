@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleShape" id=2]
 
 [sub_resource type="SphereShape" id=3]
+radius = 8.0
 
 [node name="Sheep" type="KinematicBody" groups=["prey"]]
 collision_mask = 8

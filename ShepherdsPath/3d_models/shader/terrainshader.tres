@@ -125,6 +125,6 @@ void fragment() {
 	vec3 vpos = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	float nrock = fbm(vpos * rock_noise_scale, rock_noise_detail, rock_noise_lacunarity, rock_noise_gain);
 	float rock_map = 1.0 - (worldnormal.y + nrock * rock_noise_influence - rock_coverage) / rock_blend;
-	ALBEDO = vec3(rock_map);
+	ALBEDO = mix(vec3(0.9), vec3(0.12), clamp(rock_map, 0.0, 1.0));
 }
 "
