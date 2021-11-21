@@ -12,7 +12,7 @@ func _ready():
 		var c_sheep: Sheep = Boid.instance()
 		c_sheep.randomize_behaviour()
 		randomize()
-		c_sheep.translation = Vector3(rand_range(0, _width), 1, rand_range(0, _height))
+		c_sheep.translation = Vector3(rand_range(0, _width), -30, rand_range(0, _height))
 		add_child(c_sheep)
 		get_node("/root/Apphandler").set_target(Vector3(505,-5,1))
 		

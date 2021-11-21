@@ -17,7 +17,7 @@ var _width = 3000
 var _height = 3000
 
 var _flock: Array = []
-var _mouse_target: Vector3
+var flag_target: Vector3
 var _velocity: Vector3
 
 func randomize_behaviour():
@@ -28,13 +28,15 @@ func randomize_behaviour():
 	randomize()
 	cohesion_force = rand_range(0.02, 0.2)
 	randomize()
+	mouse_follow_force = rand_range(0.02, 0.1)
+	randomize()
 	algin_force = rand_range(0.02, 0.2)
 
 func _ready():
 	randomize()
 	terrainBody = get_tree().get_root().get_node("testscene/terrain/StaticBody") #HÄSSLICH PAH EKKELHAAAFT
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * max_speed
-	_mouse_target = get_node("/root/Apphandler").target
+	flag_target = get_node("/root/Apphandler").target
 
 
 func _on_FlockView_body_entered(body: PhysicsBody):
@@ -49,16 +51,17 @@ func _on_FlockView_body_exited(body: PhysicsBody):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.get_button_index() == BUTTON_LEFT:
-			#_mouse_target = event.translation
+			#flag_target = event.translation
 			pass
 		elif event.get_button_index() == BUTTON_RIGHT:
-			_mouse_target = get_random_target()
+			flag_target = get_random_target()
 
 
 func _physics_process(_delta):
-	var mouse_vector = Vector3.ZERO
-	if _mouse_target != Vector3.INF:
-		mouse_vector = global_transform.origin.direction_to(_mouse_target) * max_speed * mouse_follow_force
+	flag_target = get_node("/root/Apphandler").target
+	var flag_vector = Vector3.ZERO
+	if flag_target != Vector3.INF:
+		flag_vector = global_transform.origin.direction_to(flag_target) * max_speed * mouse_follow_force
 	
 	# get cohesion, alginment, and separation vectors
 	var vectors = get_flock_status(_flock)
@@ -68,7 +71,7 @@ func _physics_process(_delta):
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
 
-	var acceleration = cohesion_vector + align_vector + separation_vector + mouse_vector
+	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 	
 
 	

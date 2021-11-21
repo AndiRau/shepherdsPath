@@ -5,7 +5,7 @@ class_name apphandler
 export(PackedScene) var flagscene: PackedScene
 onready var terrain: Terrain
 
-var target: Vector3 = Vector3(60,1,1)
+var target: Vector3 = Vector3(500,1,1)
 
 func set_target(_target: Vector3) -> void:
 	target = _target
