@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
 [ext_resource path="res://3d_models/terrain/terrain.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Player/PlayerController.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/scenery/throwobject.tscn" type="PackedScene" id=6]
 
 [node name="testscene" type="Spatial"]
 script = ExtResource( 1 )
@@ -14,7 +15,6 @@ Boid = ExtResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.460014, 0.330232, -0.824218, 0, 0.928265, 0.371919, 0.887912, -0.171088, 0.427015, -32.5046, -33.3332, -4.24666 )
 visible = false
-current = true
 near = 0.16
 far = 5000.0
 script = ExtResource( 4 )
@@ -25,3 +25,168 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -189.954, 0, 0 )
 
 [node name="PlayerController" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.2317, -37.374, -3.37904 )
+
+[node name="throwobject" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject5" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject6" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject7" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject8" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject9" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject10" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject11" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject12" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject13" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject14" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject15" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject16" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject17" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject18" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject19" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject20" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject21" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject22" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject23" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject24" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject25" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject26" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject27" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject28" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject29" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject30" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject31" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject32" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject33" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject34" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject35" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject36" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject37" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject38" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject39" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject40" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject41" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject42" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject43" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject44" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject45" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject46" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject47" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject48" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject49" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject50" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject51" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject52" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject53" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject54" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
+
+[node name="throwobject55" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.2988, -35.3885, -6.58381 )
