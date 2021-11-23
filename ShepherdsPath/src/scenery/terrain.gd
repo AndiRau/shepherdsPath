@@ -6,3 +6,4 @@ var heightmap = Image.new()
 
 func _ready():
 	pass
+
