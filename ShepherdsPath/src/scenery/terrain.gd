@@ -12,5 +12,5 @@ func _ready():
 	if $"/root/Apphandler".current_terrain != null:
 		print("Only one instance of type Terrain is allowed per scene")
 	$"/root/Apphandler".current_terrain = self
-	pass
+
 

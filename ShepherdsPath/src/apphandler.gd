@@ -14,7 +14,7 @@ func set_target(_target: Vector3) -> void:
 	var f: Spatial = flagscene.instance()
 	get_tree().get_root().get_node("testscene").add_child(f)
 	f.translation = target
-	print(target)
+
 	
 func get_unified_player_position():
 	return Vector2(player_position.x, player_position.z) / current_terrain.rect_size

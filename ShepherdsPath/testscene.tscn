@@ -28,6 +28,7 @@ transform = Transform( 0.617832, -0.0665398, -0.0408817, -0.0254412, 0.136725, -
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, 3.56442, -430.086 )
+visible = false
 
 [node name="mapXpos" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1531.31, 0, 0 )

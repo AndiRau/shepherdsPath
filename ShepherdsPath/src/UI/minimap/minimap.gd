@@ -12,6 +12,6 @@ func _ready():
 	mat = $map.get_active_material(0)
 	pass # Replace with function body.
 
-func _process(delta):
-	#mat.set_shader_param("player_position", pos)
+func _process(_delta):
+	mat.set_shader_param("player_position", Apphandler.get_unified_player_position())
 	pass
