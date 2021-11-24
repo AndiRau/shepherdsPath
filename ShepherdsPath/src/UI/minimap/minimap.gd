@@ -7,3 +7,6 @@ func _ready():
 
 func _process(_delta):
 	mat.set_shader_param("player_position", Apphandler.get_unified_player_position())
+
+func set_open(val: float):
+	$map.set("blend_shapes/Key 1", val)

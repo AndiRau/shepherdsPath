@@ -49,7 +49,9 @@ func _on_FlockView_body_entered(body: PhysicsBody):
 
 
 func _on_FlockView_body_exited(body: PhysicsBody):
-	_flock.remove(_flock.find(body))
+	var index =_flock.find(body)
+	if index >= 0:
+		_flock.remove(index)
 
 
 func _input(event):

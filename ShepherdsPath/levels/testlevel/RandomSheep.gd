@@ -19,6 +19,6 @@ func _ready():
 		randomize()
 		c_sheep.translation = Vector3(rand_range(sheepspawnPos.x, sheepspawnPos.x + _width), sheepspawnPos.y, rand_range(sheepspawnPos.z, sheepspawnPos.z + _height)) # added a sheepspawn node so i can say, where they spawn
 		add_child(c_sheep)
-		get_node("/root/Apphandler").set_target(Vector3(1291.777,-12.657,-820.72)) # testing purposes. coordinates replaceable with something else
+		Apphandler.set_target(Vector3(1291.777,-12.657,-820.72)) # testing purposes. coordinates replaceable with something else
 		
 

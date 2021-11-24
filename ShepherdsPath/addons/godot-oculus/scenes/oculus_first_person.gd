@@ -4,10 +4,6 @@ var oculus_config = null;
 var refresh_rate = 0;
 var player_pos
 
-onready var mapZpos = get_node("/root/testscene/mapZpos")
-onready var mapXpos = get_node("/root/testscene/mapXpos")
-
-
 func get_config():
 	return oculus_config
 
@@ -37,4 +33,3 @@ func _process(delta):
 			# up our physics to 90fps to get in sync with our rendering
 			Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = global_transform.origin
-	print(Apphandler.get_unified_player_position())

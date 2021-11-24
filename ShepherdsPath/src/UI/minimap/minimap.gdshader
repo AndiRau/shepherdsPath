@@ -14,7 +14,7 @@ void fragment() {
 	if (inX && inY) {
 		c = 1.0;
 	}
-	
+
 	ALBEDO = texture(maptexture, UV).rgb + vec3(c);
 }
 
