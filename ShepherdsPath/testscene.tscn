@@ -31,12 +31,6 @@ transform = Transform( 0.617832, -0.0665398, -0.0408817, -0.0254412, 0.136725, -
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
 
-[node name="mapXpos" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1531.31, 0, 0 )
-
-[node name="mapZpos" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2479.52 )
-
 [node name="sheepSpawn" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1271.56, -14.7943, -391.025 )
 
@@ -45,6 +39,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1291.78, 14.0076, -419.919 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1250.94, -11.5975, -428.919 )
+visible = false
 collision_layer = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
