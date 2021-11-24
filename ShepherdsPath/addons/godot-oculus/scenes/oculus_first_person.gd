@@ -36,9 +36,4 @@ func _process(delta):
 		
 			# up our physics to 90fps to get in sync with our rendering
 			Engine.iterations_per_second = refresh_rate
-	print(get_coordinates())
-
-
-#gets the world coordinates of the playercontroller for the map
-func get_coordinates() -> Vector2:
-	return Vector2(global_transform.origin.x / mapXpos.global_transform.origin.x ,global_transform.origin.z / mapZpos.global_transform.origin.z)
+	$"/root/Apphandler".player_position = global_transform.origin

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://3d_models/inventory/map.glb" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/minimap/minimap.material" type="Material" id=2]
+[ext_resource path="res://src/UI/minimap/minimap.gd" type="Script" id=3]
+
+[node name="map" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="map" parent="." index="0"]
+material/0 = ExtResource( 2 )
