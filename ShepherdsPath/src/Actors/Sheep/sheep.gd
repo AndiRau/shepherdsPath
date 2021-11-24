@@ -9,7 +9,9 @@ export var algin_force: float = 0.05
 export var separate_force: float = 0.05
 export var view_distance: = 50.0
 export var avoid_distance: = 20.0
+export var jump_shortage: float = 0.5
 onready var rc: RayCast = $RayCast
+var is_jumping: bool = false
 
 var terrainBody: StaticBody
 
@@ -31,6 +33,8 @@ func randomize_behaviour():
 	mouse_follow_force = rand_range(0.02, 0.1)
 	randomize()
 	algin_force = rand_range(0.02, 0.2)
+	randomize()
+	jump_shortage = pow(rand_range(0, 1), 2) * 3 + 0.15
 
 func _ready():
 	randomize()
@@ -56,7 +60,7 @@ func _input(event):
 		elif event.get_button_index() == BUTTON_RIGHT:
 			flag_target = get_random_target()
 
-
+var down_force = 0
 func _physics_process(_delta):
 	flag_target = get_node("/root/Apphandler").target
 	var flag_vector = Vector3.ZERO
@@ -77,15 +81,28 @@ func _physics_process(_delta):
 	
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * max_speed
 	
+	if rc.is_colliding():
+		global_transform.origin = rc.get_collision_point()
+
+	if is_jumping:
+		if rc.is_colliding():
+			down_force += 25
+		else:
+			down_force -= jump_shortage
+		var down_force_max = 8
+		down_force = clamp(down_force, -down_force_max*2, down_force_max)
+	else:
+		down_force = -5
+	
+	if down_force < 0:
+		down_force *= 1.2 #fall faster don than up
+
+	_velocity.y = down_force
 	_velocity = move_and_slide(_velocity)
 	
-	var down_force = -5
-	if rc.is_colliding():
-		down_force = 5
+	#move_and_slide(Vector3(0,down_force,0))
 		
-	move_and_slide(Vector3(0,down_force,0))
-		
-	look_at(global_transform.origin + _velocity, Vector3(0, 1, 0))
+	look_at(global_transform.origin + _velocity * Vector3(1,0,1), Vector3(0, 1, 0))
 
 
 func get_flock_status(flock: Array) -> Array:
@@ -119,3 +136,12 @@ func get_flock_status(flock: Array) -> Array:
 func get_random_target():
 	randomize()
 	return Vector3(rand_range(0, _width), 1, rand_range(0, _height))
+
+
+func on_random_time():
+	is_jumping = !is_jumping
+	jump_shortage = pow(rand_range(0, 1), 2) * 1.1 + 0.15
+
+func start_jumping(_jump_shortage):
+	is_jumping = true
+	jump_shortage = _jump_shortage
