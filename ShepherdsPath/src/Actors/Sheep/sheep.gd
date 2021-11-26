@@ -10,10 +10,11 @@ export var separate_force: float = 0.05
 export var view_distance: = 50.0
 export var avoid_distance: = 20.0
 export var jump_shortage: float = 0.5
+export var enemy_forget_time: float = 5
 onready var rc: RayCast = $RayCast
 var is_jumping: bool = false
-
-var terrainBody: StaticBody
+var saw_enemy: bool = false
+var current_enemy: Vector3 #maybe add enemy type later
 
 var _width = 3000
 var _height = 3000
@@ -35,12 +36,14 @@ func randomize_behaviour():
 	algin_force = rand_range(0.02, 0.2)
 	randomize()
 	jump_shortage = pow(rand_range(0, 1), 2) * 3 + 0.15
+	randomize()
+	enemy_forget_time =rand_range(3, 15)
 
 func _ready():
 	randomize()
-	terrainBody = get_tree().get_root().get_node("testscene/terrain/StaticBody") #HÄSSLICH PAH EKKELHAAAFT
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * max_speed
-	flag_target = get_node("/root/Apphandler").target
+	flag_target = Apphandler.target
+	$TimerForgetEnemy.wait_time = enemy_forget_time
 
 
 func _on_FlockView_body_entered(body: PhysicsBody):
@@ -62,6 +65,10 @@ func _input(event):
 		elif event.get_button_index() == BUTTON_RIGHT:
 			flag_target = get_random_target()
 
+func flee(acceleration: Vector3) -> Vector3:
+	var enemy_vector = global_transform.origin - current_enemy
+	return acceleration + enemy_vector * 6
+
 var down_force = 0
 func _physics_process(_delta):
 	flag_target = get_node("/root/Apphandler").target
@@ -73,12 +80,17 @@ func _physics_process(_delta):
 	var vectors = get_flock_status(_flock)
 	
 	# steer towards vectors
-	var cohesion_vector = vectors[0] * cohesion_force
+	var cohesion_vector = vectors[0] * cohesion_force * 5
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
-	
+
+	#var food_vector = global_transform.origin - current_food
+	#acceleration -= food_vector * 5
+
+	if saw_enemy:
+		acceleration = flee(acceleration)
 
 	
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * max_speed
@@ -101,9 +113,7 @@ func _physics_process(_delta):
 
 	_velocity.y = down_force
 	_velocity = move_and_slide(_velocity)
-	
-	#move_and_slide(Vector3(0,down_force,0))
-		
+			
 	look_at(global_transform.origin + _velocity * Vector3(1,0,1), Vector3(0, 1, 0))
 
 
@@ -115,7 +125,7 @@ func get_flock_status(flock: Array) -> Array:
 	
 	for f in flock:
 		var neighbor_pos: Vector3 = f.global_transform.origin
-#		align_vector += f._velocity			functioniert aus irgendwelchen gründen nicht
+		#align_vector += f._velocity			functioniert aus irgendwelchen gründen nicht
 		align_vector += Vector3(1,1,1)
 		flock_center += neighbor_pos
 
@@ -147,3 +157,21 @@ func on_random_time():
 func start_jumping(_jump_shortage):
 	is_jumping = true
 	jump_shortage = _jump_shortage
+
+
+func _on_FlockView_area_entered(area: Area):
+	if area.name == "WolfArea":
+		current_enemy = area.global_transform.origin
+		saw_enemy = true
+		max_speed = 14
+		algin_force = 500
+		separate_force = 0.001
+		$TimerForgetEnemy.start()
+		print(current_enemy)
+
+
+func _on_forget_enemy():
+	saw_enemy = false
+	algin_force = rand_range(0.02, 0.2)
+	max_speed = rand_range(2, 8)
+	separate_force = 0.05

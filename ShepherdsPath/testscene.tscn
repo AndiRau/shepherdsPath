@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
 [ext_resource path="res://3d_models/terrain/terrain.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Player/PlayerController.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3.21825, 0.354563, 1.88858 )
@@ -25,14 +27,17 @@ sensitivity = 0.75
 
 [node name="map2" parent="Camera" instance=ExtResource( 7 )]
 transform = Transform( 0.617832, -0.0665398, -0.0408817, -0.0254412, 0.136725, -0.60702, 0.0738351, 0.603898, 0.132927, 0.911987, 0.583282, -1.93457 )
+visible = false
 
 [node name="terrain" parent="." instance=ExtResource( 3 )]
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
 
-[node name="sheepSpawn" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1271.56, -14.7943, -391.025 )
+[node name="flock" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1271.56, 6.0062, -415.605 )
+script = ExtResource( 8 )
+Sheep = ExtResource( 2 )
 
 [node name="Sheepfollow" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1291.78, 14.0076, -419.919 )
@@ -44,3 +49,6 @@ collision_layer = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 1 )
+
+[node name="Wolf" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.92753, 0.139005, -0.346938, 0, 0.928265, 0.37192, 0.373749, 0.344967, -0.860993, 1263.44, -0.324038, -408.63 )
