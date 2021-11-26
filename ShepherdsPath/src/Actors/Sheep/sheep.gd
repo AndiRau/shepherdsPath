@@ -71,6 +71,10 @@ func flee(acceleration: Vector3) -> Vector3:
 	return acceleration + enemy_vector * 3
 
 var down_force = 0
+
+func _process(delta):
+	pass
+
 func _physics_process(_delta):
 	flag_target = get_node("/root/Apphandler").target
 	var flag_vector = Vector3.ZERO
@@ -162,6 +166,7 @@ func start_jumping(_jump_shortage):
 
 func _on_FlockView_area_entered(area: Area):
 	if area.name == "WolfArea":
+		$PanicVisualizer.show()
 		current_enemy = area.global_transform.origin
 		saw_enemy = true
 		max_speed = rand_range(9, 16)
@@ -176,7 +181,7 @@ func _on_forget_enemy():
 		if body.get_collision_layer() == 17: # ugly magic number for enemy colission layer. Fix.
 			$TimerForgetEnemy.start()
 			return
-
+	$PanicVisualizer.hide()
 	saw_enemy = false
 	algin_force = rand_range(0.02, 0.2)
 	max_speed = rand_range(2, 8)
