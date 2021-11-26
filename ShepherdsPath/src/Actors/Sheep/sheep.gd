@@ -3,6 +3,7 @@ extends KinematicBody
 class_name Sheep
 
 export var speed: float = 200.0
+export var flee_speed_multiplier = 2.5
 export var target_follow_force: float = 0.05
 export var cohesion_force: float = 0.05
 export var algin_force: float = 0.05
@@ -12,14 +13,13 @@ export var avoid_distance: = 20.0
 export var jump_shortage: float = 0.5
 export var enemy_forget_time: float = 5
 onready var rc: RayCast = $RayCast
+onready var enemy_timer: Timer = $TimerForgetEnemy
 var is_jumping: bool = false
 var saw_enemy: bool = false
 var current_enemy: Vector3 #maybe add enemy type later
 var enemies_in_memory: PoolVector3Array
 onready var flock_view: Area = $FlockView
-
-var _width = 3000
-var _height = 3000
+var c_speed: float
 
 var _flock: Array = []
 var _velocity: Vector3
@@ -35,14 +35,24 @@ func randomize_behaviour():
 	enemy_forget_time = rand_range(3, 15)
 
 func _ready():
+	c_speed = speed
 	randomize()
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * speed
-	$TimerForgetEnemy.wait_time = enemy_forget_time
+	enemy_timer.wait_time = enemy_forget_time
 
 
 func _on_FlockView_body_entered(body: PhysicsBody):
 	if self != body:
 		_flock.append(body)
+	if body.is_in_group("sheep_offenders"):
+		$PanicVisualizer.show()
+		current_enemy = body.global_transform.origin
+		saw_enemy = true
+		c_speed = speed * flee_speed_multiplier
+		algin_force = 1
+		separate_force = 0.002
+		enemy_timer.start()
+		target_follow_force = 0
 
 
 func _on_FlockView_body_exited(body: PhysicsBody):
@@ -51,8 +61,8 @@ func _on_FlockView_body_exited(body: PhysicsBody):
 		_flock.remove(index)
 
 func flee(acceleration: Vector3) -> Vector3:
-	var enemy_vector = global_transform.origin - current_enemy
-	return acceleration + enemy_vector * 100
+	var enemy_vector = (global_transform.origin - current_enemy).normalized()
+	return acceleration + enemy_vector * 3
 
 var down_force = 0
 
@@ -62,7 +72,7 @@ func _process(delta):
 func _physics_process(_delta):
 	var flag_vector = Vector3.ZERO
 	if get_parent().target_pos != Vector3.INF:
-		flag_vector = global_transform.origin.direction_to(get_parent().target_pos) * speed * target_follow_force
+		flag_vector = global_transform.origin.direction_to(get_parent().target_pos) * c_speed * target_follow_force
 	
 	# get cohesion, alginment, and separation vectors
 	var vectors = get_flock_status(_flock)
@@ -81,7 +91,7 @@ func _physics_process(_delta):
 		acceleration = flee(acceleration)
 
 	
-	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * speed
+	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * c_speed
 	
 	if rc.is_colliding():
 		global_transform.origin = rc.get_collision_point()
@@ -127,15 +137,10 @@ func get_flock_status(flock: Array) -> Array:
 		flock_center /= flock_size
 
 		var center_dir = global_transform.origin.direction_to(flock_center)
-		var center_speed = speed * (global_transform.origin.distance_to(flock_center) / $FlockView/ViewRadius.shape.radius)
+		var center_speed = c_speed * (global_transform.origin.distance_to(flock_center) / $FlockView/ViewRadius.shape.radius)
 		center_vector = center_dir * center_speed
 
 	return [center_vector, align_vector, avoid_vector]
-
-
-func get_random_target():
-	randomize()
-	return Vector3(rand_range(0, _width), 1, rand_range(0, _height))
 
 
 func on_random_time():
@@ -146,18 +151,6 @@ func start_jumping(_jump_shortage):
 	is_jumping = true
 	jump_shortage = _jump_shortage
 
-
-func _on_FlockView_area_entered(area: Area):
-	if area.name == "WolfArea":
-		$PanicVisualizer.show()
-		current_enemy = area.global_transform.origin
-		saw_enemy = true
-		speed = rand_range(3, 4)
-		algin_force = 700
-		separate_force = 0.002
-		$TimerForgetEnemy.start()
-
-
 func _on_forget_enemy():
 	for body in flock_view.get_overlapping_bodies():
 		if body.is_in_group("sheep_offenders"): # ugly magic number for enemy colission layer. Fix.
@@ -166,5 +159,6 @@ func _on_forget_enemy():
 	$PanicVisualizer.hide()
 	saw_enemy = false
 	algin_force = rand_range(0.02, 0.2)
-	speed = rand_range(2, 8)
+	c_speed = speed
 	separate_force = 0.05
+	target_follow_force = rand_range(0.02, 0.6)
