@@ -12,7 +12,7 @@ extents = Vector3( 14.5813, 6.16661, 20.9752 )
 [sub_resource type="CapsuleShape" id=3]
 radius = 1.53206
 
-[node name="Wolf" type="KinematicBody"]
+[node name="Wolf" type="KinematicBody" groups=["sheep_offenders"]]
 collision_layer = 65536
 collision_mask = 2
 script = ExtResource( 1 )

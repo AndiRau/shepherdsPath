@@ -5,14 +5,15 @@ class_name Wolf
 export var speed: float = 8
 export var visionRadius: float
 onready var view: Area = $WolfView
+onready var rc: RayCast = $RayCast
 var current_target: Vector3 # maybe convert type later
-
-signal i_see_you
 
 
 func _ready():
 	pass
 
+func pick_victim(sheeps_in_view: Array):
+	pass
 
 
 func _process(delta):

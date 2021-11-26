@@ -35,7 +35,7 @@ shape = SubResource( 2 )
 
 [node name="FlockView" type="Area" parent="."]
 collision_layer = 0
-collision_mask = 65537
+collision_mask = 196609
 monitorable = false
 
 [node name="ViewRadius" type="CollisionShape" parent="FlockView"]

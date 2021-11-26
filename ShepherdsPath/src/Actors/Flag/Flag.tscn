@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[sub_resource type="CylinderMesh" id=1]
+[sub_resource type="CubeMesh" id=1]
 
-[node name="Flag" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98702, 0 )
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Flag" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.184431, 0, 0, 0, 6.71536, 0, 0, 0, 0.184431, 9.53674e-07, 6.94314, 0.101254 )
 mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -1.01674e-07, -2.32602, -1.01674e-07, 8.88858e-15, 1.01674e-07, -2.32602, 3.17864, -1.38943e-07, 6.07337e-15, 9.53674e-07, 11.2312, 3.31276 )
+mesh = SubResource( 2 )
 material/0 = null

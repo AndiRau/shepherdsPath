@@ -2,8 +2,8 @@ extends KinematicBody
 
 class_name Sheep
 
-export var max_speed: float = 200.0
-export var mouse_follow_force: float = 0.05
+export var speed: float = 200.0
+export var target_follow_force: float = 0.05
 export var cohesion_force: float = 0.05
 export var algin_force: float = 0.05
 export var separate_force: float = 0.05
@@ -15,35 +15,28 @@ onready var rc: RayCast = $RayCast
 var is_jumping: bool = false
 var saw_enemy: bool = false
 var current_enemy: Vector3 #maybe add enemy type later
+var enemies_in_memory: PoolVector3Array
 onready var flock_view: Area = $FlockView
 
 var _width = 3000
 var _height = 3000
 
 var _flock: Array = []
-var flag_target: Vector3
 var _velocity: Vector3
 
 func randomize_behaviour():
 	randomize()
-	max_speed = rand_range(2, 8)
-	randomize()
+	speed = rand_range(2, 8)
 	avoid_distance = rand_range(2, 20)
-	randomize()
 	cohesion_force = rand_range(0.02, 0.2)
-	randomize()
-	mouse_follow_force = rand_range(0.02, 0.1)
-	randomize()
+	target_follow_force = rand_range(0.02, 0.6)
 	algin_force = rand_range(0.02, 0.2)
-	randomize()
 	jump_shortage = pow(rand_range(0, 1), 2) * 3 + 0.15
-	randomize()
-	enemy_forget_time =rand_range(3, 15)
+	enemy_forget_time = rand_range(3, 15)
 
 func _ready():
 	randomize()
-	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * max_speed
-	flag_target = Apphandler.target
+	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * speed
 	$TimerForgetEnemy.wait_time = enemy_forget_time
 
 
@@ -57,18 +50,9 @@ func _on_FlockView_body_exited(body: PhysicsBody):
 	if index >= 0:
 		_flock.remove(index)
 
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.get_button_index() == BUTTON_LEFT:
-			#flag_target = event.translation
-			pass
-		elif event.get_button_index() == BUTTON_RIGHT:
-			flag_target = get_random_target()
-
 func flee(acceleration: Vector3) -> Vector3:
 	var enemy_vector = global_transform.origin - current_enemy
-	return acceleration + enemy_vector * 3
+	return acceleration + enemy_vector * 100
 
 var down_force = 0
 
@@ -76,10 +60,9 @@ func _process(delta):
 	pass
 
 func _physics_process(_delta):
-	flag_target = get_node("/root/Apphandler").target
 	var flag_vector = Vector3.ZERO
-	if flag_target != Vector3.INF:
-		flag_vector = global_transform.origin.direction_to(flag_target) * max_speed * mouse_follow_force
+	if get_parent().target_pos != Vector3.INF:
+		flag_vector = global_transform.origin.direction_to(get_parent().target_pos) * speed * target_follow_force
 	
 	# get cohesion, alginment, and separation vectors
 	var vectors = get_flock_status(_flock)
@@ -98,7 +81,7 @@ func _physics_process(_delta):
 		acceleration = flee(acceleration)
 
 	
-	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * max_speed
+	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * speed
 	
 	if rc.is_colliding():
 		global_transform.origin = rc.get_collision_point()
@@ -114,7 +97,7 @@ func _physics_process(_delta):
 		down_force = -5
 	
 	if down_force < 0:
-		down_force *= 1.2 #fall faster don than up
+		down_force *= 1.2 #fall faster down than up
 
 	_velocity.y = down_force
 	_velocity = move_and_slide(_velocity)
@@ -136,7 +119,7 @@ func get_flock_status(flock: Array) -> Array:
 
 		var d = global_transform.origin.distance_to(neighbor_pos)
 		if d > 0 and d < avoid_distance:
-			avoid_vector -= (neighbor_pos - global_transform.origin).normalized() * (avoid_distance / d * max_speed)
+			avoid_vector -= (neighbor_pos - global_transform.origin).normalized() * (avoid_distance / d * speed)
 	
 	var flock_size = flock.size()
 	if flock_size:
@@ -144,7 +127,7 @@ func get_flock_status(flock: Array) -> Array:
 		flock_center /= flock_size
 
 		var center_dir = global_transform.origin.direction_to(flock_center)
-		var center_speed = max_speed * (global_transform.origin.distance_to(flock_center) / $FlockView/ViewRadius.shape.radius)
+		var center_speed = speed * (global_transform.origin.distance_to(flock_center) / $FlockView/ViewRadius.shape.radius)
 		center_vector = center_dir * center_speed
 
 	return [center_vector, align_vector, avoid_vector]
@@ -169,7 +152,7 @@ func _on_FlockView_area_entered(area: Area):
 		$PanicVisualizer.show()
 		current_enemy = area.global_transform.origin
 		saw_enemy = true
-		max_speed = rand_range(9, 16)
+		speed = rand_range(3, 4)
 		algin_force = 700
 		separate_force = 0.002
 		$TimerForgetEnemy.start()
@@ -177,12 +160,11 @@ func _on_FlockView_area_entered(area: Area):
 
 func _on_forget_enemy():
 	for body in flock_view.get_overlapping_bodies():
-		if body.get_collision_layer() == 17: # ugly magic number for enemy colission layer. Fix.
-			print("STILL WOLF!")
+		if body.is_in_group("sheep_offenders"): # ugly magic number for enemy colission layer. Fix.
 			$TimerForgetEnemy.start()
 			return
 	$PanicVisualizer.hide()
 	saw_enemy = false
 	algin_force = rand_range(0.02, 0.2)
-	max_speed = rand_range(2, 8)
+	speed = rand_range(2, 8)
 	separate_force = 0.05

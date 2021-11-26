@@ -2,19 +2,10 @@ extends Node
 
 class_name apphandler
 
-export(PackedScene) var flagscene: PackedScene
 onready var current_terrain: Terrain
 
-var target: Vector3 = Vector3(500,1,1)
 var player_position: Vector3 = Vector3()
 var player_unified_position: Vector2 = Vector2()
-
-func set_target(_target: Vector3) -> void:
-	target = _target
-	var f: Spatial = flagscene.instance()
-	get_tree().get_root().get_node("testscene").add_child(f)
-	f.translation = target
-
 	
 func get_unified_player_position():
 	return Vector2(player_position.x, player_position.z) / current_terrain.rect_size

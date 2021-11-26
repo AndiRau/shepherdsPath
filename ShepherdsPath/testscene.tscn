@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
@@ -8,14 +8,13 @@
 [ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=8]
+[ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3.21825, 0.354563, 1.88858 )
 
 [node name="testscene" type="Spatial"]
 script = ExtResource( 1 )
-sheep_number = 25
-Boid = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.999848, 0.00956929, -0.0145957, 0, 0.836287, 0.548291, 0.0174529, 0.548208, -0.83616, 1274.03, 33.9474, -474.466 )
@@ -38,9 +37,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
 script = ExtResource( 8 )
 Sheep = ExtResource( 2 )
-
-[node name="Sheepfollow" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1291.78, 14.0076, -419.919 )
+target_flag_path = NodePath("../Flag")
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1250.94, -11.5975, -428.919 )
@@ -51,4 +48,10 @@ collision_layer = 3
 shape = SubResource( 1 )
 
 [node name="Wolf" parent="." instance=ExtResource( 6 )]
-transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1215.46, -13.5954, -415.32 )
+transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1215.46, -13.5954, -355.711 )
+
+[node name="Wolf2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.324843, 0.0461612, 0.944641, 0.00281224, 0.998851, -0.0478432, -0.945764, -0.012885, -0.324599, 1322.4, -11.4156, -363.215 )
+
+[node name="Flag" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1273.61, -17.0555, -301.185 )
