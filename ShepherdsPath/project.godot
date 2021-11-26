@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/scenery/terrain.gd"
 }, {
+"base": "Spatial",
+"class": "Wolf",
+"language": "GDScript",
+"path": "res://src/Actors/Wolf/wolf.gd"
+}, {
 "base": "Area",
 "class": "XRToolsInteractableArea",
 "language": "GDScript",
@@ -42,6 +47,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Sheep": "",
 "Terrain": "",
+"Wolf": "",
 "XRToolsInteractableArea": "",
 "XRToolsInteractableBody": "",
 "XRToolsPickable": "",
@@ -87,6 +93,7 @@ ui_swap_razor={
 [layer_names]
 
 2d_physics/layer_1="Prey"
+3d_physics/layer_1="Player"
 2d_physics/layer_2="Hunter"
 3d_physics/layer_2="Environment"
 2d_physics/layer_3="Object"
@@ -95,6 +102,7 @@ ui_swap_razor={
 3d_physics/layer_4="throwObject"
 3d_physics/layer_11="in Hand"
 3d_physics/layer_17="Enemies"
+3d_physics/layer_18="Sheep"
 
 [physics]
 

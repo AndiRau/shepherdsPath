@@ -51,4 +51,4 @@ collision_layer = 3
 shape = SubResource( 1 )
 
 [node name="Wolf" parent="." instance=ExtResource( 6 )]
-transform = Transform( 0.113498, 0, 0.993538, 0, 1, 0, -0.993538, 0, 0.113498, 1215.46, -13.5954, -415.32 )
+transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1215.46, -13.5954, -415.32 )

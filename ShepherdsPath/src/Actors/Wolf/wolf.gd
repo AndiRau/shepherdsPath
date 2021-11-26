@@ -1,17 +1,25 @@
 extends Spatial
 
-export var speed: float
+class_name Wolf
+
+export var speed: float = 8
 export var visionRadius: float
+onready var view: Area = $WolfView
+var current_target: Vector3 # maybe convert type later
 
 signal i_see_you
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-func _on_Area_area_entered(area: Area):
-	emit_signal("i_see_you", area)
 
-func _process(delta: float):
-	translate(Vector3(0,0.6,5) * delta)
+func _process(delta):
+	var sheeps_in_view: Array = view.get_overlapping_bodies()
+	if sheeps_in_view.size() > 0:
+		look_at(sheeps_in_view[0].global_transform.origin, Vector3(0,1, 0))
+		translate(Vector3.FORWARD * delta * speed)
+
+func _on_WolfView_area_entered(area: Area):
+	pass#current_target = area.get_parent().
