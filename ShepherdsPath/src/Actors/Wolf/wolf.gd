@@ -1,4 +1,4 @@
-extends Node
+extends Spatial
 
 export var speed: float
 export var visionRadius: float
@@ -12,3 +12,6 @@ func _ready():
 
 func _on_Area_area_entered(area: Area):
 	emit_signal("i_see_you", area)
+
+func _process(delta: float):
+	translate(Vector3(0,0.6,5) * delta)

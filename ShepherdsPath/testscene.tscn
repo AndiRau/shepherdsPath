@@ -18,7 +18,7 @@ sheep_number = 25
 Boid = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.92753, 0.139005, -0.346938, 0, 0.928265, 0.37192, 0.373749, 0.344967, -0.860994, 1248.74, 4.62735, -399.416 )
+transform = Transform( -0.999848, 0.00956929, -0.0145957, 0, 0.836287, 0.548291, 0.0174529, 0.548208, -0.83616, 1274.03, 33.9474, -474.466 )
 fov = 50.0
 near = 0.16
 far = 5000.0
@@ -35,7 +35,7 @@ visible = false
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
 
 [node name="flock" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1271.56, 6.0062, -415.605 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
 script = ExtResource( 8 )
 Sheep = ExtResource( 2 )
 
@@ -51,4 +51,4 @@ collision_layer = 3
 shape = SubResource( 1 )
 
 [node name="Wolf" parent="." instance=ExtResource( 6 )]
-transform = Transform( -0.92753, 0.139005, -0.346938, 0, 0.928265, 0.37192, 0.373749, 0.344967, -0.860993, 1263.44, -0.324038, -408.63 )
+transform = Transform( 0.113498, 0, 0.993538, 0, 1, 0, -0.993538, 0, 0.113498, 1215.46, -13.5954, -415.32 )

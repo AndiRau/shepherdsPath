@@ -67,7 +67,7 @@ func _input(event):
 
 func flee(acceleration: Vector3) -> Vector3:
 	var enemy_vector = global_transform.origin - current_enemy
-	return acceleration + enemy_vector * 6
+	return acceleration + enemy_vector * 3
 
 var down_force = 0
 func _physics_process(_delta):
@@ -163,9 +163,9 @@ func _on_FlockView_area_entered(area: Area):
 	if area.name == "WolfArea":
 		current_enemy = area.global_transform.origin
 		saw_enemy = true
-		max_speed = 14
-		algin_force = 500
-		separate_force = 0.001
+		max_speed = rand_range(9, 16)
+		algin_force = 700
+		separate_force = 0.002
 		$TimerForgetEnemy.start()
 		print(current_enemy)
 

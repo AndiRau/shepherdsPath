@@ -1,10 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Actors/Wolf/wolf.gd" type="Script" id=1]
-
-[sub_resource type="SphereMesh" id=1]
-radial_segments = 12
-rings = 8
+[ext_resource path="res://3d_models/npc/wolf.glb" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=2]
 radius = 4.0
@@ -16,20 +13,8 @@ radius = 1.53206
 collision_mask = 2
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.96328, 0.519612, 0, -0.2685, 1.86418, 0, 0.634657, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="MeshInstance2" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 0.642971, 0, 0, 0, 0.440231, -0.753985, 0, 0.242152, 0.367084, 0, 1.0341, 0.922359 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = null
-
-[node name="RayCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-cast_to = Vector3( 0, -5, 0 )
+[node name="wolf" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.28082, 0, 0, 0, 1.28082, 0, 0, 0, 1.28082, 0, 0, 0 )
 
 [node name="WolfArea" type="Area" parent="."]
 
@@ -39,3 +24,7 @@ shape = SubResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01943, 0 )
 shape = SubResource( 3 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+cast_to = Vector3( 0, -5, 0 )
