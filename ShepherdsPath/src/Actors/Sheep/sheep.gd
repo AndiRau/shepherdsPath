@@ -15,6 +15,7 @@ onready var rc: RayCast = $RayCast
 var is_jumping: bool = false
 var saw_enemy: bool = false
 var current_enemy: Vector3 #maybe add enemy type later
+onready var flock_view: Area = $FlockView
 
 var _width = 3000
 var _height = 3000
@@ -167,11 +168,17 @@ func _on_FlockView_area_entered(area: Area):
 		algin_force = 700
 		separate_force = 0.002
 		$TimerForgetEnemy.start()
-		print(current_enemy)
 
 
 func _on_forget_enemy():
+	print("I try to forget the big bad Wolf!")
+	for body in flock_view.get_overlapping_bodies():
+		if body.get_collision_layer() == 17: # ugly magic number for enemy colission layer. Fix.
+			$TimerForgetEnemy.start()
+			return
+
 	saw_enemy = false
 	algin_force = rand_range(0.02, 0.2)
 	max_speed = rand_range(2, 8)
 	separate_force = 0.05
+	print("I finally forgot the big bad Wolf!")
