@@ -176,9 +176,9 @@ func _on_FlockView_area_entered(area: Area):
 
 
 func _on_forget_enemy():
-	print("I try to forget the big bad Wolf!")
 	for body in flock_view.get_overlapping_bodies():
 		if body.get_collision_layer() == 17: # ugly magic number for enemy colission layer. Fix.
+			print("STILL WOLF!")
 			$TimerForgetEnemy.start()
 			return
 	$PanicVisualizer.hide()
@@ -186,4 +186,3 @@ func _on_forget_enemy():
 	algin_force = rand_range(0.02, 0.2)
 	max_speed = rand_range(2, 8)
 	separate_force = 0.05
-	print("I finally forgot the big bad Wolf!")

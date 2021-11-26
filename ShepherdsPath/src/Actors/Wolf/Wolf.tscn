@@ -13,6 +13,7 @@ extents = Vector3( 14.5813, 6.16661, 20.9752 )
 radius = 1.53206
 
 [node name="Wolf" type="KinematicBody"]
+collision_layer = 65536
 collision_mask = 2
 script = ExtResource( 1 )
 
@@ -20,6 +21,7 @@ script = ExtResource( 1 )
 transform = Transform( -1.28082, 0, 1.11973e-07, 0, 1.28082, 0, -1.11973e-07, 0, -1.28082, 0, 0, 0 )
 
 [node name="WolfArea" type="Area" parent="."]
+collision_layer = 65536
 
 [node name="CollisionShape" type="CollisionShape" parent="WolfArea"]
 shape = SubResource( 2 )
