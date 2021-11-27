@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://3d_models/npc/sheep.glb" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.gd" type="Script" id=2]
 [ext_resource path="res://src/Actors/Sheep/ViewRadius.gd" type="Script" id=3]
 [ext_resource path="res://src/Actors/Sheep/sheep_randomizer_timer.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Sheep/ObstacleRay.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 1.32411
@@ -24,6 +25,10 @@ script = ExtResource( 2 )
 cohesion_force = 0.2
 view_distance = 15.0
 avoid_distance = 3.0
+
+[node name="ObstacleRayCaster" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28251, -1.01016 )
+script = ExtResource( 5 )
 
 [node name="sheep" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.564414, 0, -1.48028e-07, 0, 0.564414, 0, 1.48028e-07, 0, -0.564414, -0.0317786, 0, -0.0253986 )
@@ -60,6 +65,17 @@ transform = Transform( 0.169498, 0, 0, 0, 0.169498, 0, 0, 0, 0.173871, 0, 2.285,
 visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="FollowTarget" type="Node" parent="StateMachine"]
+
+[node name="Flee" type="Node" parent="StateMachine"]
+
+[node name="RayCast2" type="RayCast" parent="."]
+cast_to = Vector3( 20, 0, 16 )
 
 [connection signal="body_entered" from="FlockView" to="." method="_on_FlockView_body_entered"]
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]

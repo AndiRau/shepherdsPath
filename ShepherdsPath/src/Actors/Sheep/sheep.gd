@@ -40,7 +40,6 @@ func _ready():
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * speed
 	enemy_timer.wait_time = enemy_forget_time
 
-
 func _on_FlockView_body_entered(body: PhysicsBody):
 	if self != body:
 		_flock.append(body)
@@ -62,7 +61,7 @@ func _on_FlockView_body_exited(body: PhysicsBody):
 
 func flee(acceleration: Vector3) -> Vector3:
 	var enemy_vector = (global_transform.origin - current_enemy).normalized()
-	return acceleration + enemy_vector * 3
+	return acceleration + enemy_vector * 2.5
 
 var down_force = 0
 
@@ -84,7 +83,7 @@ func _physics_process(_delta):
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
-	#var food_vector = global_transform.origin - current_food
+	#var food_vector = global_transform.origin - Vector3(2,2,2)
 	#acceleration -= food_vector * 5
 
 	if saw_enemy:

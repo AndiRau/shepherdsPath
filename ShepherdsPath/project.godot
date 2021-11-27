@@ -115,6 +115,7 @@ ui_swap_razor={
 3d_physics/layer_11="in Hand"
 3d_physics/layer_17="Enemies"
 3d_physics/layer_18="Sheep"
+3d_physics/layer_19="SheepObstacles"
 
 [physics]
 

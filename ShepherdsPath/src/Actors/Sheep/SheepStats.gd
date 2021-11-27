@@ -2,6 +2,8 @@ extends Resource
 
 class_name SheepStats
 
+# currently not used
+
 export var max_speed: float = 200.0
 export var target_follow_force: float = 0.05
 export var cohesion_force: float = 0.05
