@@ -48,7 +48,6 @@ func _on_FlockView_body_entered(body: PhysicsBody):
 		$PanicVisualizer.show()
 		saw_enemy = true
 		c_speed = speed * flee_speed_multiplier
-		algin_force = 1
 		separate_force = 0.002
 		enemy_timer.start()
 		target_follow_force = 0
@@ -64,7 +63,7 @@ func flee(acceleration: Vector3) -> Vector3:
 	for e in enemies_in_memory:
 		enemy_vector -= e
 
-	return acceleration + enemy_vector.normalized() * 5
+	return acceleration + enemy_vector.normalized() * 2
 
 var down_force = 0
 
@@ -88,7 +87,7 @@ func _physics_process(_delta):
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
 	if $SeesObstacleRay.is_colliding():
-		var colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction()) * 5
+		var colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction()) * 3
 		acceleration += colission_avoid_force
 
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * c_speed
@@ -119,10 +118,10 @@ func _physics_process(_delta):
 	
 func steer_towards(vec: Vector3):
 	var cp: Vector3 = $SeesObstacleRay.get_collision_point()
-	var dist: float = $SeesObstacleRay.global_transform.origin.distance_squared_to(cp) -1
+	var dist: float = $SeesObstacleRay.global_transform.origin.distance_to(cp) -1
 	print(dist<1)
 	var v: Vector3 = vec.normalized() * speed - _velocity
-	return (v.normalized() * 8) / dist # max_steer_force
+	return (v.normalized() * 3) / dist # max_steer_force
 
 
 func get_flock_status(flock: Array) -> Array:
