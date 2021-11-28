@@ -57,13 +57,13 @@ shape = SubResource( 1 )
 transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1232.02, -13.5954, -355.711 )
 
 [node name="Wolf2" parent="." instance=ExtResource( 6 )]
-transform = Transform( -0.324843, 0.0461612, 0.944641, 0.00281224, 0.998851, -0.0478432, -0.945764, -0.012885, -0.324599, 1322.4, -11.4156, -363.215 )
+transform = Transform( -0.324843, 0.0461612, 0.944641, 0.00475475, 1.68879, -0.0808901, -0.945764, -0.012885, -0.324599, 1333.62, -6.59915, -394.868 )
 
 [node name="Flag" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1273.61, -17.0555, -301.185 )
 
 [node name="SheepObstacle" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1258.19, -6.46229, -348.241 )
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 1263.73, -5.66373, -372.369 )
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -72,4 +72,67 @@ collision_layer = 262144
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="SheepObstacle/Area"]
+shape = SubResource( 3 )
+
+[node name="SheepObstacle3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 2.35564, 1310.58, -6.55733, -372.369 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle3"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle3/Area"]
+shape = SubResource( 3 )
+
+[node name="SheepObstacle5" type="MeshInstance" parent="."]
+transform = Transform( 0.781695, 0, 1.46912, 0, 1, 0, -0.623661, 0, 1.84139, 1324.65, -6.46229, -426.876 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle5"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle5/Area"]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 0, -4.58875, 0 )
+shape = SubResource( 3 )
+
+[node name="SheepObstacle6" type="MeshInstance" parent="."]
+transform = Transform( -0.884768, 0, 1.0978, 0, 1.91494, 0, -0.466031, 0, -2.0842, 1328.02, -10.4454, -342.99 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle6"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle6/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="SheepObstacle4" type="MeshInstance" parent="."]
+transform = Transform( 0.617969, 0, -1.85201, 0, 1.91494, 0, 0.786202, 0, 1.45571, 1281.25, -8.45452, -335.818 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle4"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle4/Area"]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 0, -3.85353, 0 )
+shape = SubResource( 3 )
+
+[node name="SheepObstacle2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 1282.96, -4.78332, -382.938 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle2"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle2/Area"]
 shape = SubResource( 3 )

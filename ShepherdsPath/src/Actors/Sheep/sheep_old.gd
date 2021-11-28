@@ -1,6 +1,6 @@
 extends KinematicBody
 
-class_name Sheep
+class_name SheepOld
 
 export var speed: float = 200.0
 export var flee_speed_multiplier = 2.5
@@ -27,10 +27,10 @@ var _velocity: Vector3
 func randomize_behaviour():
 	randomize()
 	speed = rand_range(2, 8)
-	avoid_distance = 6 #rand_range(2, 20)
-	cohesion_force = 0.06 #rand_range(0.02, 0.2)
-	target_follow_force = 0.0 # rand_range(0.02, 0.2)
-	algin_force = 0.05 #rand_range(0.02, 0.2)
+	avoid_distance = rand_range(2, 20)
+	cohesion_force = rand_range(0.02, 0.2)
+	target_follow_force = rand_range(0.02, 0.6)
+	algin_force = rand_range(0.02, 0.2)
 	jump_shortage = pow(rand_range(0, 1), 2) * 3 + 0.15
 	enemy_forget_time = rand_range(3, 15)
 
@@ -53,6 +53,7 @@ func _on_FlockView_body_entered(body: PhysicsBody):
 		enemy_timer.start()
 		target_follow_force = 0
 
+
 func _on_FlockView_body_exited(body: PhysicsBody):
 	var index =_flock.find(body)
 	if index >= 0:
@@ -64,7 +65,7 @@ func flee(acceleration: Vector3) -> Vector3:
 	for e in enemies_in_memory:
 		enemy_vector -= e
 
-	return acceleration + enemy_vector.normalized() * 5
+	return acceleration + enemy_vector.normalized() * 2.5
 
 var down_force = 0
 
@@ -72,7 +73,6 @@ func _process(delta):
 	pass
 
 func _physics_process(_delta):
-	$ObstacleRayCaster.rotation = -rotation
 	var flag_vector = Vector3.ZERO
 	if get_parent().target_pos != Vector3.INF:
 		flag_vector = global_transform.origin.direction_to(get_parent().target_pos) * c_speed * target_follow_force
@@ -81,16 +81,20 @@ func _physics_process(_delta):
 	var vectors = get_flock_status(_flock)
 	
 	# steer towards vectors
-	var cohesion_vector = vectors[0] * cohesion_force * 0.5
+	var cohesion_vector = vectors[0] * cohesion_force * 5
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
-	if $SeesObstacleRay.is_colliding():
-		var colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction()) * 5
-		acceleration += colission_avoid_force
 
+	if saw_enemy:
+		acceleration = flee(acceleration)
+
+	#if $ObstacleRayCaster.is_colliding:
+
+	
+	
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * c_speed
 	
 	if rc.is_colliding():
@@ -110,19 +114,14 @@ func _physics_process(_delta):
 		down_force *= 1.2 #fall faster down than up
 
 	_velocity.y = down_force
+	
+	
+
 	look_at(global_transform.origin + _velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
-	
 	_velocity = move_and_slide(_velocity)
-	
-
 
 	
-func steer_towards(vec: Vector3):
-	var cp: Vector3 = $SeesObstacleRay.get_collision_point()
-	var dist: float = $SeesObstacleRay.global_transform.origin.distance_squared_to(cp) -1
-	print(dist<1)
-	var v: Vector3 = vec.normalized() * speed - _velocity
-	return (v.normalized() * 8) / dist # max_steer_force
+		
 
 
 func get_flock_status(flock: Array) -> Array:
@@ -166,7 +165,7 @@ func forget_enemy():
 		if body.is_in_group("sheep_offenders"):
 			$TimerForgetEnemy.start()
 			return
-		#enemies_in_memory.remove(body.global_transform.origin)
+		enemies_in_memory.remove(body.global_transform.origin)
 	$PanicVisualizer.hide()
 	saw_enemy = false
 	algin_force = rand_range(0.02, 0.2)
@@ -179,8 +178,8 @@ func _on_update_enemy_memory():
 	for body in flock_view.get_overlapping_bodies():
 		if body.is_in_group("sheep_offenders"):
 			enemies_in_memory.append(body.global_transform.origin)
+			enemies_in_memory.remove(body.global_transform.origin)
 	if enemies_in_memory.empty():
 		forget_enemy()
 	else:
 		$TimerForgetEnemy.start()
-	

@@ -29,6 +29,8 @@ avoid_distance = 3.0
 [node name="ObstacleRayCaster" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28251, -1.01016 )
 script = ExtResource( 5 )
+radius = 12.0
+resolution = 40
 
 [node name="sheep" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.564414, 0, -1.48028e-07, 0, 0.564414, 0, 1.48028e-07, 0, -0.564414, -0.0317786, 0, -0.0253986 )
@@ -60,6 +62,8 @@ script = ExtResource( 4 )
 [node name="TimerForgetEnemy" type="Timer" parent="."]
 wait_time = 7.0
 
+[node name="TurnTimer" type="Timer" parent="."]
+
 [node name="PanicVisualizer" type="MeshInstance" parent="."]
 transform = Transform( 0.169498, 0, 0, 0, 0.169498, 0, 0, 0, 0.173871, 0, 2.285, 0 )
 visible = false
@@ -74,10 +78,17 @@ material/0 = SubResource( 5 )
 
 [node name="Flee" type="Node" parent="StateMachine"]
 
-[node name="RayCast2" type="RayCast" parent="."]
-cast_to = Vector3( 20, 0, 16 )
+[node name="SeesObstacleRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34517, -1.36663 )
+enabled = true
+cast_to = Vector3( 0, 0, -6 )
+collision_mask = 262144
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color( 0.2, 0.847059, 0.635294, 1 )
+debug_shape_thickness = 5.0
 
 [connection signal="body_entered" from="FlockView" to="." method="_on_FlockView_body_entered"]
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]
 [connection signal="timeout" from="TimerRandomJumps" to="." method="on_random_time"]
-[connection signal="timeout" from="TimerForgetEnemy" to="." method="_on_forget_enemy"]
+[connection signal="timeout" from="TimerForgetEnemy" to="." method="_on_update_enemy_memory"]
