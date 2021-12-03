@@ -15,6 +15,6 @@ func _ready():
 
 #the pain!
 func _on_Area_body_entered(_body:Node):
-	emit_signal("collectLetter")
+	emit_signal("collectLetter", contents)
 
 
