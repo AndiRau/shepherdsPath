@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://3d_models/inventory/notebook.glb" type="PackedScene" id=1]
+[ext_resource path="res://src/Actors/Player/Notebook/notebook.gd" type="Script" id=2]
+
+[node name="notebook" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Plane" parent="notebook" index="1"]
+transform = Transform( 0, 0, 5.32676, 0, 5.32676, 0, -5.32676, 0, 0, 0, -0.00431436, 1 )
+
+[node name="Plage 1" type="Spatial" parent="." index="1"]
+
+[node name="Plage 2" type="Spatial" parent="." index="2"]
+visible = false
+
+[node name="Plage 3" type="Spatial" parent="." index="3"]
+visible = false
+
+[node name="Plage 4" type="Spatial" parent="." index="4"]
+visible = false
+
+[node name="Plage 5" type="Spatial" parent="." index="5"]
+visible = false
+
+[node name="Plage 6" type="Spatial" parent="." index="6"]
+visible = false
+
+[node name="Plage 7" type="Spatial" parent="." index="7"]
+visible = false
+
+[node name="Plage 8" type="Spatial" parent="." index="8"]
+visible = false
+
+[node name="Plage 9" type="Spatial" parent="." index="9"]
+visible = false
+
+[node name="Plage 10" type="Spatial" parent="." index="10"]
+visible = false

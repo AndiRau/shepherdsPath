@@ -4,6 +4,10 @@ var oculus_config = null;
 var refresh_rate = 0;
 var player_pos
 
+
+
+var noteBookActive : bool = false
+
 func get_config():
 	return oculus_config
 
@@ -33,3 +37,7 @@ func _process(delta):
 			# up our physics to 90fps to get in sync with our rendering
 			Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = global_transform.origin
+
+
+
+
