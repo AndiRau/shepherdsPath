@@ -5,12 +5,12 @@
 [resource]
 background_mode = 1
 background_sky = SubResource( 1 )
-background_color = Color( 0.287059, 0.417647, 0.626078, 1 )
-ambient_light_color = Color( 0.198235, 0.28402, 0.422549, 1 )
+background_color = Color( 0.0117647, 0.0470588, 0.101961, 1 )
+ambient_light_color = Color( 0.0117647, 0.0470588, 0.101961, 1 )
 fog_color = Color( 0.2, 0.215686, 0.231373, 1 )
 fog_sun_color = Color( 1, 0.92549, 0.780392, 1 )
 tonemap_mode = 3
-tonemap_exposure = 0.33
+tonemap_exposure = 0.2
 tonemap_white = 5.0
 auto_exposure_enabled = true
 auto_exposure_scale = 0.87

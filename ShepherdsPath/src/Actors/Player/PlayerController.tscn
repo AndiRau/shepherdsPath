@@ -6,6 +6,7 @@
 
 [node name="ARVRCamera" parent="." index="0"]
 current = true
+far = 7537.3
 
 [node name="Function_Pickup" parent="Left_Hand" index="1"]
 impulse_factor = 3.0
