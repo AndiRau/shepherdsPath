@@ -27,7 +27,6 @@ func _process(_delta):
 		play()
 
 func _on_Timer_timeout():
-	print("MÄH")
 	has_played = false
 	randomize()
 	rng.randomize()
