@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/Wilhelm_Scream.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/sheepnoise.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/s2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/s4.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/s1.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/s3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/s5.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/s6.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/s7.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/s_goldini.ogg" type="AudioStream" id=10]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D"]
 stream = ExtResource( 1 )
 unit_db = 6.154
 unit_size = 2.3
-pitch_scale = 1.09
+max_db = 2.4
+max_distance = 100.0
 script = ExtResource( 2 )
+audiofiles = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
 
 [node name="Timer" type="Timer" parent="."]
 

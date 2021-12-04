@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/s_goldini.ogg-bc40f78257751ca939786a9c57215ab3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/s_goldini.ogg"
+dest_files=[ "res://.import/s_goldini.ogg-bc40f78257751ca939786a9c57215ab3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
