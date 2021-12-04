@@ -3,10 +3,12 @@
 [sub_resource type="ProceduralSky" id=1]
 
 [resource]
-background_mode = 2
+background_mode = 1
 background_sky = SubResource( 1 )
+background_color = Color( 0.0117647, 0.0470588, 0.101961, 1 )
+ambient_light_color = Color( 0.0117647, 0.0470588, 0.101961, 1 )
 tonemap_mode = 3
-tonemap_exposure = 0.61
+tonemap_exposure = 0.2
 tonemap_white = 5.0
 auto_exposure_enabled = true
 auto_exposure_scale = 0.87

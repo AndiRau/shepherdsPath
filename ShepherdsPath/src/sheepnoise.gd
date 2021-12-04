@@ -20,10 +20,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func _process(delta):
+func _process(_delta):
 	if !has_played:
 		has_played = true
-		play()
+		#play()
 
 func _on_Timer_timeout():
 	has_played = false
