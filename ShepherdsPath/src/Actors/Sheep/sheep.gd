@@ -67,7 +67,7 @@ func flee(acceleration: Vector3) -> Vector3:
 
 var down_force = 0
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _physics_process(_delta):

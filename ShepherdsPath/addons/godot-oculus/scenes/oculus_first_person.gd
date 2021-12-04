@@ -4,6 +4,7 @@ var oculus_config = null;
 var refresh_rate = 0;
 var player_pos
 
+#get all the item Objects
 onready var noteBookObj = get_node("Right_Hand/notebook")
 onready var staffObj = get_node("Right_Hand/staff")
 onready var shaverObj = get_node("Right_Hand/shaver")
@@ -45,7 +46,7 @@ func _process(delta):
 
 	
 # BEHOLD! The ItemSwap System
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_swap_items"):
 		if itemCursor < 4:
 			itemCursor+=1
