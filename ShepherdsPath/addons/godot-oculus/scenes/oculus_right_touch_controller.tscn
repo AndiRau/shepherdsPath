@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_cv1_controller_right/oculus_cv1_controller_right.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
 [ext_resource path="res://3d_models/inventory/staff.glb" type="PackedScene" id=3]
 [ext_resource path="res://3d_models/inventory/shaver.glb" type="PackedScene" id=4]
 [ext_resource path="res://src/Actors/Player/Notebook/notebook.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ARVRController
@@ -57,3 +58,6 @@ visible = false
 
 [node name="notebook" parent="." instance=ExtResource( 5 )]
 visible = false
+
+[node name="map" parent="." instance=ExtResource( 6 )]
+transform = Transform( 6.16674, 0, 0, 0, 6.16674, 0, 0, 0, 6.16674, 0, 0, 0 )

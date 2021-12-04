@@ -74,7 +74,7 @@ visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Spatial" parent="."]
 
 [node name="Idle" type="Node" parent="StateMachine"]
 

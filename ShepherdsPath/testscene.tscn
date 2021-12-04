@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Player/PlayerController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=8]
 [ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/scenery/stick.tscn" type="PackedScene" id=10]
@@ -170,10 +169,6 @@ sensitivity = 0.75
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
-
-[node name="map2" parent="OculusFirstPerson" instance=ExtResource( 7 )]
-transform = Transform( -0.064902, -0.431163, -0.444635, 0.019207, 0.445454, -0.43476, 0.619059, -0.0590237, -0.0331266, 2.27646, -0.966063, 0.0737305 )
-visible = false
 
 [node name="flock" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
