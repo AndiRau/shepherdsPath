@@ -5,8 +5,13 @@ var refresh_rate = 0;
 var player_pos
 
 onready var noteBookObj = get_node("Right_Hand/notebook")
+onready var staffObj = get_node("Right_Hand/staff")
+onready var shaverObj = get_node("Right_Hand/shaver")
+onready var mapObj = get_node("Right_Hand/map")
 
 var noteBookActive : bool = false
+var itemCursor = 0
+
 
 func get_config():
 	return oculus_config
@@ -39,26 +44,38 @@ func _process(delta):
 	Apphandler.player_position = global_transform.origin
 
 	
-
+# BEHOLD! The ItemSwap System
 func _physics_process(delta):
-		# Item	switch stuff more functionality comes later
-	if Input.is_action_pressed("ui_accept"):
-		if get_node("Right_Hand/shaver").visible == true || noteBookObj.visible == true:
-			get_node("Right_Hand/shaver").visible = false
-			noteBookObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			get_node("Right_Hand/staff").visible = true
-			
-	if Input.is_action_just_pressed("ui_swap_razor"):
-		if get_node("Right_Hand/staff").visible == true || noteBookObj.visible == true:
-			get_node("Right_Hand/staff").visible = false
-			noteBookObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			get_node("Right_Hand/shaver").visible = true
-	if Input.is_action_pressed("ui_swap_notebook"):
-		if get_node("Right_Hand/staff").visible == true || get_node("Right_Hand/shaver").visible == true:
-			get_node("Right_Hand/staff").visible = false
-			get_node("Right_Hand/shaver").visible = false
-			noteBookObj.visible = true
-			noteBookObj.setNotebookActivity(true)
+	if Input.is_action_just_pressed("ui_swap_items"):
+		if itemCursor < 4:
+			itemCursor+=1
+		if itemCursor == 4:
+			itemCursor = 0
 
+	if itemCursor == 0:
+		shaverObj.visible = false
+		noteBookObj.visible = false
+		mapObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		staffObj.visible = true
+	
+	if itemCursor == 1:
+		staffObj.visible = false
+		noteBookObj.visible = false
+		mapObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		shaverObj.visible = true
+
+	if itemCursor == 2:
+		staffObj.visible = false
+		shaverObj.visible = false
+		mapObj.visible = false
+		noteBookObj.visible = true
+		noteBookObj.setNotebookActivity(true)
+
+	if itemCursor == 3:
+		staffObj.visible = false
+		shaverObj.visible = false
+		noteBookObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		mapObj.visible = true

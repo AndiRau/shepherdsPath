@@ -60,4 +60,4 @@ visible = false
 visible = false
 
 [node name="map" parent="." instance=ExtResource( 6 )]
-transform = Transform( 6.16674, 0, 0, 0, 6.16674, 0, 0, 0, 6.16674, 0, 0, 0 )
+visible = false
