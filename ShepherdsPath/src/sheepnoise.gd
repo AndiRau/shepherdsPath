@@ -4,6 +4,8 @@ onready var timer = get_node("Timer")
 var has_played: bool = true
 
 export(Array, AudioStream) var audiofiles
+export var maehing: bool = true
+export var maeh_frequency = 25
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -12,7 +14,7 @@ func _ready():
 	randomize()
 	rng.randomize()
 	stream = audiofiles[rng.randi_range(0, audiofiles.size()-1)]
-	var t = rand_range(4, 7)
+	var t = rand_range(maeh_frequency / 3, maeh_frequency)
 	timer.set_wait_time(t)
 	timer.start()
 
@@ -22,7 +24,7 @@ func _ready():
 func _process(_delta):
 	if !has_played:
 		has_played = true
-		#play()
+		play()
 
 func _on_Timer_timeout():
 	print("MÄH")
@@ -30,7 +32,7 @@ func _on_Timer_timeout():
 	randomize()
 	rng.randomize()
 	stream = audiofiles[rng.randi_range(0, audiofiles.size()-1)]
-	var t = rand_range(3, 12)
+	var t = rand_range(maeh_frequency / 3, maeh_frequency)
 	timer.set_wait_time(t)
 	timer.start()
 

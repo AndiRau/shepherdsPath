@@ -26,7 +26,6 @@ func _physics_process(_delta):
 			if cursor < pages.size():
 				cursor+=1
 
-	print(cursor)
 
 
 
