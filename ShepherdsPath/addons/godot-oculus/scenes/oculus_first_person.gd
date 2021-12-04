@@ -4,7 +4,7 @@ var oculus_config = null;
 var refresh_rate = 0;
 var player_pos
 
-
+onready var noteBookObj = get_node("Right_Hand/notebook")
 
 var noteBookActive : bool = false
 
@@ -38,6 +38,27 @@ func _process(delta):
 			Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = global_transform.origin
 
+	
 
-
+func _physics_process(delta):
+		# Item	switch stuff more functionality comes later
+	if Input.is_action_pressed("ui_accept"):
+		if get_node("Right_Hand/shaver").visible == true || noteBookObj.visible == true:
+			get_node("Right_Hand/shaver").visible = false
+			noteBookObj.visible = false
+			noteBookObj.setNotebookActivity(false)
+			get_node("Right_Hand/staff").visible = true
+			
+	if Input.is_action_just_pressed("ui_swap_razor"):
+		if get_node("Right_Hand/staff").visible == true || noteBookObj.visible == true:
+			get_node("Right_Hand/staff").visible = false
+			noteBookObj.visible = false
+			noteBookObj.setNotebookActivity(false)
+			get_node("Right_Hand/shaver").visible = true
+	if Input.is_action_pressed("ui_swap_notebook"):
+		if get_node("Right_Hand/staff").visible == true || get_node("Right_Hand/shaver").visible == true:
+			get_node("Right_Hand/staff").visible = false
+			get_node("Right_Hand/shaver").visible = false
+			noteBookObj.visible = true
+			noteBookObj.setNotebookActivity(true)
 
