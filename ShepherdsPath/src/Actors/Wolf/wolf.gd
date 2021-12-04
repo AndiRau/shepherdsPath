@@ -24,5 +24,5 @@ func _process(delta):
 		if sheep_pos.distance_squared_to(global_transform.origin) > 2:
 			translate(Vector3.FORWARD * delta * speed)
 
-func _on_WolfView_area_entered(area: Area):
+func _on_WolfView_area_entered(_area: Area):
 	pass#current_target = area.get_parent().
