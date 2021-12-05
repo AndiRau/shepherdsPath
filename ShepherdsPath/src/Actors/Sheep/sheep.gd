@@ -119,7 +119,7 @@ func _physics_process(_delta):
 func steer_towards(vec: Vector3):
 	var cp: Vector3 = $SeesObstacleRay.get_collision_point()
 	var dist: float = $SeesObstacleRay.global_transform.origin.distance_to(cp) -1
-	print(dist<1)
+	#print(dist<1)
 	var v: Vector3 = vec.normalized() * speed - _velocity
 	return (v.normalized() * 3) / dist # max_steer_force
 

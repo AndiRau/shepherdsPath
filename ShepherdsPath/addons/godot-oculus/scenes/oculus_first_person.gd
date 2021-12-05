@@ -45,36 +45,36 @@ func _process(delta):
 	Apphandler.player_position = global_transform.origin
 
 	
-# BEHOLD! The ItemSwap System
+# BEHOLD! The ItemSwap System 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_swap_items"):
+	if Input.is_action_just_pressed("ui_swap_items"): 
 		if itemCursor < 4:
 			itemCursor+=1
 		if itemCursor == 4:
 			itemCursor = 0
 
-	if itemCursor == 0:
+	if itemCursor == 0:      #stsaff
 		shaverObj.visible = false
 		noteBookObj.visible = false
 		mapObj.visible = false
 		noteBookObj.setNotebookActivity(false)
 		staffObj.visible = true
 	
-	if itemCursor == 1:
+	if itemCursor == 1:		#sheepshaver
 		staffObj.visible = false
 		noteBookObj.visible = false
 		mapObj.visible = false
 		noteBookObj.setNotebookActivity(false)
 		shaverObj.visible = true
 
-	if itemCursor == 2:
+	if itemCursor == 2:		#notebook
 		staffObj.visible = false
 		shaverObj.visible = false
 		mapObj.visible = false
 		noteBookObj.visible = true
 		noteBookObj.setNotebookActivity(true)
 
-	if itemCursor == 3:
+	if itemCursor == 3:		#map
 		staffObj.visible = false
 		shaverObj.visible = false
 		noteBookObj.visible = false

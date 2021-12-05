@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Player/PlayerController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/scenery/weather_timer.gd" type="Script" id=7]
 [ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=8]
 [ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/scenery/stick.tscn" type="PackedScene" id=10]
@@ -321,4 +322,8 @@ environment = ExtResource( 12 )
 anims/EnvironmentDayCycle = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
+[node name="Weather_Timer" type="Timer" parent="."]
+script = ExtResource( 7 )
+
 [connection signal="collectLetter" from="Letter" to="." method="_on_Letter_collectLetter"]
+[connection signal="timeout" from="Weather_Timer" to="." method="_on_Weather_Timer_timeout"]
