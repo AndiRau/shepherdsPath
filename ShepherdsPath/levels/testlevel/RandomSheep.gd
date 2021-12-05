@@ -2,12 +2,14 @@ extends Node
 
 const CLOUDOBJ = preload("res://src/scenery/Cloud.tscn")
 var cloud = CLOUDOBJ.instance()
+var weathercheck
 
 var watherchange = false
 
 var weatherstat = ['SUNNY', "CLOUDY", "THUNDER", "RAIN" ]
 
 onready var randWeatherTimer = get_node("Weather_Timer")
+onready var lightningTimer = get_node("lightning_Timer")
 
 
 
@@ -19,7 +21,7 @@ func _ready():
 
 	#weather stuff
 	randomize()
-	var t = rand_range(1, 10)
+	var t = rand_range(1, 30)
 	randWeatherTimer.set_wait_time(t)
 	randWeatherTimer.start()
 	
@@ -31,7 +33,7 @@ func _on_Letter_collectLetter(contents):
 
 #more weather stuff 
 func _on_Weather_Timer_timeout():
-	var weathercheck = weatherstat[rand_range(0,3)]
+	weathercheck = weatherstat[rand_range(0,3)]
 	if weathercheck == "SUNNY":
 		print("SUNNY")
 	if weathercheck == "CLOUDY":
@@ -39,6 +41,9 @@ func _on_Weather_Timer_timeout():
 		print("CLOUDY")
 	if weathercheck == "THUNDER":
 		print("THUNDER")
+		var t = rand_range(3,7)
+		lightningTimer.set_wait_time(t)
+		lightningTimer.start()
 	if weathercheck == "RAIN":
 		print("RAIN")
 	
@@ -48,3 +53,11 @@ func _on_Weather_Timer_timeout():
 	randWeatherTimer.start()
 
 
+# makes the light bling bling for the thunder
+func _on_lightning_Timer_timeout():
+	if weathercheck == "THUNDER":
+		$DirectionalLight/Lightning.play("Lightning")
+		var t = rand_range(3,7)
+		lightningTimer.set_wait_time(t)
+		lightningTimer.start()
+	

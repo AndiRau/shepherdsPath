@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
@@ -97,6 +97,37 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.105882, 0.0588235, 0.0588235, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Lightning"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../DirectionalLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 12.25, 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../DirectionalLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -308,12 +339,16 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1261.49
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1183.53, 37.7401, -308.575 )
-light_energy = 0.5
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight"]
 anims/RESET = SubResource( 5 )
 anims/SunRotation = SubResource( 4 )
+
+[node name="Lightning" type="AnimationPlayer" parent="DirectionalLight"]
+root_node = NodePath("../../WorldEnvironment")
+anims/Lightning = SubResource( 8 )
+anims/RESET = SubResource( 9 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 12 )
@@ -325,5 +360,8 @@ anims/RESET = SubResource( 7 )
 [node name="Weather_Timer" type="Timer" parent="."]
 script = ExtResource( 7 )
 
+[node name="lightning_Timer" type="Timer" parent="."]
+
 [connection signal="collectLetter" from="Letter" to="." method="_on_Letter_collectLetter"]
 [connection signal="timeout" from="Weather_Timer" to="." method="_on_Weather_Timer_timeout"]
+[connection signal="timeout" from="lightning_Timer" to="." method="_on_lightning_Timer_timeout"]
