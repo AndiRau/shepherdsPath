@@ -1,5 +1,8 @@
 extends Node
 
+const CLOUDOBJ = preload("res://src/scenery/Cloud.tscn")
+var cloud = CLOUDOBJ.instance()
+
 var watherchange = false
 
 var weatherstat = ['SUNNY', "CLOUDY", "THUNDER", "RAIN" ]
@@ -12,7 +15,7 @@ onready var randWeatherTimer = get_node("Weather_Timer")
 func _ready():
 	$DirectionalLight/AnimationPlayer.play("SunRotation")
 	$WorldEnvironment/AnimationPlayer.play("EnvironmentDayCycle")
-
+	cloud.global_transform.origin = Vector3(1263, 20, -372)
 
 	#weather stuff
 	randomize()
@@ -32,6 +35,7 @@ func _on_Weather_Timer_timeout():
 	if weathercheck == "SUNNY":
 		print("SUNNY")
 	if weathercheck == "CLOUDY":
+		add_child(cloud)
 		print("CLOUDY")
 	if weathercheck == "THUNDER":
 		print("THUNDER")
