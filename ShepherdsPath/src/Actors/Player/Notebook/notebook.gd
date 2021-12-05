@@ -23,8 +23,10 @@ func _physics_process(_delta):
 				cursor-=1
 		
 		if Input.is_action_just_pressed("ui_notebook_nav_right"):
-			if cursor < pages.size():
+			if cursor < pages.size()-1:
 				cursor+=1
+
+	print(pages[cursor])
 
 
 

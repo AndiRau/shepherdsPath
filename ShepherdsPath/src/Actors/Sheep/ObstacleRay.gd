@@ -25,7 +25,7 @@ func _ready():
 		
 	rays[0].debug_shape_custom_color = Color.white
 
-func _process(delta):
+func _process(_delta):
 	is_colliding = false
 	if rays[0].is_colliding():
 		is_colliding = true

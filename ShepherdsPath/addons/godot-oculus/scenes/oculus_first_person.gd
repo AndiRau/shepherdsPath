@@ -4,9 +4,15 @@ var oculus_config = null;
 var refresh_rate = 0;
 var player_pos
 
-
+#get all the item Objects
+onready var noteBookObj = get_node("Right_Hand/notebook")
+onready var staffObj = get_node("Right_Hand/staff")
+onready var shaverObj = get_node("Right_Hand/shaver")
+onready var mapObj = get_node("Right_Hand/map")
 
 var noteBookActive : bool = false
+var itemCursor = 0
+
 
 func get_config():
 	return oculus_config
@@ -38,6 +44,39 @@ func _process(delta):
 			Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = global_transform.origin
 
+	
+# BEHOLD! The ItemSwap System
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("ui_swap_items"):
+		if itemCursor < 4:
+			itemCursor+=1
+		if itemCursor == 4:
+			itemCursor = 0
 
+	if itemCursor == 0:
+		shaverObj.visible = false
+		noteBookObj.visible = false
+		mapObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		staffObj.visible = true
+	
+	if itemCursor == 1:
+		staffObj.visible = false
+		noteBookObj.visible = false
+		mapObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		shaverObj.visible = true
 
+	if itemCursor == 2:
+		staffObj.visible = false
+		shaverObj.visible = false
+		mapObj.visible = false
+		noteBookObj.visible = true
+		noteBookObj.setNotebookActivity(true)
 
+	if itemCursor == 3:
+		staffObj.visible = false
+		shaverObj.visible = false
+		noteBookObj.visible = false
+		noteBookObj.setNotebookActivity(false)
+		mapObj.visible = true

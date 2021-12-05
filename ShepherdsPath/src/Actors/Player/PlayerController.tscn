@@ -4,9 +4,13 @@
 
 [node name="OculusFirstPerson" instance=ExtResource( 1 )]
 
+[node name="ARVRCamera" parent="." index="0"]
+current = true
+far = 7537.3
+
 [node name="Function_Pickup" parent="Left_Hand" index="1"]
 impulse_factor = 3.0
 
-[node name="Function_Direct_movement" parent="Right_Hand" index="4"]
+[node name="Function_Direct_movement" parent="Right_Hand" index="5"]
 player_radius = 0.7
 canFly = false

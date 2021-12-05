@@ -13,7 +13,9 @@ script/source = "extends ARVRController
 signal controller_activated(controller)
 
 onready var ws = ARVRServer.world_scale
-onready var noteBookObj = get_node(\"notebook\")
+
+
+var cursorItems
 
 func _ready():
 	# hide to begin with
@@ -37,26 +39,6 @@ func _process(delta):
 		emit_signal(\"controller_activated\", self)
 	
 	
-	# Item	switch stuff more functionality comes later
-	if Input.is_action_pressed(\"ui_accept\"):
-		if get_node(\"shaver\").visible == true || noteBookObj.visible == true:
-			get_node(\"shaver\").visible = false
-			noteBookObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			get_node(\"staff\").visible = true
-			
-	if Input.is_action_pressed(\"ui_swap_razor\"):
-		if get_node(\"staff\").visible == true || noteBookObj.visible == true:
-			get_node(\"staff\").visible = false
-			noteBookObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			get_node(\"shaver\").visible = true
-	if Input.is_action_pressed(\"ui_swap_notebook\"):
-		if get_node(\"staff\").visible == true || get_node(\"shaver\").visible == true:
-			get_node(\"staff\").visible = false
-			get_node(\"shaver\").visible = false
-			noteBookObj.visible = true
-			noteBookObj.setNotebookActivity(true)
 "
 
 [node name="oculus_right_touch_controller" type="ARVRController"]
@@ -78,4 +60,4 @@ visible = false
 visible = false
 
 [node name="map" parent="." instance=ExtResource( 6 )]
-transform = Transform( 6.16674, 0, 0, 0, 6.16674, 0, 0, 0, 6.16674, 0, 0, 0 )
+visible = false
