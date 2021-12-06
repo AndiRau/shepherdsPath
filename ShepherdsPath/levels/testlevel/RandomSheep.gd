@@ -6,7 +6,7 @@ var weathercheck
 
 var watherchange = false
 
-var weatherstat = ["SUNNY","SUNNY", "CLOUDY", "THUNDER" ]
+var weatherstat = ["SUNNY","SUNNY", "CLOUDY", "THUNDER", "RAIN" ]
 
 onready var randWeatherTimer = get_node("Weather_Timer")
 onready var lightningTimer = get_node("lightning_Timer")
