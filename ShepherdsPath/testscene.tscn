@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/scenery/stick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/Letter/Letter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://default_env.tres" type="Environment" id=12]
+[ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 12, 12, 12 )
@@ -240,6 +241,9 @@ tracks/1/keys = {
 
 [node name="testscene" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="PostProcessingSphere" parent="." instance=ExtResource( 13 )]
+transform = Transform( 6.03571, 0, 1.06087e-08, 0, 6.03571, 0, -1.06087e-08, 0, 6.03571, 1130.01, 1.82804, -433.069 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.999848, 0.00956929, -0.0145957, 0, 0.836287, 0.548291, 0.0174529, 0.548208, -0.83616, 1274.03, 33.9474, -474.466 )

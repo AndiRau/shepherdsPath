@@ -6,7 +6,7 @@ var weathercheck
 
 var watherchange = false
 
-var weatherstat = ['SUNNY', "CLOUDY", "THUNDER", "RAIN" ]
+var weatherstat = ["SUNNY","SUNNY", "CLOUDY", "THUNDER" ]
 
 onready var randWeatherTimer = get_node("Weather_Timer")
 onready var lightningTimer = get_node("lightning_Timer")
@@ -17,7 +17,7 @@ onready var lightningTimer = get_node("lightning_Timer")
 func _ready():
 	$DirectionalLight/AnimationPlayer.play("SunRotation")
 	$WorldEnvironment/AnimationPlayer.play("EnvironmentDayCycle")
-	cloud.global_transform.origin = Vector3(1263, 20, -372)
+	#cloud.global_transform.origin = Vector3(1263, 20, -372)
 
 	#weather stuff
 	randomize()
@@ -33,21 +33,24 @@ func _on_Letter_collectLetter(contents):
 
 #more weather stuff 
 func _on_Weather_Timer_timeout():
-	weathercheck = weatherstat[rand_range(0,4)]
+	$PostProcessingSphere.raining = false
+	weathercheck = weatherstat[rand_range(0,weatherstat.size()-1)]
+	print(weathercheck)
 	if weathercheck == "SUNNY":
-		print("SUNNY")
+		pass
 	if weathercheck == "CLOUDY":
 		add_child(cloud)
-		print("CLOUDY")
 	if weathercheck == "THUNDER":
-		print("THUNDER")
+		$PostProcessingSphere.raining = true
+		$PostProcessingSphere.max_rain_strength = 0.5
 		var t = rand_range(3,7)
 		lightningTimer.set_wait_time(t)
 		lightningTimer.start()
 	if weathercheck == "RAIN":
-		#$WorldEnvironment/AnimationPlayer.play("Rainy")
-		print("RAIN")
+		$PostProcessingSphere.max_rain_strength = 0.6
+		$PostProcessingSphere.raining = true
 	
+
 	randomize()
 	var t = rand_range(1, 10)
 	randWeatherTimer.set_wait_time(t)

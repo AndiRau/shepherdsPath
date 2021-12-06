@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+
+uniform sampler2D rain_texture;
+
+uniform vec4 rain_color : hint_color;
+uniform float strength;
+
+float map_range(float input, float from_min, float from_max, float to_min, float to_max) {
+	return clamp((to_min + (input - from_min) * (to_max - to_min) / (from_max from_min)), 0.0, 1.0);
+}
+
+void fragment() {
+	
+	vec2 mapping = vec2(14.0, 0.5);
+	
+	float n = texture(rain_texture, UV * mapping + vec2(0.0, -0.3 * TIME)).r;
+	n = map_range(n, strength, 0.8, 0.0, 1.0);
+	EMISSION = rain_color.rgb * rain_color.a;
+	ALBEDO = vec3(0.0);
+	ALPHA = n;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=12]
+period = 3.0
+
+[sub_resource type="NoiseTexture" id=13]
+noise = SubResource( 12 )
+
+[resource]
+shader = SubResource( 9 )
+shader_param/rain_color = Color( 0.364706, 0.576471, 0.639216, 1 )
+shader_param/strength = 0.85
+shader_param/rain_texture = SubResource( 13 )
