@@ -33,8 +33,11 @@ func _on_Letter_collectLetter(contents):
 
 #more weather stuff 
 func _on_Weather_Timer_timeout():
+	
 	$PostProcessingSphere.raining = false
-	weathercheck = weatherstat[rand_range(0,weatherstat.size()-1)]
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	weathercheck = weatherstat[rng.randi_range(0,weatherstat.size()-1)]
 	print(weathercheck)
 	if weathercheck == "SUNNY":
 		pass
