@@ -33,7 +33,7 @@ func _on_Letter_collectLetter(contents):
 
 #more weather stuff 
 func _on_Weather_Timer_timeout():
-	weathercheck = weatherstat[rand_range(0,3)]
+	weathercheck = weatherstat[rand_range(0,4)]
 	if weathercheck == "SUNNY":
 		print("SUNNY")
 	if weathercheck == "CLOUDY":
@@ -45,6 +45,7 @@ func _on_Weather_Timer_timeout():
 		lightningTimer.set_wait_time(t)
 		lightningTimer.start()
 	if weathercheck == "RAIN":
+		#$WorldEnvironment/AnimationPlayer.play("Rainy")
 		print("RAIN")
 	
 	randomize()
