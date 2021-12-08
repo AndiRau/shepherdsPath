@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://3d_models/buildings/alm_inherited.tscn" type="PackedScene" id=1]
+[ext_resource path="res://3d_models/shader/fire.material" type="Material" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[node name="alm" type="Spatial"]
+
+[node name="OmniLightFire" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34809, 6.32601, -4.55249 )
+light_color = Color( 0.85098, 0.694118, 0.588235, 1 )
+light_energy = 0.537
+omni_range = 27.882
+omni_attenuation = 2.07053
+
+[node name="OmniLightLamp" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28877, 5.95112, 5.30374 )
+light_color = Color( 0.93, 0.84351, 0.7626, 1 )
+light_energy = 0.801
+omni_range = 10.65
+omni_attenuation = 2.07053
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+
+[node name="Fire" type="MeshInstance" parent="."]
+transform = Transform( -1.84236, 0.211985, 9.26617e-09, 0, -8.69438e-08, 1.98904, 0.197477, 1.97771, 8.64487e-08, 1.04996, 6.73077, -5.84692 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="glb_parent" type="Spatial" parent="."]
+transform = Transform( 8.572, 0, 0, 0, 8.572, 0, 0, 0, 8.572, 0, 0, 0 )
+
+[node name="alm_export" parent="glb_parent" instance=ExtResource( 1 )]

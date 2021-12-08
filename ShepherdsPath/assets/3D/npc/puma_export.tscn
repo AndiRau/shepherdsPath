@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/3D/npc/tex/puma_albedo.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+
+[node name="puma_export"]
+
+[node name="Puma" parent="game_rig/Skeleton" index="0"]
+material/0 = SubResource( 1 )
