@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://3d_models/buildings/alm_inherited.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/3D/buildings/alm_inherited.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/3D/shader/fire.material" type="Material" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -8,7 +8,7 @@
 [node name="alm" type="Spatial"]
 
 [node name="OmniLightFire" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34809, 6.32601, -4.55249 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34809, 6.32601, -3.53083 )
 light_color = Color( 0.85098, 0.694118, 0.588235, 1 )
 light_energy = 0.537
 omni_range = 27.882

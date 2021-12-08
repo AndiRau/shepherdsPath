@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://3d_models/inventory/notebook.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/3D/inventory/notebook.glb" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/Player/Notebook/notebook.gd" type="Script" id=2]
 
 [node name="notebook" instance=ExtResource( 1 )]

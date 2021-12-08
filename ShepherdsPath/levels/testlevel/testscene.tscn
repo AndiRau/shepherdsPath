@@ -1,0 +1,396 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=2]
+[ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=3]
+[ext_resource path="res://src/scenery/weather_timer.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/3D/terrain/terrain.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/godot-oculus/scenes/oculus_first_person.gd" type="Script" id=8]
+[ext_resource path="res://levels/alm.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/scenery/stick.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Actors/Letter/Letter.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Actors/Player/PlayerController.tscn" type="PackedScene" id=14]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 12, 12, 12 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 6.01855, 6.05036, 5.94404 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SunRotation"
+length = 35.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -175, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.4, 25.5, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 1.0, 1.0, 0.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 25.5, 35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.105882, 0.0588235, 0.0588235, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Lightning"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../DirectionalLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 12.25, 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../DirectionalLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "EnvironmentDayCycle"
+length = 35.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 26, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0117647, 0.0470588, 0.101961, 1 ), Color( 0.419608, 0.596078, 0.878431, 1 ), Color( 0.419608, 0.596078, 0.878431, 1 ), Color( 0.0941176, 0.054902, 0.054902, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 26, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0235294, 0.0431373, 0.0784314, 1 ), Color( 0.282353, 0.4, 0.588235, 1 ), Color( 0.282353, 0.4, 0.588235, 1 ), Color( 0.0980392, 0.0784314, 0.0823529, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:environment:tonemap_exposure")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 26, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.6, 0.2, 0.2, 0.6 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0117647, 0.0470588, 0.101961, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:environment:tonemap_exposure")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:environment:ambient_light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0117647, 0.0470588, 0.101961, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Rainy"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 26, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0117647, 0.0470588, 0.101961, 1 ), Color( 0.2, 0.223529, 0.262745, 1 ), Color( 0.2, 0.223529, 0.262745, 1 ), Color( 0.0980392, 0.0823529, 0.0823529, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 26, 35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0235294, 0.0431373, 0.0784314, 1 ), Color( 0.172549, 0.196078, 0.231373, 1 ), Color( 0.172549, 0.196078, 0.231373, 1 ), Color( 0.0235294, 0.0431373, 0.0784314, 1 ) ]
+}
+
+[node name="testscene" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="PostProcessingSphere" parent="." instance=ExtResource( 6 )]
+transform = Transform( 6.03571, 0, 1.06087e-08, 0, 6.03571, 0, -1.06087e-08, 0, 6.03571, 1130.01, 1.82804, -433.069 )
+
+[node name="terrain" parent="." instance=ExtResource( 7 )]
+
+[node name="OculusFirstPerson" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
+script = ExtResource( 8 )
+
+[node name="flock" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
+script = ExtResource( 3 )
+Sheep = ExtResource( 5 )
+target_flag_path = NodePath("../Flag")
+
+[node name="Wolf" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1232.02, -13.5954, -355.711 )
+
+[node name="Wolf2" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.324843, 0.0461612, 0.944641, 0.0031063, 1.1033, -0.0528459, -0.945764, -0.012885, -0.324599, 1351.34, -6.59915, -378.722 )
+
+[node name="Flag" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1273.61, -17.0555, -301.185 )
+
+[node name="SheepObstacle" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 1263.73, -5.66373, -372.369 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle/Area"]
+shape = SubResource( 3 )
+
+[node name="SheepObstacle3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 2.35564, 1310.58, -6.55733, -372.369 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle3"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle3/Area"]
+shape = SubResource( 3 )
+
+[node name="SheepObstacle5" type="MeshInstance" parent="."]
+transform = Transform( 0.781695, 0, 1.46912, 0, 1, 0, -0.623661, 0, 1.84139, 1324.65, -6.46229, -426.876 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle5"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle5/Area"]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 0, -4.58875, 0 )
+shape = SubResource( 3 )
+
+[node name="SheepObstacle6" type="MeshInstance" parent="."]
+transform = Transform( -0.884768, 0, 1.0978, 0, 1.91494, 0, -0.466031, 0, -2.0842, 1328.02, -10.4454, -342.99 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle6"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle6/Area"]
+shape = SubResource( 3 )
+
+[node name="SheepObstacle4" type="MeshInstance" parent="."]
+transform = Transform( 0.617969, 0, -1.85201, 0, 1.91494, 0, 0.786202, 0, 1.45571, 1281.25, -8.45452, -335.818 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle4"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle4/Area"]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 0, -3.85353, 0 )
+shape = SubResource( 3 )
+
+[node name="SheepObstacle2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.69073, 0, 0, 0, 1, 1282.96, -4.78332, -382.938 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Area" type="Area" parent="SheepObstacle2"]
+collision_layer = 262144
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SheepObstacle2/Area"]
+shape = SubResource( 3 )
+
+[node name="throwobject" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, -6.03691, -385.312 )
+
+[node name="throwobject2" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, -1.50986, -385.312 )
+
+[node name="throwobject3" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, 5.04483, -385.312 )
+
+[node name="throwobject4" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, 13.1943, -385.312 )
+
+[node name="throwobject5" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, 13.1943, -392.643 )
+
+[node name="throwobject6" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1229.61, 4.90896, -392.643 )
+
+[node name="Letter" parent="." instance=ExtResource( 13 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1261.49, -7.32236, -414.246 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1183.53, 37.7401, -308.575 )
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight"]
+anims/RESET = SubResource( 5 )
+anims/SunRotation = SubResource( 4 )
+
+[node name="Lightning" type="AnimationPlayer" parent="DirectionalLight"]
+root_node = NodePath("../../WorldEnvironment")
+anims/Lightning = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+anims/EnvironmentDayCycle = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+anims/Rainy = SubResource( 10 )
+
+[node name="Weather_Timer" type="Timer" parent="."]
+script = ExtResource( 4 )
+
+[node name="lightning_Timer" type="Timer" parent="."]
+
+[node name="Alm" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.2572, 0, 0.966358, 0, 1, 0, -0.966358, 0, 0.2572, 1263.64, -15.5956, -559.618 )
+
+[connection signal="collectLetter" from="Letter" to="." method="_on_Letter_collectLetter"]
+[connection signal="timeout" from="Weather_Timer" to="." method="_on_Weather_Timer_timeout"]
+[connection signal="timeout" from="lightning_Timer" to="." method="_on_lightning_Timer_timeout"]

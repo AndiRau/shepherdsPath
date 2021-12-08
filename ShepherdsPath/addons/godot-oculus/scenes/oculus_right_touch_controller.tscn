@@ -2,8 +2,8 @@
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_cv1_controller_right/oculus_cv1_controller_right.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
-[ext_resource path="res://3d_models/inventory/staff.glb" type="PackedScene" id=3]
-[ext_resource path="res://3d_models/inventory/shaver.glb" type="PackedScene" id=4]
+[ext_resource path="res://assets/3D/inventory/staff.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/3D/inventory/shaver.glb" type="PackedScene" id=4]
 [ext_resource path="res://src/Actors/Player/Notebook/notebook.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=6]
 
