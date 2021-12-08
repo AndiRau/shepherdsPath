@@ -2,6 +2,9 @@ extends Camera
 
 export(float, 0.0, 1.0) var sensitivity = 0.25
 
+export var controller_path: NodePath
+onready var occulus_controller = get_node(controller_path)
+
 # Mouse state
 var _mouse_position = Vector2(0.0, 0.0)
 var _total_pitch = 0.0
@@ -79,7 +82,7 @@ func _update_movement(delta):
 		_velocity.y = clamp(_velocity.y + offset.y, -_vel_multiplier, _vel_multiplier)
 		_velocity.z = clamp(_velocity.z + offset.z, -_vel_multiplier, _vel_multiplier)
 	
-		translate(_velocity * delta)
+		occulus_controller.translate(_velocity * delta)
 
 # Updates mouse look 
 func _update_mouselook():
@@ -94,5 +97,5 @@ func _update_mouselook():
 		pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
 		_total_pitch += pitch
 	
-		rotate_y(deg2rad(-yaw))
-		rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+		occulus_controller.rotate_y(deg2rad(-yaw))
+		occulus_controller.rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))

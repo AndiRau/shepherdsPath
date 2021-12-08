@@ -11,7 +11,6 @@ onready var shaverObj = get_node("Right_Hand/shaver")
 onready var mapObj = get_node("Right_Hand/map")
 
 export var use_keyboard_movement: bool = false
-export var first_person_script: Script
 
 var noteBookActive : bool = false
 var itemCursor = 0
