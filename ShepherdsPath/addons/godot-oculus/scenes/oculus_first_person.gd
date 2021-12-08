@@ -10,6 +10,9 @@ onready var staffObj = get_node("Right_Hand/staff")
 onready var shaverObj = get_node("Right_Hand/shaver")
 onready var mapObj = get_node("Right_Hand/map")
 
+export var use_keyboard_movement: bool = false
+export var first_person_script: Script
+
 var noteBookActive : bool = false
 var itemCursor = 0
 
@@ -18,6 +21,8 @@ func get_config():
 	return oculus_config
 
 func _ready():
+	if not use_keyboard_movement:
+		$ARVRCamera.set_script(null)
 	# get our config object
 	var config = preload("res://addons/godot-oculus/oculus_config.gdns")
 	if config:

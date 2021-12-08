@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_first_person.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=2]
 
 [node name="OculusFirstPerson" instance=ExtResource( 1 )]
+first_person_script = ExtResource( 2 )
 
 [node name="ARVRCamera" parent="." index="0"]
 current = true
 far = 7537.3
+script = ExtResource( 2 )
 
 [node name="Function_Pickup" parent="Left_Hand" index="1"]
 impulse_factor = 3.0
