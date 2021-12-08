@@ -255,7 +255,7 @@ script = ExtResource( 8 )
 [node name="flock" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
 script = ExtResource( 3 )
-Sheep = ExtResource( 5 )
+SheepStateMachine = ExtResource( 5 )
 target_flag_path = NodePath("../Flag")
 
 [node name="Wolf" parent="." instance=ExtResource( 11 )]

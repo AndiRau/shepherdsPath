@@ -4,7 +4,7 @@ class_name Sheep
 
 
 var c_speed: float
-var state: StateMachine = null setget set_state
+var state: SheepStateMachine = null setget set_state
 var previous_state = null
 
 func _update(_delta: float):

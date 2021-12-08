@@ -5,7 +5,7 @@ class_name Flock
 export var sheep_number: int = 20
 export var isPanicked: bool = false
 export var spawn_radius: float = 20
-export(PackedScene) var Sheep
+export(PackedScene) var SheepStateMachine
 
 export var target_flag_path: NodePath
 onready var target_flag: Spatial = get_node(target_flag_path)
@@ -17,7 +17,7 @@ func _ready():
 func init_flock():
 	target_pos = target_flag.global_transform.origin
 	for _i in range(sheep_number):
-		var c_sheep: Sheep = Sheep.instance()
+		var c_sheep: SheepStateMachine = SheepStateMachine.instance()
 		#var lPos: Vector3 = global_transform.origin
 		#c_sheep.get_node("StateMachine").randomize_behaviour()
 		c_sheep.translation += Vector3(rand_range(spawn_radius, -spawn_radius), 0, rand_range(spawn_radius, -spawn_radius))
