@@ -16,8 +16,7 @@ export var obstacle_avoid_force = 3 # higher -> Sheep approach obstacles cloaser
 onready var sheep = owner # type declaration "Sheep" leads to cyclic reference error sadly...
 
 var previous_state: SheepState = null
-var _velocity: Vector3
 
-var has_override_process: bool = false
 func override_process():
 	pass
+
