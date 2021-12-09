@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/3D/terrain/terrain.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/godot-oculus/scenes/oculus_first_person.gd" type="Script" id=8]
 [ext_resource path="res://levels/alm.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=11]
@@ -250,12 +249,11 @@ transform = Transform( 6.03571, 0, 1.06087e-08, 0, 6.03571, 0, -1.06087e-08, 0, 
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 14 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1250.94, -10.3276, -429.216 )
-script = ExtResource( 8 )
 
 [node name="flock" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.47, 0.0933461, -415.605 )
 script = ExtResource( 3 )
-SheepStateMachine = ExtResource( 5 )
+Sheep = ExtResource( 5 )
 target_flag_path = NodePath("../Flag")
 
 [node name="Wolf" parent="." instance=ExtResource( 11 )]
