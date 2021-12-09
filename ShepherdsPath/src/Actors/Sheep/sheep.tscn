@@ -87,9 +87,6 @@ script = ExtResource( 8 )
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource( 7 )
-target_follow_force = 0.0
-cohesion_force = 0.08
-avoid_distance = 7.0
 
 [node name="SeesObstacleRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34517, -1.36663 )

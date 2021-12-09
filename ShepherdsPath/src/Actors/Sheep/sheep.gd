@@ -10,7 +10,9 @@ enum e_state {
 class_name Sheep
 
 
-onready var rc: RayCast = $TerrainRay
+onready var rc_terrain: RayCast = $TerrainRay
+onready var rc_obstacle: Spatial = $ObstacleRayCaster
+onready var rc_sees_obstacle: RayCast = $SeesObstacleRay
 
 var state: SheepState = null setget set_state
 var previous_state: SheepState = null
@@ -48,7 +50,7 @@ func set_state(new_state) -> void:
 		_enter_state(new_state, previous_state)
 
 func _ready():
-	state = $States/Roam
+	state = $States/Idle
 	_c_speed = state.speed
 	randomize()
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * state.speed
@@ -57,7 +59,11 @@ func _ready():
 var colission_avoid_force: Vector3
 func _physics_process(_delta):
 	
-	$ObstacleRayCaster.rotation = -rotation
+	if state.has_override_process:
+		state.override_process()
+		return
+
+	rc_obstacle.rotation = -rotation
 	var flag_vector = Vector3.ZERO
 	if get_parent().target_pos != Vector3.INF:
 		flag_vector = global_transform.origin.direction_to(get_parent().target_pos) * _c_speed * state.target_follow_force
@@ -72,19 +78,19 @@ func _physics_process(_delta):
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
-	if $SeesObstacleRay.is_colliding():
-		colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction())
+	if rc_sees_obstacle.is_colliding():
+		colission_avoid_force = steer_towards( rc_obstacle.get_unoccluded_direction())
 	else:
 		colission_avoid_force *= Vector3(0.95,0.95,0.95)
 	acceleration += colission_avoid_force
 
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * _c_speed
 	
-	if rc.is_colliding():
-		global_transform.origin = rc.get_collision_point()
+	if rc_terrain.is_colliding():
+		global_transform.origin = rc_terrain.get_collision_point()
 
 	if is_jumping:
-		if rc.is_colliding():
+		if rc_terrain.is_colliding():
 			_down_force += 25
 		else:
 			_down_force -= state.jump_shortage
