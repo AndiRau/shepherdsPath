@@ -11,5 +11,9 @@ export var view_distance: = 50.0
 export var avoid_distance: = 20.0
 export var jump_shortage: float = 0.5
 export var down_force_max = 8
+export var obstacle_avoid_force = 10 # higher -> Sheep approach obstacles cloaser
 
+onready var sheep = owner # type declaration "Sheep" leads to cyclic reference error sadly...
 
+var previous_state: SheepState = null
+var _velocity: Vector3

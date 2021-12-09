@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/3D/npc/sheep.glb" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://src/Actors/Sheep/sheep_randomizer_timer.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Sheep/ObstacleRay.gd" type="Script" id=5]
 [ext_resource path="res://src/Actors/Sheep/sheepnoise.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Actors/Sheep/States/sheep_state_idle.gd" type="Script" id=7]
+[ext_resource path="res://src/Actors/Sheep/States/sheep_state_follow_target.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 1.32411
@@ -31,7 +33,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0669711, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28251, -1.01016 )
 script = ExtResource( 5 )
 radius = 12.0
-resolution = 40
+resolution = 16
 
 [node name="sheep" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.564414, 0, -1.48028e-07, 0, 0.564414, 0, 1.48028e-07, 0, -0.564414, -0.0317786, 0, -0.0253986 )
@@ -74,15 +76,20 @@ material/0 = SubResource( 5 )
 
 [node name="Roam" type="Node" parent="States"]
 script = ExtResource( 3 )
-cohesion_force = 0.175
-algin_force = 0.022
-separate_force = 0.011
 avoid_distance = 8.0
 jump_shortage = 0.462
+obstacle_avoid_force = 3
 
 [node name="FollowTarget" type="Node" parent="States"]
+script = ExtResource( 8 )
 
 [node name="Flee" type="Node" parent="States"]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 7 )
+target_follow_force = 0.0
+cohesion_force = 0.08
+avoid_distance = 7.0
 
 [node name="SeesObstacleRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34517, -1.36663 )

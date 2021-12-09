@@ -54,6 +54,7 @@ func _ready():
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * state.speed
 	#enemy_timer.wait_time = enemy_forget_time
 
+var colission_avoid_force: Vector3
 func _physics_process(_delta):
 	
 	$ObstacleRayCaster.rotation = -rotation
@@ -72,8 +73,10 @@ func _physics_process(_delta):
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
 	if $SeesObstacleRay.is_colliding():
-		var colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction()) * 3
-		acceleration += colission_avoid_force
+		colission_avoid_force = steer_towards( $ObstacleRayCaster.get_unoccluded_direction())
+	else:
+		colission_avoid_force *= Vector3(0.95,0.95,0.95)
+	acceleration += colission_avoid_force
 
 	_velocity = (_velocity * Vector3(1,0,1) + acceleration).normalized() * _c_speed
 	
@@ -95,8 +98,8 @@ func _physics_process(_delta):
 	_velocity.y = _down_force
 	
 
-	look_at(global_transform.origin + _velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
 	
+	look_at(global_transform.origin + _velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
 	_velocity = move_and_slide(_velocity)
 
 
@@ -148,10 +151,9 @@ func get_flock_status(flock: Array) -> Array:
 	return [center_vector, align_vector, avoid_vector]
 
 func steer_towards(vec: Vector3):
-	var cp: Vector3 = $SeesObstacleRay.get_collision_point()
-	var dist: float = $SeesObstacleRay.global_transform.origin.distance_to(cp) -1
-	var v: Vector3 = vec.normalized() * state.speed - _velocity
-	return (v.normalized() * 3) / dist # max_steer_force
+	var dist: float = $ObstacleRayCaster.get_distance()
+	var v: Vector3 = vec.normalized() * _c_speed - _velocity
+	return (v * 2) / (clamp(dist-0.2, 0.001, dist-0.2) * state.obstacle_avoid_force)
 
 func on_random_time():
 	is_jumping = !is_jumping
