@@ -10,7 +10,7 @@ enum e_state {
 class_name Sheep
 
 export var max_hitpoints: int = 20
-var hitpoints: int
+onready var hitpoints: int = max_hitpoints
 
 onready var rc_terrain: RayCast = $TerrainRay
 onready var rc_obstacle: Spatial = $ObstacleRayCaster
@@ -117,11 +117,14 @@ func on_random_time():
 	is_jumping = !is_jumping
 	#state.jump_shortage = pow(rand_range(0, 1), 2) * 1.1 + 0.15
 
-func on_take_damage(ammount: int):
+func on_take_damage(ammount: int, attacker: Puma): # refactor to Enemy
 	hitpoints -= ammount
 	if hitpoints <= 0:
+		attacker.prey_visual = $sheep.duplicate()
+		attacker.set_has_eaten(true, $sheep)
 		die()
 
 func die():
+	print("I... have died.")
 	queue_free()
 	#_on_FlockView_body_exited(self) --- andere Schafe müssens mitkriegen wenn einer stirbt...

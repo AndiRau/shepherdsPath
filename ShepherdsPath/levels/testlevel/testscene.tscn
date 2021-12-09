@@ -245,6 +245,10 @@ script = ExtResource( 2 )
 
 [node name="Puma" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.279846, 0, -0.960045, 0, 1, 0, 0.960045, 0, 0.279846, 1249.26, -7.92137, -399.169 )
+home = NodePath("../PumaHome")
+
+[node name="PumaHome" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1181.99, 62.3668, -950.675 )
 
 [node name="PostProcessingSphere" parent="." instance=ExtResource( 6 )]
 transform = Transform( 6.03571, 0, 1.06087e-08, 0, 6.03571, 0, -1.06087e-08, 0, 6.03571, 1130.01, 1.82804, -433.069 )
