@@ -76,9 +76,8 @@ material/0 = SubResource( 5 )
 
 [node name="Roam" type="Node" parent="States"]
 script = ExtResource( 3 )
-avoid_distance = 8.0
+avoid_distance = 2.0
 jump_shortage = 0.462
-obstacle_avoid_force = 3
 
 [node name="FollowTarget" type="Node" parent="States"]
 script = ExtResource( 8 )

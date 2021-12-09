@@ -2,6 +2,7 @@ extends SheepState
 
 func override_process():
 	var flag_vector = Vector3.ZERO
+	owner.rc_obstacle.rotation = -owner.rotation
 	if owner.get_parent().target_pos != Vector3.INF:
 		flag_vector = owner.global_transform.origin.direction_to(owner.get_parent().target_pos) * owner._c_speed * target_follow_force
 	

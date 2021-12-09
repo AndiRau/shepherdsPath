@@ -2,6 +2,7 @@ extends SheepState
 
 func override_process():
 
+	owner.rc_obstacle.rotation = -owner.rotation
 	# get cohesion, alginment, and separation vectors
 	var vectors = owner.get_flock_status(owner._flock)
 

@@ -9,6 +9,8 @@ enum e_state {
 
 class_name Sheep
 
+export var max_hitpoints: int = 20
+var hitpoints: int
 
 onready var rc_terrain: RayCast = $TerrainRay
 onready var rc_obstacle: Spatial = $ObstacleRayCaster
@@ -50,7 +52,7 @@ func set_state(new_state) -> void:
 		_enter_state(new_state, previous_state)
 
 func _ready():
-	state = $States/Idle
+	state = $States/Roam
 	_c_speed = state.speed
 	randomize()
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * state.speed
@@ -114,3 +116,12 @@ func steer_towards(vec: Vector3):
 func on_random_time():
 	is_jumping = !is_jumping
 	#state.jump_shortage = pow(rand_range(0, 1), 2) * 1.1 + 0.15
+
+func on_take_damage(ammount: int):
+	hitpoints -= ammount
+	if hitpoints <= 0:
+		die()
+
+func die():
+	queue_free()
+	#_on_FlockView_body_exited(self) --- andere Schafe müssens mitkriegen wenn einer stirbt...

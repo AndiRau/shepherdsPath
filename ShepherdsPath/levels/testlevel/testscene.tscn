@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://levels/testlevel/RandomSheep.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/3D/terrain/terrain.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Actors/Puma/puma.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/alm.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/Wolf/Wolf.tscn" type="PackedScene" id=11]
@@ -242,6 +243,9 @@ tracks/1/keys = {
 [node name="testscene" type="Spatial"]
 script = ExtResource( 2 )
 
+[node name="Puma" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.279846, 0, -0.960045, 0, 1, 0, 0.960045, 0, 0.279846, 1249.26, -7.92137, -399.169 )
+
 [node name="PostProcessingSphere" parent="." instance=ExtResource( 6 )]
 transform = Transform( 6.03571, 0, 1.06087e-08, 0, 6.03571, 0, -1.06087e-08, 0, 6.03571, 1130.01, 1.82804, -433.069 )
 
@@ -387,7 +391,7 @@ script = ExtResource( 4 )
 [node name="lightning_Timer" type="Timer" parent="."]
 
 [node name="Alm" parent="." instance=ExtResource( 9 )]
-transform = Transform( 0.2572, 0, 0.966358, 0, 1, 0, -0.966358, 0, 0.2572, 1263.64, -15.5956, -559.618 )
+transform = Transform( 0.2572, 0, 0.966358, 0, 1, 0, -0.966358, 0, 0.2572, 1263.64, -16.5244, -559.618 )
 
 [connection signal="collectLetter" from="Letter" to="." method="_on_Letter_collectLetter"]
 [connection signal="timeout" from="Weather_Timer" to="." method="_on_Weather_Timer_timeout"]

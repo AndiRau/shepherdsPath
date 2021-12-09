@@ -24,11 +24,11 @@ omni_attenuation = 2.07053
 [node name="BakedLightmap" type="BakedLightmap" parent="."]
 
 [node name="Fire" type="MeshInstance" parent="."]
-transform = Transform( -1.84236, 0.211985, 9.26617e-09, 0, -8.69438e-08, 1.98904, 0.197477, 1.97771, 8.64487e-08, 1.04996, 6.73077, -5.84692 )
+transform = Transform( -1.16506, 0.134054, 5.85969e-09, 0, -5.49811e-08, 1.25782, 0.12488, 1.25065, 5.4668e-08, 1.04996, 6.05626, -5.84692 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="glb_parent" type="Spatial" parent="."]
-transform = Transform( 8.572, 0, 0, 0, 8.572, 0, 0, 0, 8.572, 0, 0, 0 )
+transform = Transform( 6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0 )
 
 [node name="alm_export" parent="glb_parent" instance=ExtResource( 1 )]
