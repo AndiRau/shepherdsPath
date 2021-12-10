@@ -25,7 +25,7 @@ enabled = true
 cast_to = Vector3( 0, -10, 0 )
 collision_mask = 2
 
-[node name="PumaArea" type="Area" parent="." groups=["enemies"]]
+[node name="PumaArea" type="Area" parent="."]
 collision_layer = 65536
 
 [node name="CollisionShape" type="CollisionShape" parent="PumaArea"]

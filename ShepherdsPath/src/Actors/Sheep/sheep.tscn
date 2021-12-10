@@ -15,7 +15,7 @@ radius = 1.32411
 height = 1.37797
 
 [sub_resource type="SphereShape" id=3]
-radius = 25.0
+radius = 27.0
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -62,9 +62,6 @@ collision_mask = 2
 autostart = true
 script = ExtResource( 4 )
 
-[node name="TimerForgetEnemy" type="Timer" parent="."]
-wait_time = 7.0
-
 [node name="TurnTimer" type="Timer" parent="."]
 
 [node name="PanicVisualizer" type="MeshInstance" parent="."]
@@ -77,11 +74,13 @@ material/0 = SubResource( 5 )
 
 [node name="Roam" type="Node" parent="States"]
 script = ExtResource( 3 )
+view_distance = 20.0
 avoid_distance = 2.0
 jump_shortage = 0.462
 
 [node name="FollowTarget" type="Node" parent="States"]
 script = ExtResource( 8 )
+view_distance = 17.0
 
 [node name="Flee" type="Node" parent="States"]
 script = ExtResource( 9 )
@@ -89,13 +88,17 @@ speed = 12.0
 target_follow_force = 0.0
 cohesion_force = 0.1
 separate_force = 0.002
+view_distance = 21.0
 jump_shortage = 0.3
 obstacle_avoid_force = 2
+
+[node name="TimerForgetEnemy" type="Timer" parent="States/Flee"]
+wait_time = 7.0
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource( 7 )
 speed = 0.0
-view_distance = 30.0
+view_distance = 10.0
 
 [node name="SeesObstacleRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34517, -1.36663 )
@@ -110,4 +113,4 @@ debug_shape_thickness = 5.0
 [connection signal="body_entered" from="FlockView" to="." method="_on_FlockView_body_entered"]
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]
 [connection signal="timeout" from="TimerRandomJumps" to="." method="on_random_time"]
-[connection signal="timeout" from="TimerForgetEnemy" to="." method="_on_update_enemy_memory"]
+[connection signal="timeout" from="States/Flee/TimerForgetEnemy" to="States/Flee" method="_on_update_enemy_memory"]

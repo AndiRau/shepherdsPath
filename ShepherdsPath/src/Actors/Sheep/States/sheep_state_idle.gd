@@ -14,5 +14,6 @@ func override_process():
 	else:
 		owner._down_force = -5
 	
-	owner._velocity.y = owner._down_force
+	owner._velocity =  Vector3(0,owner._down_force,0)
 	owner._velocity = owner.move_and_slide(owner._velocity)
+

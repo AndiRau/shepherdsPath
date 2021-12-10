@@ -30,8 +30,10 @@ func set_has_eaten(_has_eaten: bool, _prey_visual: Spatial):
 func get_has_eaten():
 	return has_eaten
 
+	
 func _ready():
-	pass
+	anim_player.get_animation("run_export").loop = true
+	anim_player.get_animation("walk_export").loop = true
 
 
 func on_pick_victim():

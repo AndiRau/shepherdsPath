@@ -2,7 +2,6 @@ extends SheepState
 
 
 func override_process():
-
 	owner.rc_obstacle.rotation = -owner.rotation
 	# get cohesion, alginment, and separation vectors
 	var vectors = owner.get_flock_status(owner._flock)
@@ -42,8 +41,28 @@ func override_process():
 	owner._velocity = owner.move_and_slide(owner._velocity)
 
 
+func get_near_enemies() -> PoolVector3Array:
+	var near_enemies: PoolVector3Array = []
+
+	for body in owner.flock_view.get_overlapping_bodies():
+		if body.is_in_group("sheep_offenders"):
+			near_enemies.append(body.global_transform.origin)
+
+	return near_enemies
+
+
+func _on_update_enemy_memory():
+	print(get_near_enemies())
+	if get_near_enemies().empty():
+		print(previous_state, "change to Idle")
+		owner.set_state(owner.get_node("States/Idle"))
+	else:
+		$TimerForgetEnemy.start()
+
+
 func enter_state(_old_state: SheepState):
 	owner.get_node("PanicVisualizer").show()
+	$TimerForgetEnemy.start()
 
 
 func exit_state(_next_state: SheepState):
