@@ -20,3 +20,8 @@ var previous_state: SheepState = null
 func override_process():
 	pass
 
+func enter_state(previous_state: SheepState):
+	pass
+
+func exit_state(next_state: SheepState):
+	pass

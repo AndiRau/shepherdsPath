@@ -20,7 +20,7 @@ script = ExtResource( 1 )
 [node name="wolf" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1.28082, 0, 1.11973e-07, 0, 1.28082, 0, -1.11973e-07, 0, -1.28082, 0, 0, 0 )
 
-[node name="WolfArea" type="Area" parent="."]
+[node name="WolfArea" type="Area" parent="." groups=["enemies"]]
 collision_layer = 65536
 
 [node name="CollisionShape" type="CollisionShape" parent="WolfArea"]

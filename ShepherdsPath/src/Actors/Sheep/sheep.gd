@@ -15,9 +15,11 @@ onready var hitpoints: int = max_hitpoints
 onready var rc_terrain: RayCast = $TerrainRay
 onready var rc_obstacle: Spatial = $ObstacleRayCaster
 onready var rc_sees_obstacle: RayCast = $SeesObstacleRay
+onready var flock_view: Area = $FlockView
 
 var state: SheepState = null setget set_state
 var previous_state: SheepState = null
+var saw_enemy: bool = false
 
 var _c_speed: float
 var is_jumping: bool = false
@@ -28,52 +30,42 @@ var _flock: Array = []
 var _velocity: Vector3
 
 
-func _update(_delta: float):
-	pass
-
-func _get_transition(delta):
-	return null
-
-
-func _enter_state(new_state, old_state) -> void:
-	pass
-
-
-func _exit_state(old_state, new_state) -> void:
-	pass
-
-func set_state(new_state) -> void:
+func set_state(new_state: SheepState) -> void:
 	previous_state = state
 	state = new_state
 
 	if previous_state != null:
-		_exit_state(previous_state, new_state)
+		previous_state.exit_state(new_state)
 	if new_state != null:
-		_enter_state(new_state, previous_state)
+		new_state.enter_state(previous_state)
+		_c_speed = state.speed
+		$FlockView/ViewRadius.shape.radius = state.view_distance
+	if new_state != null and previous_state != null:
+		new_state.previous_state = previous_state
+
 
 func _ready():
-	state = $States/Roam
+	set_state($States/Roam)
+	
 	_c_speed = state.speed
 	randomize()
 	_velocity = Vector3(rand_range(-1, 1), 1, rand_range(-1, 1)).normalized() * state.speed
 	#enemy_timer.wait_time = enemy_forget_time
 
+
 var colission_avoid_force: Vector3
 func _physics_process(_delta):
 	state.override_process()
 	
+
 func _on_FlockView_body_entered(body: PhysicsBody):
 	if self != body:
 		_flock.append(body)
-	#if body.is_in_group("sheep_offenders"):
-	#	enemies_in_memory.append(body.global_transform.origin)
-	#	$PanicVisualizer.show()
-	#	saw_enemy = true
-	#	c_speed = speed * flee_speed_multiplier
-	#	algin_force = 1
-	#	separate_force = 0.002
-	#	enemy_timer.start()
-	#	target_follow_force = 0
+	if body.is_in_group("sheep_offenders"):
+		set_state($States/Flee)
+		$TimerForgetEnemy.start()
+
+
 
 func _on_FlockView_body_exited(body: PhysicsBody):
 	var index =_flock.find(body)
@@ -108,14 +100,17 @@ func get_flock_status(flock: Array) -> Array:
 
 	return [center_vector, align_vector, avoid_vector]
 
+
 func steer_towards(vec: Vector3):
 	var dist: float = $ObstacleRayCaster.get_distance()
 	var v: Vector3 = vec.normalized() * _c_speed - _velocity
 	return (v * 2) / (clamp(dist-0.2, 0.001, dist-0.2) * state.obstacle_avoid_force)
 
+
 func on_random_time():
 	is_jumping = !is_jumping
 	#state.jump_shortage = pow(rand_range(0, 1), 2) * 1.1 + 0.15
+
 
 func on_take_damage(ammount: int, attacker: Puma): # refactor to Enemy
 	hitpoints -= ammount
@@ -124,7 +119,23 @@ func on_take_damage(ammount: int, attacker: Puma): # refactor to Enemy
 		attacker.set_has_eaten(true, $sheep)
 		die()
 
+
 func die():
-	print("I... have died.")
 	queue_free()
 	#_on_FlockView_body_exited(self) --- andere Schafe müssens mitkriegen wenn einer stirbt...
+
+
+func _on_update_enemy_memory():
+	if get_near_enemies().empty():
+		set_state(state.previous_state)
+	else:
+		$TimerForgetEnemy.start()
+	
+		
+func get_near_enemies() -> PoolVector3Array:
+	var near_enemies: PoolVector3Array
+
+	for body in flock_view.get_overlapping_bodies():
+		if body.is_in_group("sheep_offenders"):
+			near_enemies.append(body.global_transform.origin)
+	return near_enemies

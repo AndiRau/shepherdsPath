@@ -84,7 +84,6 @@ func _on_view_area_entered():
 
 
 func on_try_attack():
-	if sheep_in_view and is_instance_valid(current_target):
+	if sheep_in_view and is_instance_valid(current_target) and not has_eaten:
 		if dist_to_target() < 2.3:
-			print("ATTACK")
 			emit_signal("deal_damage", attack_damage, self)
