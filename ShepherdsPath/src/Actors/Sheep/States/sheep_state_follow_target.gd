@@ -2,12 +2,12 @@ extends SheepState
 
 func override_process():
 	var flag_vector = Vector3.ZERO
-	owner.rc_obstacle.rotation = -owner.rotation
-	if owner.get_parent().target_pos != Vector3.INF:
-		flag_vector = owner.global_transform.origin.direction_to(owner.get_parent().target_pos) * owner._c_speed * target_follow_force
+	sheep.rc_obstacle.rotation = -sheep.rotation
+	if sheep.get_parent().target_pos != Vector3.INF:
+		flag_vector = sheep.global_transform.origin.direction_to(sheep.get_parent().target_pos) * sheep._c_speed * target_follow_force
 	
 	# get cohesion, alginment, and separation vectors
-	var vectors = owner.get_flock_status(owner._flock)
+	var vectors = sheep.get_flock_status(sheep._flock)
 
 	var cohesion_vector = vectors[0] * cohesion_force * 0.5
 	var align_vector = vectors[1] * algin_force
@@ -15,32 +15,32 @@ func override_process():
 
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
-	if owner.rc_sees_obstacle.is_colliding():
-		owner.colission_avoid_force = owner.steer_towards( owner.rc_obstacle.get_unoccluded_direction())
+	if sheep.rc_sees_obstacle.is_colliding():
+		sheep.colission_avoid_force = sheep.steer_towards( sheep.rc_obstacle.get_unoccluded_direction())
 	else:
-		owner.colission_avoid_force *= Vector3(0.95,0.95,0.95)
-	acceleration += owner.colission_avoid_force
+		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
+	acceleration += sheep.colission_avoid_force
 
-	owner._velocity = (owner._velocity * Vector3(1,0,1) + acceleration).normalized() * owner._c_speed
+	sheep._velocity = (sheep._velocity * Vector3(1,0,1) + acceleration).normalized() * sheep._c_speed
 	
-	if owner.rc_terrain.is_colliding():
-		owner.global_transform.origin.y = owner.rc_terrain.get_collision_point().y
+	if sheep.rc_terrain.is_colliding():
+		sheep.global_transform.origin.y = sheep.rc_terrain.get_collision_point().y
 
-	if owner.is_jumping:
-		if owner.rc_terrain.is_colliding():
-			owner._down_force += 25
+	if sheep.is_jumping:
+		if sheep.rc_terrain.is_colliding():
+			sheep._down_force += 25
 		else:
-			owner._down_force -= jump_shortage
-			owner._down_force = clamp(owner._down_force, -down_force_max*2, down_force_max)
+			sheep._down_force -= jump_shortage
+			sheep._down_force = clamp(sheep._down_force, -down_force_max*2, down_force_max)
 	else:
-		owner._down_force = -5
+		sheep._down_force = -5
 	
-	if owner._down_force < 0:
-		owner._down_force *= 1.2 #fall faster down than up
+	if sheep._down_force < 0:
+		sheep._down_force *= 1.2 #fall faster down than up
 
-	owner._velocity.y = owner._down_force
+	sheep._velocity.y = sheep._down_force
 	
 
 	
-	owner.look_at(owner.global_transform.origin + owner._velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
-	owner._velocity = owner.move_and_slide(owner._velocity)
+	sheep.look_at(sheep.global_transform.origin + sheep._velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
+	sheep._velocity = sheep.move_and_slide(sheep._velocity)

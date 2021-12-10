@@ -17,7 +17,7 @@ onready var rc_obstacle: Spatial = $ObstacleRayCaster
 onready var rc_sees_obstacle: RayCast = $SeesObstacleRay
 onready var flock_view: Area = $FlockView
 
-var state: SheepState = null setget set_state
+var state = null setget set_state
 var saw_enemy: bool = false
 
 var _c_speed: float
@@ -29,8 +29,8 @@ var _flock: Array = []
 var _velocity: Vector3
 
 
-func set_state(new_state: SheepState) -> void:
-	var previous_state: SheepState = state
+func set_state(new_state) -> void:
+	var previous_state = state
 	state = new_state
 
 	if previous_state != null:
