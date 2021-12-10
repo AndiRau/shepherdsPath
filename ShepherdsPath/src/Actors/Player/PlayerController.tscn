@@ -18,4 +18,5 @@ impulse_factor = 3.0
 
 [node name="Function_Direct_movement" parent="Right_Hand" index="5"]
 player_radius = 0.7
+drag_factor = 0.0
 canFly = false

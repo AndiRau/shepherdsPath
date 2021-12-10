@@ -241,7 +241,6 @@ func _physics_process(delta):
 
 			# Apply our drag
 			velocity *= (1.0 - drag_factor)
-
 			if move_type == MOVEMENT_TYPE.MOVE_AND_ROTATE:
 				if (abs(forwards_backwards) > 0.1 and tail.is_colliding()):
 					var dir = camera_transform.basis.z
@@ -264,7 +263,6 @@ func _physics_process(delta):
 			gravity_velocity.y += 0.5 * gravity * delta
 			gravity_velocity = $KinematicBody.move_and_slide(gravity_velocity, Vector3(0.0, 1.0, 0.0))
 			velocity.y = gravity_velocity.y
-
 			# now use our new position to move our origin point
 			var movement = ($KinematicBody.global_transform.origin - curr_transform.origin)
 			origin_node.global_transform.origin += movement
