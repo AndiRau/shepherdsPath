@@ -51,7 +51,7 @@ var turn_step = 0.0
 var origin_node = null
 var camera_node = null
 var velocity = Vector3(0.0, 0.0, 0.0)
-var gravity = -9.8
+export var gravity = -9.8
 onready var collision_shape: CollisionShape = get_node("KinematicBody/CollisionShape")
 onready var tail : RayCast = get_node("KinematicBody/Tail")
 
@@ -237,12 +237,12 @@ func _physics_process(delta):
 
 			# we'll handle gravity separately
 			var gravity_velocity = Vector3(0.0, velocity.y, 0.0)
-			velocity.y = 0.0
+			#velocity.y = 0.0
 
 			# Apply our drag
 			velocity *= (1.0 - drag_factor)
 			if move_type == MOVEMENT_TYPE.MOVE_AND_ROTATE:
-				if (abs(forwards_backwards) > 0.1 and tail.is_colliding()):
+				if (abs(forwards_backwards) > 0.1): #and tail.is_colliding():
 					var dir = camera_transform.basis.z
 					dir.y = 0.0
 					velocity = dir.normalized() * -forwards_backwards * max_speed * ARVRServer.world_scale
@@ -255,7 +255,7 @@ func _physics_process(delta):
 					var dir_right = camera_transform.basis.x;
 					dir_right.y = 0.0
 					velocity = (dir_forward * -forwards_backwards + dir_right * left_right).normalized() * max_speed * ARVRServer.world_scale
-
+	
 			# apply move and slide to our kinematic body
 			velocity = $KinematicBody.move_and_slide(velocity, Vector3(0.0, 1.0, 0.0))
 
@@ -268,4 +268,4 @@ func _physics_process(delta):
 			origin_node.global_transform.origin += movement
 
 			# Return this back to where it was so we can use its collision shape for other things too
-			# $KinematicBody.global_transform.origin = curr_transform.origin
+			#$KinematicBody.global_transform.origin = curr_transform.origin

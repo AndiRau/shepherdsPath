@@ -1,7 +1,6 @@
 extends Node
 
-const CLOUDOBJ = preload("res://src/scenery/Cloud.tscn")
-var cloud = CLOUDOBJ.instance()
+
 var weathercheck
 
 var watherchange = false
@@ -42,7 +41,7 @@ func _on_Weather_Timer_timeout():
 	if weathercheck == "SUNNY":
 		pass
 	if weathercheck == "CLOUDY":
-		add_child(cloud)
+		pass
 	if weathercheck == "THUNDER":
 		$PostProcessingSphere.raining = true
 		$PostProcessingSphere.max_rain_strength = 0.5
