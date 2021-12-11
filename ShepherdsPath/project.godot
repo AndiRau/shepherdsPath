@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Shepherds Path"
-run/main_scene="res://levels/testlevel/testscene.tscn"
+run/main_scene="res://levels/level_full/WorldFull.tscn"
 
 [autoload]
 
