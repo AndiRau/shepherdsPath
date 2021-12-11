@@ -28,6 +28,7 @@ func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
+
 	
 	# Receives mouse button input
 	if event is InputEventMouseButton:
@@ -81,8 +82,10 @@ func _update_movement(delta):
 		_velocity.x = clamp(_velocity.x + offset.x, -_vel_multiplier, _vel_multiplier)
 		_velocity.y = clamp(_velocity.y + offset.y, -_vel_multiplier, _vel_multiplier)
 		_velocity.z = clamp(_velocity.z + offset.z, -_vel_multiplier, _vel_multiplier)
-	
-		occulus_controller.translate(_velocity * delta)
+		if is_instance_valid(occulus_controller):
+			occulus_controller.translate(_velocity * delta)
+		else:
+			translate(_velocity * delta)
 
 # Updates mouse look 
 func _update_mouselook():
@@ -96,6 +99,10 @@ func _update_mouselook():
 		# Prevents looking up/down too far
 		pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
 		_total_pitch += pitch
-	
-		occulus_controller.rotate_y(deg2rad(-yaw))
-		occulus_controller.rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+		if is_instance_valid(occulus_controller):
+			occulus_controller.rotate_y(deg2rad(-yaw))
+			occulus_controller.rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+		else:
+			rotate_y(deg2rad(-yaw))
+			rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+			

@@ -1,0 +1,25 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/alm.exr-c985dbe12f6d2336fedba2ce218a8a2f.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/lightmaps/alm.exr"
+dest_files=[ "res://.import/alm.exr-c985dbe12f6d2336fedba2ce218a8a2f.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=false
+slices/horizontal=1
+slices/vertical=1

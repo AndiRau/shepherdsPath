@@ -1,5 +1,8 @@
 extends SheepState
 
+var flee_from: Vector3
+
+var enemy_avoid_force: Vector3
 
 func override_process():
 	sheep.rc_obstacle.rotation = -sheep.rotation
@@ -13,10 +16,15 @@ func override_process():
 	var acceleration = cohesion_vector + align_vector + separation_vector
 
 	if sheep.rc_sees_obstacle.is_colliding():
-		sheep.colission_avoid_force = sheep.steer_towards( sheep.rc_obstacle.get_unoccluded_direction())
+		sheep.colission_avoid_force = sheep.steer_towards(sheep.rc_obstacle.get_unoccluded_direction())
 	else:
 		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
-	acceleration += sheep.colission_avoid_force
+
+	if flee_from:
+		sheep.colission_avoid_force = sheep.steer_towards(flee_from) * 2000
+		acceleration += sheep.colission_avoid_force
+
+
 
 	sheep._velocity = (sheep._velocity * Vector3(1,0,1) + acceleration).normalized() * sheep._c_speed
 	
@@ -52,18 +60,29 @@ func get_near_enemies() -> PoolVector3Array:
 
 
 func _on_update_enemy_memory():
-	print(get_near_enemies())
 	if get_near_enemies().empty():
-		print(previous_state, "change to Idle")
-		sheep.set_state(sheep.get_node("States/Idle"))
+		if previous_state != self:
+			sheep.set_state(previous_state)
+		else:
+			sheep.set_state(sheep.get_node("States/Idle"))
 	else:
-		$TimerForgetEnemy.start()
+		$TimerFindEnemies.start()
 
 
 func enter_state(_old_state: SheepState):
 	sheep.get_node("PanicVisualizer").show()
+	$TimerFindEnemies.start()
 	$TimerForgetEnemy.start()
 
 
 func exit_state(_next_state: SheepState):
 	sheep.get_node("PanicVisualizer").hide()
+
+func _on_find_enemies():
+	var enemy_pos: Vector3 = Vector3.ZERO
+	var enemies: PoolVector3Array = get_near_enemies()
+	if enemies.size() != 0:
+		for e in enemies:
+			enemy_pos += e
+		flee_from = enemy_pos / enemies.size()
+		$TimerFindEnemies.start()
