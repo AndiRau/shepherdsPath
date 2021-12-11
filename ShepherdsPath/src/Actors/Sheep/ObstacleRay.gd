@@ -17,7 +17,7 @@ func _ready():
 		c_rc.set_collision_mask_bit(0, false)
 		c_rc.set_collision_mask_bit(18, true)
 		c_rc.collide_with_areas = true
-		c_rc.collide_with_bodies = false
+		c_rc.collide_with_bodies = true
 		rays.append(c_rc)
 		add_child(c_rc)
 		c_rc.enabled = true
