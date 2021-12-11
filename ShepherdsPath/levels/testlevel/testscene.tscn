@@ -245,6 +245,8 @@ script = ExtResource( 2 )
 
 [node name="Puma" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.279846, 0, -0.960045, 0, 1, 0, 0.960045, 0, 0.279846, 1249.26, -7.92137, -399.169 )
+speed = 20.0
+speed_walk = 13.0
 home = NodePath("../PumaHome")
 
 [node name="PumaHome" type="Spatial" parent="."]
@@ -266,6 +268,7 @@ target_flag_path = NodePath("../Flag")
 
 [node name="Wolf" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.0586116, -0.0479258, -0.99713, 0.00281224, 0.998851, -0.0478432, 0.998277, 0, 0.0586791, 1445, -11.0624, -285.346 )
+speed = 500.0
 
 [node name="Wolf2" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.324843, 0.0461612, 0.944641, 0.0031063, 1.1033, -0.0528459, -0.945764, -0.012885, -0.324599, 1564.32, -4.06611, -308.357 )
