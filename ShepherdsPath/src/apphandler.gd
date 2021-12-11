@@ -16,3 +16,6 @@ func get_unified_player_position():
 func get_terrain():
 	# nutzt die noch irgendwer?
 	return get_tree().get_root().get_node("testscene/Main/terrain")
+
+func get_debug_sphere() -> MeshInstance:
+	return get_tree().get_root().get_node("testscene/DebugSphere") as MeshInstance

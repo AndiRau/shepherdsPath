@@ -86,14 +86,16 @@ view_distance = 17.0
 script = ExtResource( 9 )
 speed = 12.0
 target_follow_force = 0.0
-cohesion_force = 0.1
-separate_force = 0.002
+cohesion_force = 0.07
+algin_force = 0.0
 view_distance = 21.0
 jump_shortage = 0.3
-obstacle_avoid_force = 2
 
 [node name="TimerForgetEnemy" type="Timer" parent="States/Flee"]
 wait_time = 7.0
+
+[node name="TimerFindEnemies" type="Timer" parent="States/Flee"]
+wait_time = 0.25
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource( 7 )
@@ -114,3 +116,4 @@ debug_shape_thickness = 5.0
 [connection signal="body_exited" from="FlockView" to="." method="_on_FlockView_body_exited"]
 [connection signal="timeout" from="TimerRandomJumps" to="." method="on_random_time"]
 [connection signal="timeout" from="States/Flee/TimerForgetEnemy" to="States/Flee" method="_on_update_enemy_memory"]
+[connection signal="timeout" from="States/Flee/TimerFindEnemies" to="States/Flee" method="_on_find_enemies"]

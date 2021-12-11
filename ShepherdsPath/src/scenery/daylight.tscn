@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/scenery/daylight.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.189928, 0.263309, 0.336538, 0.472662, 0.639568, 0.743885, 0.821583 )
+colors = PoolColorArray( 0.141176, 0.321569, 0.611765, 1, 1, 0.490196, 0.380392, 1, 1, 0.870588, 0.670588, 1, 0.98, 0.9653, 0.882, 1, 1, 0.934122, 0.83231, 1, 1, 0.490196, 0.380392, 1, 0.141176, 0.321569, 0.611765, 1 )
+
+[sub_resource type="Curve" id=2]
+max_value = 11.0
+_data = [ Vector2( 0, 0.813609 ), 0.0, 0.0, 0, 0, Vector2( 0.196179, 1.39941 ), 0.0, 0.0, 0, 0, Vector2( 0.34343, 11 ), 0.0, 0.0, 0, 0, Vector2( 0.591333, 11 ), 0.0, 0.0, 0, 0, Vector2( 0.749767, 1.33432 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.00888 ), 0.0, 0.0, 0, 0 ]
+
+[node name="DirectionalLight" type="DirectionalLight"]
+transform = Transform( 0.143349, 0.685415, -0.713903, 0.0515834, 0.715198, 0.697016, 0.988327, -0.136742, 0.0671669, 0, 463.892, 0 )
+light_color = Color( 1, 0.870588, 0.670588, 1 )
+light_energy = 4.0
+shadow_enabled = true
+shadow_color = Color( 0.160784, 0.184314, 0.196078, 1 )
+directional_shadow_blend_splits = true
+directional_shadow_normal_bias = 1.5
+directional_shadow_depth_range = 1
+directional_shadow_max_distance = 800.0
+script = ExtResource( 1 )
+daytime_gradient = SubResource( 1 )
+daytime_gradient_energy = SubResource( 2 )
+cycle_speed = 0.4

@@ -123,14 +123,15 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	vec3 vpos = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	float nrock = fbm(vpos * rock_noise_scale, rock_noise_detail, rock_noise_lacunarity, rock_noise_gain);
 	float rock_map = 1.0 - (worldnormal.y + nrock * rock_noise_influence - rock_coverage) / rock_blend;
 	float height = remap(vpos.y, heightmap_start, heightmap_end, 0.0, 1.0);
 	float n = fbm(vpos * noise_scale, noise_detail, noise_lacunarity, noise_gain);
 	vec3 col = texture(height_gradient, vec2(height) + n * noise_influence).rgb;
-	ALBEDO = mix(col, vec3(0.12), clamp(rock_map, 0.0, 1.0));
+	col *= COLOR.rgb;
+	ALBEDO = mix(col, color_rocks.rgb, clamp(rock_map, 0.0, 1.0));
 	SPECULAR = 0.1;
 }
 "

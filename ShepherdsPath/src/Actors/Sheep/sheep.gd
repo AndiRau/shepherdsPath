@@ -44,7 +44,7 @@ func set_state(new_state) -> void:
 
 
 func _ready():
-	set_state($States/Idle)
+	set_state($States/Roam)
 	
 	_c_speed = state.speed
 	randomize()
