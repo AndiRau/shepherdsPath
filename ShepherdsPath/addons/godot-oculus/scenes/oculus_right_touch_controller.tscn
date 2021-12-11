@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_cv1_controller_right/oculus_cv1_controller_right.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
-[ext_resource path="res://assets/3D/inventory/staff.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/3D/inventory/hirtenstab.glb" type="PackedScene" id=3]
 [ext_resource path="res://assets/3D/inventory/shaver.glb" type="PackedScene" id=4]
 [ext_resource path="res://src/Actors/Player/Notebook/notebook.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=6]
@@ -55,6 +55,7 @@ material/0 = ExtResource( 2 )
 visible = false
 
 [node name="staff" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1.79328e-08, 0, -0.410255, 0, 0.410254, 0, 0.410255, 0, -1.79328e-08, 0.014284, -0.108661, 0 )
 
 [node name="notebook" parent="." instance=ExtResource( 5 )]
 visible = false

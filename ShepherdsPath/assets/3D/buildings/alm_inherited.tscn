@@ -7,18 +7,747 @@
 
 [node name="alm_export" instance=ExtResource( 1 )]
 
+[node name="dach" parent="." index="1"]
+layers = 2
+
+[node name="base" parent="." index="2"]
+layers = 2
+
+[node name="laden" parent="." index="3"]
+layers = 2
+
+[node name="laden003" parent="." index="4"]
+layers = 2
+
+[node name="windowframe" parent="." index="5"]
+layers = 2
+
+[node name="bank" parent="." index="6"]
+layers = 2
+
+[node name="laden002" parent="." index="7"]
+layers = 2
+
+[node name="laden005" parent="." index="8"]
+layers = 2
+
+[node name="windowframe001" parent="." index="9"]
+layers = 2
+
+[node name="laden006" parent="." index="10"]
+layers = 2
+
+[node name="laden008" parent="." index="11"]
+layers = 2
+
+[node name="windowframe002" parent="." index="12"]
+layers = 2
+
+[node name="Cylinder001" parent="." index="13"]
+layers = 2
+
+[node name="r1" parent="." index="14"]
+layers = 2
+
+[node name="r1003" parent="." index="15"]
+layers = 2
+
+[node name="r1004" parent="." index="16"]
+layers = 2
+
+[node name="r1005" parent="." index="17"]
+layers = 2
+
+[node name="Cylinder002" parent="." index="18"]
+layers = 2
+
+[node name="Plane006" parent="." index="19"]
+layers = 2
+
+[node name="Plane023" parent="." index="20"]
+layers = 2
+
+[node name="Cube006" parent="." index="21"]
+layers = 2
+
+[node name="Cube023" parent="." index="22"]
+layers = 2
+
 [node name="Cube013" parent="." index="23"]
+layers = 2
 material/0 = ExtResource( 2 )
 
+[node name="Cube014" parent="." index="24"]
+layers = 2
+
+[node name="Cube015" parent="." index="25"]
+layers = 2
+
+[node name="Cube016" parent="." index="26"]
+layers = 2
+
+[node name="Cube017" parent="." index="27"]
+layers = 2
+
+[node name="Cube018" parent="." index="28"]
+layers = 2
+
+[node name="Cube019" parent="." index="29"]
+layers = 2
+
+[node name="Cube020" parent="." index="30"]
+layers = 2
+
+[node name="Cube021" parent="." index="31"]
+layers = 2
+
+[node name="Cube022" parent="." index="32"]
+layers = 2
+
+[node name="Cube024" parent="." index="33"]
+layers = 2
+
+[node name="Cube025" parent="." index="34"]
+layers = 2
+
+[node name="Cube026" parent="." index="35"]
+layers = 2
+
+[node name="Circle" parent="." index="36"]
+layers = 2
+
+[node name="Cylinder003" parent="Circle" index="0"]
+layers = 2
+
+[node name="Circle001" parent="." index="37"]
+layers = 2
+
+[node name="Cylinder004" parent="Circle001" index="0"]
+layers = 2
+
+[node name="Icosphere" parent="." index="38"]
+layers = 2
+
+[node name="Cylinder006" parent="." index="39"]
+layers = 2
+
+[node name="Circle002" parent="." index="40"]
+layers = 2
+
+[node name="Plane007" parent="." index="41"]
+layers = 2
+
+[node name="Cube028" parent="." index="42"]
+layers = 2
+
+[node name="Cube027" parent="Cube028" index="0"]
+layers = 2
+
+[node name="Cube030" parent="Cube028" index="1"]
+layers = 2
+
+[node name="Plane008" parent="Cube028" index="2"]
+layers = 2
+
+[node name="Plane009" parent="Cube028" index="3"]
+layers = 2
+
+[node name="Cube029" parent="." index="43"]
+layers = 2
+
+[node name="r1006" parent="." index="44"]
+layers = 2
+
+[node name="Plane011" parent="." index="46"]
+layers = 2
+
+[node name="Plane015" parent="." index="47"]
+layers = 2
+
+[node name="Plane016" parent="." index="48"]
+layers = 2
+
+[node name="windowframe003" parent="." index="49"]
+layers = 2
+
+[node name="Cylinder018" parent="." index="50"]
+layers = 2
+
+[node name="Cylinder019" parent="." index="51"]
+layers = 2
+
+[node name="kackschaufel001" parent="." index="52"]
+layers = 2
+
 [node name="fell" parent="." index="53"]
+layers = 2
 material/0 = ExtResource( 4 )
 
+[node name="haus_verdunklung" parent="." index="54"]
+layers = 2
+
+[node name="cloth005" parent="." index="55"]
+layers = 2
+
+[node name="schrank003" parent="." index="56"]
+layers = 2
+
+[node name="schrank004" parent="." index="57"]
+layers = 2
+
+[node name="schrank005" parent="." index="58"]
+layers = 2
+
+[node name="Plane020" parent="." index="59"]
+layers = 2
+
+[node name="Plane021" parent="." index="60"]
+layers = 2
+
+[node name="Cube042" parent="." index="61"]
+layers = 2
+
+[node name="Cube064" parent="." index="62"]
+layers = 2
+
+[node name="Cube065" parent="." index="63"]
+layers = 2
+
+[node name="Cube066" parent="." index="64"]
+layers = 2
+
+[node name="Cube067" parent="." index="65"]
+layers = 2
+
+[node name="Cube068" parent="." index="66"]
+layers = 2
+
+[node name="Cube069" parent="." index="67"]
+layers = 2
+
+[node name="Cube070" parent="." index="68"]
+layers = 2
+
+[node name="Cube071" parent="." index="69"]
+layers = 2
+
+[node name="Cube072" parent="." index="70"]
+layers = 2
+
+[node name="Cube073" parent="." index="71"]
+layers = 2
+
+[node name="Cube074" parent="." index="72"]
+layers = 2
+
+[node name="Cube075" parent="." index="73"]
+layers = 2
+
+[node name="Cube076" parent="." index="74"]
+layers = 2
+
+[node name="Cube077" parent="." index="75"]
+layers = 2
+
+[node name="Cube078" parent="." index="76"]
+layers = 2
+
+[node name="Cube079" parent="." index="77"]
+layers = 2
+
+[node name="Cube080" parent="." index="78"]
+layers = 2
+
+[node name="leaves005" parent="." index="79"]
+layers = 2
+
+[node name="garlic027" parent="." index="80"]
+layers = 2
+
+[node name="garlic028" parent="." index="81"]
+layers = 2
+
+[node name="garlic029" parent="." index="82"]
+layers = 2
+
+[node name="garlic030" parent="." index="83"]
+layers = 2
+
+[node name="garlic031" parent="." index="84"]
+layers = 2
+
+[node name="garlic032" parent="." index="85"]
+layers = 2
+
+[node name="garlic033" parent="." index="86"]
+layers = 2
+
+[node name="garlic034" parent="." index="87"]
+layers = 2
+
+[node name="garlic035" parent="." index="88"]
+layers = 2
+
+[node name="garlic036" parent="." index="89"]
+layers = 2
+
+[node name="garlic037" parent="." index="90"]
+layers = 2
+
+[node name="garlic038" parent="." index="91"]
+layers = 2
+
+[node name="garlic039" parent="." index="92"]
+layers = 2
+
+[node name="garlic040" parent="." index="93"]
+layers = 2
+
+[node name="garlic041" parent="." index="94"]
+layers = 2
+
+[node name="garlic042" parent="." index="95"]
+layers = 2
+
+[node name="garlic043" parent="." index="96"]
+layers = 2
+
+[node name="garlic044" parent="." index="97"]
+layers = 2
+
+[node name="garlic045" parent="." index="98"]
+layers = 2
+
+[node name="garlic046" parent="." index="99"]
+layers = 2
+
+[node name="garlic047" parent="." index="100"]
+layers = 2
+
+[node name="garlic048" parent="." index="101"]
+layers = 2
+
+[node name="garlic049" parent="." index="102"]
+layers = 2
+
+[node name="garlic050" parent="." index="103"]
+layers = 2
+
+[node name="garlic051" parent="." index="104"]
+layers = 2
+
+[node name="garlic052" parent="." index="105"]
+layers = 2
+
+[node name="BezierCurve001" parent="." index="106"]
+layers = 2
+
+[node name="leaves006" parent="." index="107"]
+layers = 2
+
+[node name="leaves007" parent="." index="108"]
+layers = 2
+
+[node name="HAY003" parent="." index="109"]
+layers = 2
+
+[node name="Cylinder029" parent="." index="110"]
+layers = 2
+
+[node name="table001" parent="." index="111"]
+layers = 2
+
+[node name="Cylinder030" parent="." index="112"]
+layers = 2
+
+[node name="schrank006" parent="." index="113"]
+layers = 2
+
+[node name="Cylinder031" parent="." index="114"]
+layers = 2
+
+[node name="Cylinder032" parent="." index="115"]
+layers = 2
+
+[node name="Circle003" parent="." index="116"]
+layers = 2
+
+[node name="Cylinder033" parent="." index="117"]
+layers = 2
+
+[node name="Cylinder034" parent="." index="118"]
+layers = 2
+
+[node name="Cylinder035" parent="." index="119"]
+layers = 2
+
+[node name="Circle005" parent="." index="120"]
+layers = 2
+
+[node name="Cylinder036" parent="." index="121"]
+layers = 2
+
+[node name="Cylinder037" parent="." index="122"]
+layers = 2
+
+[node name="Cylinder038" parent="." index="123"]
+layers = 2
+
+[node name="Circle006" parent="." index="124"]
+layers = 2
+
+[node name="Cylinder039" parent="." index="125"]
+layers = 2
+
+[node name="Cylinder040" parent="." index="126"]
+layers = 2
+
+[node name="Cylinder041" parent="." index="127"]
+layers = 2
+
+[node name="Circle007" parent="." index="128"]
+layers = 2
+
+[node name="Cylinder042" parent="." index="129"]
+layers = 2
+
+[node name="Cylinder043" parent="." index="130"]
+layers = 2
+
+[node name="Cylinder044" parent="." index="131"]
+layers = 2
+
+[node name="Circle008" parent="." index="132"]
+layers = 2
+
+[node name="Cylinder045" parent="." index="133"]
+layers = 2
+
+[node name="Cylinder046" parent="." index="134"]
+layers = 2
+
+[node name="Cylinder047" parent="." index="135"]
+layers = 2
+
+[node name="Circle009" parent="." index="136"]
+layers = 2
+
+[node name="Cylinder048" parent="." index="137"]
+layers = 2
+
+[node name="Cylinder049" parent="." index="138"]
+layers = 2
+
+[node name="Cylinder050" parent="." index="139"]
+layers = 2
+
+[node name="Circle010" parent="." index="140"]
+layers = 2
+
+[node name="Cylinder051" parent="." index="141"]
+layers = 2
+
+[node name="Cylinder052" parent="." index="142"]
+layers = 2
+
+[node name="Cylinder053" parent="." index="143"]
+layers = 2
+
+[node name="Cylinder054" parent="." index="144"]
+layers = 2
+
+[node name="jar1001" parent="." index="145"]
+layers = 2
+
+[node name="jar1002" parent="." index="146"]
+layers = 2
+
+[node name="jar1003" parent="." index="147"]
+layers = 2
+
+[node name="Cylinder055" parent="." index="148"]
+layers = 2
+
+[node name="Cylinder056" parent="." index="149"]
+layers = 2
+
+[node name="Circle011" parent="." index="150"]
+layers = 2
+
+[node name="Cylinder057" parent="." index="151"]
+layers = 2
+
+[node name="Cylinder058" parent="." index="152"]
+layers = 2
+
+[node name="Cylinder059" parent="." index="153"]
+layers = 2
+
+[node name="Circle012" parent="." index="154"]
+layers = 2
+
+[node name="Cylinder060" parent="." index="155"]
+layers = 2
+
+[node name="Cylinder061" parent="." index="156"]
+layers = 2
+
+[node name="Cylinder062" parent="." index="157"]
+layers = 2
+
+[node name="Circle013" parent="." index="158"]
+layers = 2
+
+[node name="Cylinder063" parent="." index="159"]
+layers = 2
+
+[node name="Cylinder064" parent="." index="160"]
+layers = 2
+
+[node name="Cylinder065" parent="." index="161"]
+layers = 2
+
+[node name="Cylinder066" parent="." index="162"]
+layers = 2
+
+[node name="Cylinder067" parent="." index="163"]
+layers = 2
+
+[node name="FLEISCH001" parent="." index="165"]
+layers = 2
+
+[node name="leaves008" parent="." index="166"]
+layers = 2
+
+[node name="Cube081" parent="." index="167"]
+layers = 2
+
+[node name="Cylinder068" parent="." index="168"]
+layers = 2
+
+[node name="Cube082" parent="." index="169"]
+layers = 2
+
+[node name="Cube083" parent="." index="170"]
+layers = 2
+
+[node name="Cube084" parent="." index="171"]
+layers = 2
+
+[node name="Cube085" parent="." index="172"]
+layers = 2
+
+[node name="Cube086" parent="." index="173"]
+layers = 2
+
+[node name="Cube087" parent="." index="174"]
+layers = 2
+
+[node name="Cube088" parent="." index="175"]
+layers = 2
+
+[node name="Cube089" parent="." index="176"]
+layers = 2
+
+[node name="Cube090" parent="." index="177"]
+layers = 2
+
+[node name="Cube091" parent="." index="178"]
+layers = 2
+
+[node name="Cube092" parent="." index="179"]
+layers = 2
+
+[node name="Cube093" parent="." index="180"]
+layers = 2
+
+[node name="Cube094" parent="." index="181"]
+layers = 2
+
+[node name="Cube095" parent="." index="182"]
+layers = 2
+
+[node name="Cube096" parent="." index="183"]
+layers = 2
+
+[node name="Cube097" parent="." index="184"]
+layers = 2
+
+[node name="Cube098" parent="." index="185"]
+layers = 2
+
+[node name="Cube099" parent="." index="186"]
+layers = 2
+
+[node name="Cylinder069" parent="." index="187"]
+layers = 2
+
+[node name="Cylinder070" parent="." index="188"]
+layers = 2
+
+[node name="Cylinder071" parent="." index="189"]
+layers = 2
+
+[node name="Cylinder072" parent="." index="190"]
+layers = 2
+
+[node name="Cylinder073" parent="." index="191"]
+layers = 2
+
+[node name="leaves010" parent="." index="192"]
+layers = 2
+
+[node name="Cube100" parent="." index="193"]
+layers = 2
+
+[node name="Cube101" parent="." index="194"]
+layers = 2
+
+[node name="schrank010" parent="." index="195"]
+layers = 2
+
+[node name="Cylinder074" parent="." index="196"]
+layers = 2
+
+[node name="Cylinder075" parent="." index="197"]
+layers = 2
+
+[node name="Circle014" parent="." index="198"]
+layers = 2
+
+[node name="Cylinder076" parent="." index="199"]
+layers = 2
+
+[node name="Cylinder077" parent="." index="200"]
+layers = 2
+
+[node name="Cylinder078" parent="." index="201"]
+layers = 2
+
+[node name="Circle015" parent="." index="202"]
+layers = 2
+
+[node name="Cylinder079" parent="." index="203"]
+layers = 2
+
+[node name="Cylinder080" parent="." index="204"]
+layers = 2
+
+[node name="Cylinder081" parent="." index="205"]
+layers = 2
+
+[node name="Circle016" parent="." index="206"]
+layers = 2
+
+[node name="Cylinder082" parent="." index="207"]
+layers = 2
+
+[node name="Cylinder083" parent="." index="208"]
+layers = 2
+
+[node name="Cylinder084" parent="." index="209"]
+layers = 2
+
+[node name="Circle017" parent="." index="210"]
+layers = 2
+
+[node name="Cylinder085" parent="." index="211"]
+layers = 2
+
+[node name="Cylinder086" parent="." index="212"]
+layers = 2
+
+[node name="Cylinder087" parent="." index="213"]
+layers = 2
+
+[node name="Circle018" parent="." index="214"]
+layers = 2
+
+[node name="Cylinder088" parent="." index="215"]
+layers = 2
+
+[node name="Cylinder089" parent="." index="216"]
+layers = 2
+
+[node name="Cylinder090" parent="." index="217"]
+layers = 2
+
+[node name="jar1004" parent="." index="218"]
+layers = 2
+
+[node name="Cylinder091" parent="." index="219"]
+layers = 2
+
+[node name="Cylinder092" parent="." index="220"]
+layers = 2
+
+[node name="Cylinder093" parent="." index="221"]
+layers = 2
+
+[node name="Cylinder094" parent="." index="222"]
+layers = 2
+
+[node name="Cylinder095" parent="." index="223"]
+layers = 2
+
+[node name="Cylinder096" parent="." index="224"]
+layers = 2
+
+[node name="Cylinder097" parent="." index="225"]
+layers = 2
+
 [node name="Cylinder098" parent="." index="226"]
+layers = 2
 material/0 = ExtResource( 3 )
+
+[node name="Cylinder099" parent="." index="227"]
+layers = 2
+
+[node name="Cube102" parent="." index="228"]
+layers = 2
+
+[node name="Cube103" parent="." index="229"]
+layers = 2
+
+[node name="Cube104" parent="." index="230"]
+layers = 2
+
+[node name="Cube105" parent="." index="231"]
+layers = 2
+
+[node name="Cube110" parent="." index="232"]
+layers = 2
+
+[node name="fischfalle001" parent="." index="233"]
+layers = 2
+
+[node name="Cube111" parent="." index="234"]
+layers = 2
+
+[node name="Cube005" parent="." index="235"]
+layers = 2
+
+[node name="Cube106" parent="Cube005" index="0"]
+layers = 2
+
+[node name="Cube107" parent="." index="236"]
+layers = 2
 
 [node name="cat" parent="." index="237"]
 transform = Transform( 0.0228526, 0.0405384, 0.0229669, 1.54659e-09, 0.0255807, -0.045152, -0.0465923, 0.0198833, 0.0112648, -1.1513, 0.443763, -0.336451 )
+layers = 2
 
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="244"]
-transform = Transform( 0.830887, 1.49012e-08, 0.556441, 0.241603, 0.90082, -0.360766, -0.501253, 0.434194, 0.74848, 0, 0, 0 )
-light_energy = 4.185
+[node name="fischfalle" parent="." index="238"]
+layers = 2
+
+[node name="leaves011" parent="fischfalle" index="0"]
+layers = 2
+
+[node name="Cube112" parent="." index="239"]
+layers = 2
+
+[node name="Cube113" parent="." index="240"]
+layers = 2
+
+[node name="Cube114" parent="." index="241"]
+layers = 2

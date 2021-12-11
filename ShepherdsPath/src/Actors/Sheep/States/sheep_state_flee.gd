@@ -55,7 +55,8 @@ func get_near_enemies() -> PoolVector3Array:
 	for body in sheep.flock_view.get_overlapping_bodies():
 		if body.is_in_group("sheep_offenders"):
 			near_enemies.append(body.global_transform.origin)
-
+		if body.is_in_group("sheep_offenders"):
+			sheep._c_speed = 7
 	return near_enemies
 
 
@@ -85,4 +86,8 @@ func _on_find_enemies():
 		for e in enemies:
 			enemy_pos += e
 		flee_from = enemy_pos / enemies.size()
+		var a: Vector3 = flee_from - sheep.global_transform.origin
+		a = -a
+		a = a + sheep.global_transform.origin
+		print(flee_from, " sch ", a)
 		$TimerFindEnemies.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://assets/3D/buildings/stall_exp.glb" type="PackedScene" id=4]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Sheep/flock.gd" type="Script" id=6]
+[ext_resource path="res://src/Actors/Dog/dog.tscn" type="PackedScene" id=7]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="Terrain" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.84714, 0.113062, -0.519202, 0, 0.977101, 0.212775, 0.531369, -0.18025, 0.827742, 177.828, 461.689, 0 )
+transform = Transform( -0.67154, 0.157659, -0.724001, 0, 0.977101, 0.212775, 0.740969, 0.142887, -0.656162, 1340.09, 33.0711, -655.575 )
 near = 0.2
 far = 25000.0
 script = ExtResource( 2 )
@@ -31,4 +32,7 @@ Sheep = ExtResource( 5 )
 target_flag_path = NodePath("../target")
 
 [node name="target" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1224.42, 0, -55.4128 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
+
+[node name="dog" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1380.15, -9.77601, -611.673 )

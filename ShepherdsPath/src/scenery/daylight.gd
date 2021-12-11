@@ -22,6 +22,7 @@ func set_day_time():
 	day_time_unified = day_time / 24
 	light_color = daytime_gradient.interpolate(day_time_unified)
 	light_energy = curve_val;
+	
 	rotation_degrees.x = day_time_unified * 360 - 270
 	rotation_degrees.y = day_time_unified * 360 - 180
 	environment.background_energy = curve_val / 8
