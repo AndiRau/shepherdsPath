@@ -1,6 +1,7 @@
 extends SheepState
 
 var flee_from: Vector3
+var flee_to: Vector3
 
 var enemy_avoid_force: Vector3
 
@@ -20,8 +21,8 @@ func override_process():
 	else:
 		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
 
-	if flee_from:
-		sheep.colission_avoid_force = sheep.steer_towards(flee_from) * 2000
+	if flee_to:
+		sheep.colission_avoid_force = sheep.steer_towards(flee_to) * 2000
 		acceleration += sheep.colission_avoid_force
 
 
@@ -55,7 +56,9 @@ func get_near_enemies() -> PoolVector3Array:
 	for body in sheep.flock_view.get_overlapping_bodies():
 		if body.is_in_group("sheep_offenders"):
 			near_enemies.append(body.global_transform.origin)
-		if body.is_in_group("sheep_offenders"):
+			cohesion_force = 0.1
+		if body.is_in_group("dog"):
+			cohesion_force = 0.8
 			sheep._c_speed = 7
 	return near_enemies
 
@@ -77,6 +80,8 @@ func enter_state(_old_state: SheepState):
 
 
 func exit_state(_next_state: SheepState):
+	$TimerFindEnemies.stop()
+	$TimerForgetEnemy.stop()
 	sheep.get_node("PanicVisualizer").hide()
 
 func _on_find_enemies():
@@ -88,6 +93,6 @@ func _on_find_enemies():
 		flee_from = enemy_pos / enemies.size()
 		var a: Vector3 = flee_from - sheep.global_transform.origin
 		a = -a
-		a = a + sheep.global_transform.origin
-		print(flee_from, " sch ", a)
+		flee_to = a + sheep.global_transform.origin
+		
 		$TimerFindEnemies.start()

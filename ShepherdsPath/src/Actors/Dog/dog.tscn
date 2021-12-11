@@ -3052,16 +3052,16 @@ material/0 = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120 )
 
 [node name="LeftPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 89.7229 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 148.885 )
 
 [node name="RightPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 0, 89.7229 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 0, 148.885 )
 
 [node name="State" type="Node" parent="."]
 
 [node name="Around" type="Node" parent="State"]
 script = ExtResource( 4 )
-speed = 16.0
+speed = 12.0
 
 [node name="Timer" type="Timer" parent="State/Around"]
 wait_time = 0.1

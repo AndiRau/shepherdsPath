@@ -87,10 +87,8 @@ view_distance = 17.0
 script = ExtResource( 9 )
 speed = 12.0
 target_follow_force = 0.0
-cohesion_force = 0.6
-algin_force = 0.0
-separate_force = 0.02
 view_distance = 21.0
+avoid_distance = 9.0
 jump_shortage = 0.3
 
 [node name="TimerForgetEnemy" type="Timer" parent="States/Flee"]
