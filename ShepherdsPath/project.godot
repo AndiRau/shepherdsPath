@@ -92,6 +92,10 @@ Apphandler="*res://apphandler.tscn"
 window/size/width=1600
 window/size/height=900
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/waterways/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://addons/godot-oculus/godot_oculus.gdnlib" ]
