@@ -45,4 +45,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
 
 [node name="weather_timer" type="Timer" parent="."]
 
+[node name="lightning_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="weather_timer" to="." method="_on_weather_timer_timeout"]
+[connection signal="timeout" from="lightning_timer" to="." method="_on_lightning_timer_timeout"]
