@@ -22,7 +22,7 @@ radius = 27.0
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 1, 0.196078, 0.196078, 1 )
 
-[node name="Sheep" type="KinematicBody" groups=["prey"]]
+[node name="Sheep" type="KinematicBody" groups=["prey", "sheep"]]
 collision_layer = 131072
 collision_mask = 8
 script = ExtResource( 2 )

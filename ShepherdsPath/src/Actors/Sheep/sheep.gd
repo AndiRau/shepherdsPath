@@ -61,7 +61,7 @@ func _on_FlockView_body_entered(body: PhysicsBody):
 	if body.is_in_group("sheep_offenders"):
 		set_state($States/Flee)
 	else:
-		if self != body and body:
+		if body.is_in_group("sheep") and self != body and body:
 			_flock.append(body)
 
 
