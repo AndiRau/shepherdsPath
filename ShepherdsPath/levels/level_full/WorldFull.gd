@@ -4,7 +4,7 @@ var weathercheck
 
 var watherchange = false
 
-var weatherstat = ["THUNDER","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
+var weatherstat = ["SUNNY","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
 
 onready var randWeatherTimer = get_node("weather_timer")
 onready var lightningTimer = get_node("lightning_timer")
@@ -21,7 +21,6 @@ func _on_weather_timer_timeout():
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	weathercheck = weatherstat[rng.randi_range(0,weatherstat.size()-1)]
-	print(weathercheck)
 	if weathercheck == "SUNNY":
 		pass
 	if weathercheck == "CLOUDY":
