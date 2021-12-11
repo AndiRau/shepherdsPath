@@ -26,7 +26,7 @@ var _down_force: float
 
 
 var _flock: Array = []
-var _velocity: Vector3
+var _velocity: Vector3 = Vector3()
 
 
 func set_state(new_state) -> void:
@@ -57,11 +57,12 @@ func _physics_process(_delta):
 	
 
 func _on_FlockView_body_entered(body: PhysicsBody):
-	if self != body:
-		_flock.append(body)
+
 	if body.is_in_group("sheep_offenders"):
 		set_state($States/Flee)
-
+	else:
+		if self != body and body:
+			_flock.append(body)
 
 
 func _on_FlockView_body_exited(body: PhysicsBody):
@@ -78,7 +79,8 @@ func get_flock_status(flock: Array) -> Array:
 	
 	for f in flock:
 		var neighbor_pos: Vector3 = f.global_transform.origin
-		#align_vector += f._velocity			#functioniert aus irgendwelchen gründen nicht
+		
+		align_vector += f._velocity			#functioniert aus irgendwelchen gründen nicht
 		#align_vector += Vector3(1,1,1)
 		flock_center += neighbor_pos
 
