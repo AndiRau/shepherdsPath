@@ -246,6 +246,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
+world_scale = 2.7
 
 [node name="WeatherManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -268,7 +269,7 @@ material/0 = SubResource( 3 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64009e-13, 13.546, -6.03983e-06, -40, -1.01645e-20, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
+transform = Transform( 1.74846e-06, -2.64007e-13, 13.546, -6.03983e-06, -40, 6.92298e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null

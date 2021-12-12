@@ -27,7 +27,7 @@ func _physics_process(delta):
 		pass"
 
 [node name="OculusFirstPerson" type="ARVROrigin"]
-world_scale = 2.0
+world_scale = 0.1
 script = ExtResource( 4 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
