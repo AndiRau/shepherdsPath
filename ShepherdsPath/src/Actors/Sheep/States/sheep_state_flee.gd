@@ -58,6 +58,7 @@ func get_near_enemies() -> PoolVector3Array:
 			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.1
 		if body.is_in_group("dog"):
+			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.8
 			sheep._c_speed = 7
 	return near_enemies

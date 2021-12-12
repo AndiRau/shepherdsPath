@@ -21,7 +21,7 @@ func _ready():
 	anim_player.get_animation("run_gamified").loop = true
 	anim_player.get_animation("walk_gamified").loop = true
 	anim_player.play("run_gamified")
-	set_state($State/Drive)
+	set_state($State/Around)
 
 var previous_state
 var state = null setget set_state
