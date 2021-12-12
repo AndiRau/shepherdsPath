@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/scenery/PostProcessingSphere.gd" type="Script" id=1]
 [ext_resource path="res://src/scenery/PostProcessingSphere.mat.tres" type="Material" id=2]
-[ext_resource path="res://src/scenery/blitz.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/3D/shader/blitz.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereMesh" id=11]
 flip_faces = true
@@ -21,4 +21,4 @@ mesh = SubResource( 12 )
 material/0 = ExtResource( 2 )
 
 [node name="Flash" parent="." instance=ExtResource( 3 )]
-transform = Transform( 15.5686, 0, -4.20351e-09, 0, 20.8003, 0, -4.20349e-09, 0, 17.9602, 223.053, 34.9615, -8.46504 )
+transform = Transform( 15.569, 0, 0, 0, 20, 0, 0, 0, 15.569, 223.053, 34.961, -8.465 )

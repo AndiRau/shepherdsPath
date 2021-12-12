@@ -81,7 +81,6 @@ func get_flock_status(flock: Array) -> Array:
 		var neighbor_pos: Vector3 = f.global_transform.origin
 		
 		align_vector += f._velocity			#functioniert aus irgendwelchen gründen nicht
-		#align_vector += Vector3(1,1,1)
 		flock_center += neighbor_pos
 
 		var d = global_transform.origin.distance_to(neighbor_pos)
@@ -121,4 +120,4 @@ func on_take_damage(ammount: int, attacker: Puma): # refactor to Enemy
 
 func die():
 	queue_free()
-	#_on_FlockView_body_exited(self) --- andere Schafe müssens mitkriegen wenn einer stirbt...
+	#_on_FlockView_body_exited(self) --- TODO andere Schafe müssens mitkriegen wenn einer stirbt...

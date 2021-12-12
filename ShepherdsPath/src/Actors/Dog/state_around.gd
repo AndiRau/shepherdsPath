@@ -10,4 +10,3 @@ func override_process(delta: float):
 		dog.rotate_y(delta * 1.5)
 	else:
 		dog.rotate_y(delta * -1.5)
-	pass
