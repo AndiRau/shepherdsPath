@@ -5,6 +5,8 @@ onready var current_terrain: Terrain
 
 
 var player_position: Vector3 = Vector3()
+var dog_position: Vector3 = Vector3()
+var sheep_target: Vector3 = Vector3()
 var player_unified_position: Vector2 = Vector2()
 	
 

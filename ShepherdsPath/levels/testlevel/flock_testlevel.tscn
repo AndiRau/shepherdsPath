@@ -38,7 +38,7 @@ Sheep = ExtResource( 1 )
 target_flag_path = NodePath("../target")
 
 [node name="dog" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8011, 2.75971, -84.4489 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8011, 0.0908744, -91.6674 )
 
 [node name="target" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -647.416, 16.6167, 259.725 )

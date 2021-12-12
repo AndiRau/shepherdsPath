@@ -24,8 +24,8 @@ func get_sheep_on_wrong_side():
 func override_process(delta: float):
 	pass
 
-func enter_state(previous_state: SheepState):
+func enter_state(previous_state: DogState):
 	pass
 
-func exit_state(next_state: SheepState):
+func exit_state(next_state: DogState):
 	pass

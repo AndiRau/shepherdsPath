@@ -21,13 +21,13 @@ func _ready():
 	anim_player.get_animation("run_gamified").loop = true
 	anim_player.get_animation("walk_gamified").loop = true
 	anim_player.play("run_gamified")
-	set_state($State/Around)
+	set_state($State/Drive)
 
 var previous_state
 var state = null setget set_state
 
 func set_state(new_state) -> void:
-	var previous_state = state
+	previous_state = state
 	state = new_state
 
 	if previous_state != null:
@@ -41,8 +41,8 @@ func set_state(new_state) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Apphandler.dog_position = global_transform.origin
 	state.override_process(delta)
-	pass
 
 func get_flock_shape():
 	var flock: Array
@@ -59,6 +59,16 @@ func get_flock_shape():
 		if c_dist > furthest_dist:
 			furthest_dist = c_dist
 			flock_furthest_sheep = sheep.global_transform.origin
+
+func get_flock_middle():
+	var flock: Array
+	flock = view.get_overlapping_bodies()
+
+	flock_middle = Vector3.ZERO
+	for sheep in flock:
+		flock_middle += sheep.global_transform.origin
+	flock_middle /= flock.size()
+
 
 func left_from(a: Vector3, b: Vector3, c: Vector3):
 	return ((b.x - a.x)*(c.z - a.z) - (b.z - a.z)*(c.x - a.x)) > 0;

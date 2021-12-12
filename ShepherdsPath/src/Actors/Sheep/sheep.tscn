@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/3D/npc/sheep.glb" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/Sheep/sheep.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Actors/Sheep/States/sheep_state_idle.gd" type="Script" id=7]
 [ext_resource path="res://src/Actors/Sheep/States/sheep_state_follow_target.gd" type="Script" id=8]
 [ext_resource path="res://src/Actors/Sheep/States/sheep_state_flee.gd" type="Script" id=9]
+[ext_resource path="res://src/Actors/Sheep/States/sheep_state_driven.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 1.32411
@@ -102,6 +103,12 @@ wait_time = 0.25
 script = ExtResource( 7 )
 speed = 0.0
 view_distance = 10.0
+
+[node name="Driven" type="Node" parent="States"]
+script = ExtResource( 10 )
+target_follow_force = 0.12
+cohesion_force = 0.1
+avoid_distance = 7.0
 
 [node name="SeesObstacleRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34517, -1.36663 )

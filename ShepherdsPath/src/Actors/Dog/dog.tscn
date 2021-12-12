@@ -2339,9 +2339,12 @@ flags_unshaded = true
 flags_fixed_size = true
 albedo_color = Color( 1, 0, 0, 1 )
 
-[node name="dog" type="KinematicBody" groups=["dog", "sheep_offenders"]]
+[node name="dog" type="KinematicBody" groups=["dog"]]
 collision_layer = 65537
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="game_rig" type="Spatial" parent="."]
 transform = Transform( 3.0855, 0, 0, 0, 3.0855, 0, 0, 0, 3.0855, 0, 0, 0 )
@@ -3044,7 +3047,6 @@ shape = SubResource( 7 )
 
 [node name="DebugCube" type="MeshInstance" parent="."]
 transform = Transform( 0.0212604, 0, 0, 0, 0.0212604, 0, 0, 0, 0.0212604, 0, 10.3673, 0 )
-visible = false
 mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
 
@@ -3070,6 +3072,11 @@ autostart = true
 [node name="Drive" type="Node" parent="State"]
 script = ExtResource( 5 )
 
+[node name="TimerGetMiddle" type="Timer" parent="State/Drive"]
+wait_time = 0.5
+autostart = true
+
 [node name="Fetch" type="Node" parent="State"]
 
 [connection signal="timeout" from="State/Around/Timer" to="State/Around" method="get_sheep_on_wrong_side"]
+[connection signal="timeout" from="State/Drive/TimerGetMiddle" to="State/Drive" method="update_target"]

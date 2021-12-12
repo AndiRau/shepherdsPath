@@ -1,12 +1,5 @@
 extends KinematicBody
 
-enum e_state {
-	idle,
-	fleeing,
-	eating,
-	following
-}
-
 class_name Sheep
 
 export var max_hitpoints: int = 20
@@ -57,12 +50,22 @@ func _physics_process(_delta):
 	
 
 func _on_FlockView_body_entered(body: PhysicsBody):
-
+	
 	if body.is_in_group("sheep_offenders"):
 		set_state($States/Flee)
-	else:
-		if body.is_in_group("sheep") and self != body and body:
-			_flock.append(body)
+		return
+	if body.is_in_group("dog"):
+		if body.state.name == "Drive":
+			set_state($States/Driven)
+			print("STATE DRIVE")
+			return
+		if body.state.name == "Around":
+			set_state($States/Flee)
+			print("STATE FLEE")
+			return
+	if body.is_in_group("sheep") and self != body and body:
+		_flock.append(body)
+		return
 
 
 func _on_FlockView_body_exited(body: PhysicsBody):
