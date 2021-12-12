@@ -1,10 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/scenery/daylight.gd" type="Script" id=1]
-
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.189928, 0.263309, 0.336538, 0.482684, 0.639568, 0.743885, 0.821583 )
-colors = PoolColorArray( 0.141176, 0.321569, 0.611765, 1, 1, 0.490196, 0.380392, 1, 0.968627, 0.792157, 0.596078, 1, 1, 0.913725, 0.780392, 1, 0.968627, 0.792157, 0.596078, 1, 1, 0.490196, 0.380392, 1, 0.141176, 0.321569, 0.611765, 1 )
+[ext_resource path="res://src/scenery/daylight_gradient.tres" type="Gradient" id=2]
 
 [sub_resource type="Curve" id=2]
 max_value = 11.0
@@ -21,6 +18,5 @@ directional_shadow_normal_bias = 1.5
 directional_shadow_depth_range = 1
 directional_shadow_max_distance = 800.0
 script = ExtResource( 1 )
-daytime_gradient = SubResource( 1 )
+daytime_gradient = ExtResource( 2 )
 daytime_gradient_energy = SubResource( 2 )
-cycle_speed = 0.4

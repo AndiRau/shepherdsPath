@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenery/weather_manager.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Actors/Dog/dog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/3D/scenery/flash.tres" type="ArrayMesh" id=11]
+[ext_resource path="res://levels/level_full/Clouds.gd" type="Script" id=13]
 
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
@@ -30,6 +31,9 @@ uniform vec4 color : hint_color;
 uniform float speed = 0.5;
 uniform int quality = 2;
 uniform float scale = 1.0;
+uniform sampler2D daytime_gradient;
+uniform float daytime = 0.0;
+
 
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
@@ -131,8 +135,15 @@ void fragment() {
 	n = remap(n, amm, 1.0, 0.0, 1.0) * y;
 	n = pow(n, softness);
 	ALPHA = clamp(n, 0.0, 1.0);
-	ALBEDO = vec3(5.0) * color.rgb;
+	ALBEDO = vec3(5.0) * color.rgb * texture(daytime_gradient, vec2(daytime, 0.0)).rgb;
 }"
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.212299, 0.308931, 0.399707, 0.562225, 0.648609, 0.727672 )
+colors = PoolColorArray( 0.0745098, 0.0823529, 0.0901961, 1, 0.882353, 0.584314, 0.447059, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.882353, 0.584314, 0.447059, 1, 0.0745098, 0.0823529, 0.0901961, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 10 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
@@ -142,6 +153,8 @@ shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/speed = 0.05
 shader_param/quality = 4
 shader_param/scale = 0.817
+shader_param/daytime = 0.264
+shader_param/daytime_gradient = SubResource( 9 )
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -246,6 +259,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
+world_scale = 2.0
 
 [node name="WeatherManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -259,6 +273,7 @@ cast_shadow = 0
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 3 )
+script = ExtResource( 13 )
 
 [node name="lightning_timer" type="Timer" parent="WeatherManager"]
 
@@ -268,7 +283,7 @@ material/0 = SubResource( 3 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64008e-13, 13.546, -6.03983e-06, -40, 3.58007e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
+transform = Transform( 1.74846e-06, -2.64008e-13, 13.546, -6.03983e-06, -40, 3.44455e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null

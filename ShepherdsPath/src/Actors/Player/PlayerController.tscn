@@ -4,7 +4,6 @@
 [ext_resource path="res://src/dummy_first_person_controller.gd" type="Script" id=2]
 
 [node name="OculusFirstPerson" instance=ExtResource( 1 )]
-world_scale = 2.5
 use_keyboard_movement = true
 
 [node name="ARVRCamera" parent="." index="0"]
