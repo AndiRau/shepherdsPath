@@ -57,4 +57,3 @@ func _on_lightning_timer_timeout():
 	pos += Apphandler.player_position
 	pos.y = 0
 	$lightning.global_transform.origin = pos
-	print(pos)
