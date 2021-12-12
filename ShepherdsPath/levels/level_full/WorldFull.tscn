@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenery/weather_manager.gd" type="Script" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://src/Actors/Dog/dog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/3D/scenery/flash.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://levels/level_full/Clouds.gd" type="Script" id=13]
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 10.8515, 2.82834, 7.29188 )
 
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
@@ -242,6 +245,13 @@ script = ExtResource( 8 )
 [node name="alm" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.37472, 0, 0.927138, 0, 1, 0, -0.927138, 0, 0.37472, 1243.45, -16.5829, -564.905 )
 
+[node name="RainSphereTrigger" type="Area" parent="alm"]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 2.7038, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="alm/RainSphereTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0405273, 2.01336, 0.222046 )
+shape = SubResource( 11 )
+
 [node name="stall_exp" parent="." instance=ExtResource( 4 )]
 transform = Transform( 8.93484, 0, 3.47654, 0, 9.58737, 0, -3.47654, 0, 8.93484, 1281.85, -11.8869, -643.479 )
 
@@ -259,7 +269,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
-world_scale = 2.0
 
 [node name="WeatherManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -283,7 +292,7 @@ script = ExtResource( 13 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64008e-13, 13.546, -6.03983e-06, -40, 3.44455e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
+transform = Transform( 1.74846e-06, -2.64007e-13, 13.546, -6.03983e-06, -40, 6.92298e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null
@@ -292,5 +301,7 @@ material/0 = null
 anims/RESET = SubResource( 7 )
 anims/thunder = SubResource( 8 )
 
+[connection signal="area_entered" from="alm/RainSphereTrigger" to="WeatherManager/PostProcessingSphere" method="_on_RainSphereTrigger_area_entered"]
+[connection signal="area_exited" from="alm/RainSphereTrigger" to="WeatherManager/PostProcessingSphere" method="_on_RainSphereTrigger_area_exited"]
 [connection signal="timeout" from="WeatherManager/lightning_timer" to="WeatherManager" method="_on_lightning_timer_timeout"]
 [connection signal="timeout" from="WeatherManager/weather_timer" to="WeatherManager" method="_on_weather_timer_timeout"]

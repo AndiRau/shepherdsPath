@@ -55,7 +55,7 @@ material/0 = ExtResource( 2 )
 visible = false
 
 [node name="staff" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1.79328e-08, 0, -0.410255, 0, 0.410254, 0, 0.410255, 0, -1.79328e-08, 0.014284, -0.108661, 0 )
+transform = Transform( -1.79328e-08, 0, -0.410255, 0, 0.410254, 0, 0.410255, 0, -1.79328e-08, 0.014284, -0.93049, 0 )
 
 [node name="notebook" parent="." instance=ExtResource( 5 )]
 visible = false

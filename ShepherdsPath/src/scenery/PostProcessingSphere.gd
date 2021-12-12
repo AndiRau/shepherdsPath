@@ -19,3 +19,12 @@ func _process(delta):
 	_rain_strength = clamp(_rain_strength, max_rain_strength, 0.85)
 	if _rain_strength != max_rain_strength && _rain_strength != 0.85:
 		mat.set_shader_param("strength", _rain_strength)
+
+
+func _on_RainSphereTrigger_area_entered(_area:Area):
+	self.visible = false
+	pass # Replace with function body.
+
+func _on_RainSphereTrigger_area_exited(_area:Area):
+	self.visible = true
+	pass # Replace with function body.
