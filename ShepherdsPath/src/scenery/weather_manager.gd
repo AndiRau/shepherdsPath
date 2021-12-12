@@ -4,7 +4,8 @@ var weathercheck: String
 
 var watherchange = false
 
-var weatherstat = ["SUNNY","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
+#var weatherstat = ["SUNNY","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
+var weatherstat = ["THUNDER","THUNDER", "THUNDER", "THUNDER", "THUNDER" ]
 
 onready var randWeatherTimer = get_node("weather_timer")
 onready var lightningTimer = get_node("lightning_timer")
@@ -48,4 +49,12 @@ func _on_lightning_timer_timeout():
 		var t = rand_range(3,7)
 		lightningTimer.set_wait_time(t)
 		lightningTimer.start()
-		
+
+		randomize()
+	var pos: Vector3 =  Vector3(rand_range(-1, 1), rand_range(-1, 1), 0).normalized()
+	pos *= 2000
+
+	pos += Apphandler.player_position
+	pos.y = 0
+	$lightning.global_transform.origin = pos
+	print(pos)
