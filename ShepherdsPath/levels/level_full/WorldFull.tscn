@@ -231,7 +231,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 13.5459, 13.5459, 13.5459 ), Vector3( 40, 40, 13.546 ) ]
+"values": [ Vector3( 50, 50, 50 ), Vector3( 100, 120, 100 ) ]
 }
 
 [node name="Spatial" type="Spatial"]
@@ -259,7 +259,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
-world_scale = 2.0
 
 [node name="WeatherManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -283,7 +282,7 @@ script = ExtResource( 13 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64008e-13, 13.546, -6.03983e-06, -40, 3.44455e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
+transform = Transform( 1.74846e-06, -2.64008e-13, 13.546, -6.03983e-06, -40, 3.44455e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null
