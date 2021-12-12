@@ -3047,6 +3047,8 @@ shape = SubResource( 7 )
 
 [node name="DebugCube" type="MeshInstance" parent="."]
 transform = Transform( 0.0212604, 0, 0, 0, 0.0212604, 0, 0, 0, 0.0212604, 0, 10.3673, 0 )
+visible = false
+cast_shadow = 0
 mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
 

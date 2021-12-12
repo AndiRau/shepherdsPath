@@ -6,9 +6,7 @@ var _rain_strength: float = 0.85
 export var max_rain_strength = 0.6 # the lower, the heavier the rain
 export var rain_start_speed: float = 0.1
 onready var mat: ShaderMaterial = get_active_material(0)
-export var flash_duration = 0.2
 
-var flash_timer: float = 0.0
 
 func _process(delta):
 	global_transform.origin = Apphandler.player_position
@@ -21,9 +19,3 @@ func _process(delta):
 	_rain_strength = clamp(_rain_strength, max_rain_strength, 0.85)
 	if _rain_strength != max_rain_strength && _rain_strength != 0.85:
 		mat.set_shader_param("strength", _rain_strength)
-
-	$Flash.visible = flash_timer > 0
-
-
-func flash():
-	flash_timer = flash_duration

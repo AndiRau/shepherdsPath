@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scenery/weather_manager.gd" type="Script" id=2]
 [ext_resource path="res://levels/alm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/3D/buildings/stall_exp.glb" type="PackedScene" id=4]
 [ext_resource path="res://src/Actors/Sheep/sheep.tscn" type="PackedScene" id=5]
@@ -9,6 +10,7 @@
 [ext_resource path="res://levels/level_full/WorldFull.gd" type="Script" id=8]
 [ext_resource path="res://src/scenery/PostProcessingSphere.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Actors/Dog/dog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/3D/scenery/flash.tres" type="ArrayMesh" id=11]
 
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
@@ -141,10 +143,86 @@ shader_param/speed = 0.05
 shader_param/quality = 4
 shader_param/scale = 0.817
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flash:mesh:surface_1/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 40, 40, 13.546 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "thunder"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0426703, 0.256729 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 16.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flash:mesh:surface_1/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0432224, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 13.5459, 13.5459, 13.5459 ), Vector3( 40, 40, 13.546 ) ]
+}
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 8 )
-
-[node name="PostProcessingSphere" parent="." instance=ExtResource( 9 )]
 
 [node name="Terrain" parent="." instance=ExtResource( 1 )]
 
@@ -169,15 +247,35 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
 
-[node name="weather_timer" type="Timer" parent="."]
+[node name="WeatherManager" type="Node" parent="."]
+script = ExtResource( 2 )
 
-[node name="lightning_timer" type="Timer" parent="."]
+[node name="PostProcessingSphere" parent="WeatherManager" instance=ExtResource( 9 )]
+skeleton = NodePath("../..")
 
-[node name="Clouds" type="MeshInstance" parent="."]
+[node name="Clouds" type="MeshInstance" parent="WeatherManager"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1292.14, -61.1068, -1439.55 )
 cast_shadow = 0
 mesh = SubResource( 1 )
+skeleton = NodePath("../..")
 material/0 = SubResource( 3 )
 
-[connection signal="timeout" from="weather_timer" to="." method="_on_weather_timer_timeout"]
-[connection signal="timeout" from="lightning_timer" to="." method="_on_lightning_timer_timeout"]
+[node name="lightning_timer" type="Timer" parent="WeatherManager"]
+
+[node name="weather_timer" type="Timer" parent="WeatherManager"]
+
+[node name="lightning" type="DirectionalLight" parent="WeatherManager"]
+light_energy = 0.0
+
+[node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
+transform = Transform( 1.74846e-06, -2.64009e-13, 13.546, -6.03983e-06, -40, -1.01645e-20, 40, -6.03983e-06, -5.92114e-07, 195.442, 440.898, 0 )
+cast_shadow = 0
+mesh = ExtResource( 11 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeatherManager/lightning"]
+anims/RESET = SubResource( 7 )
+anims/thunder = SubResource( 8 )
+
+[connection signal="timeout" from="WeatherManager/lightning_timer" to="WeatherManager" method="_on_lightning_timer_timeout"]
+[connection signal="timeout" from="WeatherManager/weather_timer" to="WeatherManager" method="_on_weather_timer_timeout"]

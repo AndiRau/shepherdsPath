@@ -49,8 +49,8 @@ func _physics_process(_delta):
 	state.override_process()
 	
 
+# kinda dirty, string reliant method...
 func _on_FlockView_body_entered(body: PhysicsBody):
-	
 	if body.is_in_group("sheep_offenders"):
 		set_state($States/Flee)
 		return
@@ -81,7 +81,7 @@ func get_flock_status(flock: Array) -> Array:
 	for f in flock:
 		var neighbor_pos: Vector3 = f.global_transform.origin
 		
-		align_vector += f._velocity			#functioniert aus irgendwelchen gründen nicht
+		align_vector += f._velocity
 		flock_center += neighbor_pos
 
 		var d = global_transform.origin.distance_to(neighbor_pos)

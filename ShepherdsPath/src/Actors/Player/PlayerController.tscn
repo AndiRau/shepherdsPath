@@ -9,7 +9,8 @@ use_keyboard_movement = true
 
 [node name="ARVRCamera" parent="." index="0"]
 current = true
-far = 7537.3
+near = 0.15
+far = 4200.0
 script = ExtResource( 2 )
 sensitivity = 1.0
 controller_path = NodePath("..")
