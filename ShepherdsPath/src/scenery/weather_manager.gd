@@ -37,7 +37,7 @@ func _on_weather_timer_timeout():
 		$PostProcessingSphere.raining = true
 
 	randomize()
-	var t = rand_range(1, 10)
+	var t = rand_range(5, 20)
 	randWeatherTimer.set_wait_time(t)
 	randWeatherTimer.start()
 	

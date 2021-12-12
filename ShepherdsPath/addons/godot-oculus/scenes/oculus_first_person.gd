@@ -46,7 +46,7 @@ func _process(delta):
 		
 			# up our physics to 90fps to get in sync with our rendering
 			Engine.iterations_per_second = refresh_rate
-	Apphandler.player_position = global_transform.origin
+	Apphandler.player_position = $ARVRCamera.global_transform.origin
 
 	
 # BEHOLD! The ItemSwap System 
