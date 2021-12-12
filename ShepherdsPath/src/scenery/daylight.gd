@@ -13,7 +13,7 @@ onready var environment: Environment = get_node(world_environment).environment
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	set_day_time()
 
 func set_day_time():
