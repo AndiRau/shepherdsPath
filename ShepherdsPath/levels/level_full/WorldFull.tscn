@@ -16,7 +16,7 @@
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
 radius = 3500.0
-height = 1700.0
+height = 1850.0
 radial_segments = 24
 rings = 16
 is_hemisphere = true
@@ -128,7 +128,7 @@ float remap(float value, float from1, float to1, float from2, float to2) {
 
 void fragment() {
 	vec3 vpos = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	float y = clamp(remap(vpos.y, 300.0, 550.0, 0.0, 1.0), 0.0, 1.0);
+	float y = clamp(remap(vpos.y, -250.0, -100.0, 0.0, 1.0), 0.0, 1.0);
 	float n = fbm(vpos * vec3(1.0, 3.0, 1.0) * 0.001 * scale + vec3(TIME * speed, TIME * speed, 0.0), quality, 2.0, 0.5);
 	float amm = 1.0-ammount*2.0;
 	float dens = amm + softness;
@@ -147,13 +147,13 @@ gradient = SubResource( 10 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/ammount = 1.034
+shader_param/ammount = 1.172
 shader_param/softness = 3.0
-shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/color = Color( 0.741176, 0.741176, 0.741176, 1 )
 shader_param/speed = 0.05
 shader_param/quality = 4
 shader_param/scale = 0.817
-shader_param/daytime = 0.264
+shader_param/daytime = 0.5
 shader_param/daytime_gradient = SubResource( 9 )
 
 [sub_resource type="Animation" id=7]
@@ -267,12 +267,15 @@ script = ExtResource( 2 )
 skeleton = NodePath("../..")
 
 [node name="Clouds" type="MeshInstance" parent="WeatherManager"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1292.14, -61.1068, -1439.55 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.6, -200, -1442.68 )
 cast_shadow = 0
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 3 )
 script = ExtResource( 13 )
+cloud_color = Color( 1, 1, 1, 1 )
+raincloud_color = Color( 0.835294, 0.835294, 0.835294, 1 )
+thundercloud_color = Color( 0.345098, 0.345098, 0.345098, 1 )
 
 [node name="lightning_timer" type="Timer" parent="WeatherManager"]
 

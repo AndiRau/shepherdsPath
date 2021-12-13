@@ -4,14 +4,13 @@ var weathercheck: String
 
 var watherchange = false
 
-#var weatherstat = ["SUNNY","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
-var weatherstat = ["THUNDER","THUNDER", "THUNDER", "THUNDER", "THUNDER" ]
+var weatherstat = ["SUNNY","THUNDER", "CLOUDY", "THUNDER", "RAIN" ]
+
 
 onready var randWeatherTimer = get_node("weather_timer")
 onready var lightningTimer = get_node("lightning_timer")
 
 func _ready():
-	#weather stuff
 	randomize()
 	var t = rand_range(1, 30)
 	randWeatherTimer.set_wait_time(t)
@@ -23,6 +22,7 @@ func _on_weather_timer_timeout():
 	rng.randomize()
 	weathercheck = weatherstat[rng.randi_range(0,weatherstat.size()-1)]
 	print(weathercheck)
+	$Clouds.set_weather(weathercheck)
 	if weathercheck == "SUNNY":
 		pass
 	if weathercheck == "CLOUDY":
@@ -57,4 +57,3 @@ func _on_lightning_timer_timeout():
 	pos += Apphandler.player_position
 	pos.y = 0
 	$lightning.global_transform.origin = pos
-	print(pos)
