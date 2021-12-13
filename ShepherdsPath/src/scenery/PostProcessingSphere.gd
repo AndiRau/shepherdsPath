@@ -19,3 +19,24 @@ func _process(delta):
 	_rain_strength = clamp(_rain_strength, max_rain_strength, 0.85)
 	if _rain_strength != max_rain_strength && _rain_strength != 0.85:
 		mat.set_shader_param("strength", _rain_strength)
+
+
+
+func _on_hut_norainTrigger_area_entered(_area:Area):
+	self.visible = false
+
+
+
+func _on_hut_norainTrigger_area_exited(_area:Area):
+	self.visible = true
+
+
+
+func _on_barn_norainTrigger_area_entered(_area:Area):
+	self.visible = false
+
+
+
+func _on_barn_norainTrigger_area_exited(_area:Area):
+	self.visible = true
+

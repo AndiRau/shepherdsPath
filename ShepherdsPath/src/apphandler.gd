@@ -10,7 +10,7 @@ var sheep_target: Vector3 = Vector3()
 var player_unified_position: Vector2 = Vector2()
 var day_time = 12 # 0-24
 var day_time_unified = 0.5
-var do_daylight_cycle: bool = true
+var do_daylight_cycle: bool = false
 export var cycle_speed: float = 0.7
 
 func get_unified_player_position():
