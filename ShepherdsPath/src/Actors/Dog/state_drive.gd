@@ -12,3 +12,4 @@ func override_process(delta: float):
 
 func enter_state(_previous_state: DogState):
     $TimerGetMiddle.connect("timeout", dog, "get_flock_middle")
+    dog.anim_player.play("walk_gamified")

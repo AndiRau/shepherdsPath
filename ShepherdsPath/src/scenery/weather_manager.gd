@@ -7,6 +7,14 @@ var watherchange = false
 
 var weatherstat = ["CLOUDY","THUNDER", "SUNNY", "SUNNY", "RAIN" ]
 
+enum weathers {
+	CLOUDY,
+	THUNDER,
+	RAIN,
+	SUNNY,
+	SUNNY
+}
+
 onready var randWeatherTimer = get_node("weather_timer")
 onready var lightningTimer = get_node("lightning_timer")
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Actors/Dog/dog.gd" type="Script" id=1]
 [ext_resource path="res://assets/3D/npc/Material_002.material" type="Material" id=2]
 [ext_resource path="res://assets/3D/npc/Material_001.material" type="Material" id=3]
 [ext_resource path="res://src/Actors/Dog/state_around.gd" type="Script" id=4]
 [ext_resource path="res://src/Actors/Dog/state_drive.gd" type="Script" id=5]
+[ext_resource path="res://src/Actors/Dog/state_follow_shepherd.gd" type="Script" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "border_collie_game_ready3_Cube004"
@@ -2347,7 +2348,7 @@ __meta__ = {
 }
 
 [node name="game_rig" type="Spatial" parent="."]
-transform = Transform( 3.0855, 0, 0, 0, 3.0855, 0, 0, 0, 3.0855, 0, 0, 0 )
+transform = Transform( -3.0855, 0, -2.69743e-07, 0, 3.0855, 0, 2.69743e-07, 0, -3.0855, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="game_rig"]
 bones/0/name = "DEF-spine"
@@ -3053,13 +3054,13 @@ mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
 
 [node name="FrontPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -148.885 )
 
 [node name="LeftPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 148.885 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 0, -148.885 )
 
 [node name="RightPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 0, 148.885 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, -148.885 )
 
 [node name="State" type="Node" parent="."]
 
@@ -3080,5 +3081,17 @@ autostart = true
 
 [node name="Fetch" type="Node" parent="State"]
 
+[node name="FollowShepherd" type="Node" parent="State"]
+script = ExtResource( 6 )
+speed = 20.0
+turn_duration = 0.2
+
+[node name="TimerGetMiddle" type="Timer" parent="State/FollowShepherd"]
+wait_time = 0.5
+autostart = true
+
+[node name="T" type="Spatial" parent="."]
+
 [connection signal="timeout" from="State/Around/Timer" to="State/Around" method="get_sheep_on_wrong_side"]
 [connection signal="timeout" from="State/Drive/TimerGetMiddle" to="State/Drive" method="update_target"]
+[connection signal="timeout" from="State/FollowShepherd/TimerGetMiddle" to="State/Drive" method="update_target"]

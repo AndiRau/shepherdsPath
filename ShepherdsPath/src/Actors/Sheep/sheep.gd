@@ -55,7 +55,9 @@ func _on_FlockView_body_entered(body: PhysicsBody):
 		set_state($States/Flee)
 		return
 	if body.is_in_group("dog"):
-		if body.state.name == "Drive":
+		if !body.state.name:
+			print("Entering Dog has no state")
+		if body.state.name == "Drive" or body.state.name == "FollowShepherd":
 			set_state($States/Driven)
 			return
 		if body.state.name == "Around":

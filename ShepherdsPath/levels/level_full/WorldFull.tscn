@@ -291,7 +291,7 @@ thundercloud_color = Color( 0.345098, 0.345098, 0.345098, 1 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64007e-13, 13.546, -6.03983e-06, -40, 6.92298e-19, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
+transform = Transform( 1.74846e-06, -2.64006e-13, 13.546, -6.03983e-06, -40, 1.03336e-18, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null

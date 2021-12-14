@@ -20,13 +20,13 @@ var flock_furthest_sheep: Vector3
 func _ready():
 	anim_player.get_animation("run_gamified").loop = true
 	anim_player.get_animation("walk_gamified").loop = true
-	anim_player.play("run_gamified")
-	set_state($State/Drive)
+	set_state($State/FollowShepherd)
 
 var previous_state
 var state = null setget set_state
 
 func set_state(new_state) -> void:
+	anim_player.playback_speed = 1.0
 	previous_state = state
 	state = new_state
 
@@ -39,10 +39,16 @@ func set_state(new_state) -> void:
 		new_state.previous_state = previous_state
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+var r_normal: Vector3 = Vector3()
 func _process(delta):
 	Apphandler.dog_position = global_transform.origin
 	state.override_process(delta)
+	if rc_terrain.is_colliding():
+		r_normal = rc_terrain.get_collision_normal()
+		global_transform.origin.y = rc_terrain.get_collision_point().y
+		rotation.x = r_normal.x
+		rotation.z = r_normal.z
 
 func get_flock_shape():
 	var flock: Array
@@ -63,6 +69,8 @@ func get_flock_shape():
 func get_flock_middle():
 	var flock: Array
 	flock = view.get_overlapping_bodies()
+	if flock.size() == 0:
+		return
 
 	flock_middle = Vector3.ZERO
 	for sheep in flock:
@@ -72,14 +80,3 @@ func get_flock_middle():
 
 func left_from(a: Vector3, b: Vector3, c: Vector3):
 	return ((b.x - a.x)*(c.z - a.z) - (b.z - a.z)*(c.x - a.x)) > 0;
-
-
-
-func on_turn_left():
-	print("GO HASSAN")
-	debug_cube.global_transform.origin = flock_furthest_sheep + Vector3(0, 5, 0)
-	pass
-
-
-func on_turn_right():
-	pass
