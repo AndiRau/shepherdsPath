@@ -12,17 +12,17 @@ export(COLOR) var color2 = COLOR.BLUE
 onready var mesh: MeshInstance = get_child(0)
 
 var colordict: Dictionary = {
-	COLOR.CYAN: Color(1,1,1),
-	COLOR.YELLOW: Color(1,1,1),
-	COLOR.BROWN: Color(1,1,1),
-	COLOR.MAGENTA: Color(1,1,1),
-	COLOR.LILA: Color(1,1,1),
-	COLOR.PINK: Color(1,1,1),
-	COLOR.GREEN: Color(1,1,1),
-	COLOR.DARK_GREEN: Color(1,1,1),
-	COLOR.BLUE: Color(1,1,1),
-	COLOR.ORANGE: Color(1,1,1),
-	COLOR.RED: Color(1,1,1),
+	COLOR.CYAN: Color("20A796"),
+	COLOR.YELLOW: Color("A79E20"),
+	COLOR.BROWN: Color("815F39"),
+	COLOR.MAGENTA: Color("980B92"),
+	COLOR.LILA: Color("682C83"),
+	COLOR.PINK: Color("C05B92"),
+	COLOR.GREEN: Color("35C03B"),
+	COLOR.DARK_GREEN: Color("106244"),
+	COLOR.BLUE: Color("1C08AB"),
+	COLOR.ORANGE: Color("C66F17ß"),
+	COLOR.RED: Color("9F1115"),
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +30,10 @@ func _ready():
 	update_color(true)
 
 func update_color(_v):
-	mesh.get_active_material(color1_slot).albedo_color = colordict[color1]
-	mesh.get_active_material(color2_slot).albedo_color = colordict[color2]
+	var m1: SpatialMaterial = SpatialMaterial.new()
+	var m2: SpatialMaterial = SpatialMaterial.new()
+	m1.albedo_color = colordict[color1]
+	m2.albedo_color = colordict[color2]
+	mesh.set_surface_material(color1_slot, m1)
+	mesh.set_surface_material(color2_slot, m2)
 	
