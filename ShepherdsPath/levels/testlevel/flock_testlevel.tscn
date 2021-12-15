@@ -39,7 +39,7 @@ Sheep = ExtResource( 1 )
 target_flag_path = NodePath("../target")
 
 [node name="dog" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8011, 15.5035, -91.6674 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8011, 15.5035, -17.6005 )
 
 [node name="target" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.085, 16.6167, 15.6888 )
@@ -51,3 +51,34 @@ transform = Transform( -0.976175, 0, -0.216985, 0, 1, 0, 0.216985, 0, -0.976175,
 transform = Transform( 0.961985, 0.273103, 0, -0.23169, 0.816112, 0.529416, 0.144585, -0.50929, 0.848362, 0, 28.1969, 0 )
 light_energy = 2.143
 shadow_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 197.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnTurnRight" type="Button" parent="VBoxContainer"]
+margin_right = 197.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+text = "Round Right"
+
+[node name="BtnTurnLeft" type="Button" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 197.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+text = "Round Left"
+
+[node name="BtnFollowShepherd" type="Button" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 197.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 0, 50 )
+text = "Follow Shepherd"
+
+[connection signal="pressed" from="VBoxContainer/BtnTurnRight" to="dog" method="_on_set_state_from_ui" binds= [ "around_right" ]]
+[connection signal="pressed" from="VBoxContainer/BtnTurnLeft" to="dog" method="_on_set_state_from_ui" binds= [ "around_left" ]]
+[connection signal="pressed" from="VBoxContainer/BtnFollowShepherd" to="dog" method="_on_set_state_from_ui" binds= [ "follow_shepherd" ]]

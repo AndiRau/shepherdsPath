@@ -81,3 +81,14 @@ func get_flock_middle():
 
 func left_from(a: Vector3, b: Vector3, c: Vector3):
 	return ((b.x - a.x)*(c.z - a.z) - (b.z - a.z)*(c.x - a.x)) > 0;
+
+
+func _on_set_state_from_ui(state_string: String):
+	if state_string == "around_left":
+		set_state($State/Around)
+		$State/Around.turn_left_right_around_flock = true
+	if state_string == "around_right":
+		set_state($State/Around)
+		$State/Around.turn_left_right_around_flock = false
+	if state_string == "follow_shepherd":
+		set_state($State/FollowShepherd)

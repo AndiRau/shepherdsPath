@@ -17,7 +17,8 @@ func override_process(delta: float):
 	var b = Quat(dog.get_node("T").transform.basis)
 
 	var c = a.slerp(b, delta * 3)
-	dog.transform.basis = Basis(c)
+	#dog.transform.basis = Basis(c)
+	dog.look_at(Apphandler.player_position, Vector3.UP)
 
 
 	#dog.rotation = _follow_pos
@@ -39,3 +40,6 @@ func enter_state(_previous_state: DogState):
 	dog.anim_player.play("walk_gamified")
 	update()
 	
+func exit_state(_next_state: DogState):
+	$TimerGetMiddle.disconnect("timeout", dog, "get_flock_middle")
+	$TimerGetMiddle.disconnect("timeout", self, "update")

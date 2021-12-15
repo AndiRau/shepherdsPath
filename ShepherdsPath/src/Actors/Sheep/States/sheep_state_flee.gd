@@ -3,33 +3,29 @@ extends SheepState
 var flee_from: Vector3
 var flee_to: Vector3
 var flee_vec: Vector3
-
+var flee_from_dist2: float
 var enemy_avoid_force: Vector3
+var initial_speed: float
 
 func override_process():
 	sheep.rc_obstacle.rotation = -sheep.rotation
-	# get cohesion, alginment, and separation vectors
-	var vectors = sheep.get_flock_status(sheep._flock)
 
+	var vectors = sheep.get_flock_status(sheep._flock)
 	var cohesion_vector = vectors[0] * cohesion_force * 0.5
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
+	sheep._c_speed = initial_speed
+	sheep._c_speed = sheep._c_speed / (flee_from_dist2 * 0.004 + 0.1)
 
 	if flee_to:
-		flee_vec = sheep.global_transform.origin.direction_to(flee_to) * sheep._c_speed
-		sheep.get_node("PanicVisualizer").global_transform.origin = flee_to
+		flee_vec = sheep.global_transform.origin.direction_to(flee_to) / (flee_from_dist2 * 0.15 + 0.1)
 	
-
 	var acceleration = cohesion_vector + align_vector + separation_vector + flee_vec
 
 	if sheep.rc_sees_obstacle.is_colliding():
 		sheep.colission_avoid_force = sheep.steer_towards(sheep.rc_obstacle.get_distance(), sheep.rc_obstacle.get_unoccluded_direction())
 	else:
 		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
-
-
-
-
 
 	sheep._velocity = (sheep._velocity * Vector3(1,0,1) + acceleration).normalized() * sheep._c_speed
 	
@@ -64,7 +60,6 @@ func get_near_enemies() -> PoolVector3Array:
 		if body.is_in_group("dog"):
 			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.8
-			sheep._c_speed = 6.2
 	return near_enemies
 
 
@@ -79,9 +74,12 @@ func _on_update_enemy_memory():
 
 
 func enter_state(_old_state: SheepState):
+	_on_find_enemies()
+	_on_update_enemy_memory()
 	sheep.get_node("PanicVisualizer").show()
 	$TimerFindEnemies.start()
 	$TimerForgetEnemy.start()
+	initial_speed = sheep._c_speed
 
 
 func exit_state(_next_state: SheepState):
@@ -99,5 +97,6 @@ func _on_find_enemies():
 		var a: Vector3 = flee_from - sheep.global_transform.origin
 		a = -a
 		flee_to = a + sheep.global_transform.origin
+		flee_from_dist2 = sheep.global_transform.origin.distance_squared_to(flee_from)
 		
 		$TimerFindEnemies.start()
