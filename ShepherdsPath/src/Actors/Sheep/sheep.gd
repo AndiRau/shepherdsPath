@@ -102,10 +102,9 @@ func get_flock_status(flock: Array) -> Array:
 	return [center_vector, align_vector, avoid_vector]
 
 
-func steer_towards(vec: Vector3):
-	var dist: float = $ObstacleRayCaster.get_distance()
+func steer_towards(distance: float, vec: Vector3):
 	var v: Vector3 = vec.normalized() * _c_speed - _velocity
-	return (v * 2) / (clamp(dist-0.2, 0.001, dist-0.2) * state.obstacle_avoid_force)
+	return (v * 2) / (clamp(distance-0.2, 0.001, distance-0.2) * state.obstacle_avoid_force)
 
 
 func on_random_time():

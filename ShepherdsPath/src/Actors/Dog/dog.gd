@@ -3,6 +3,7 @@ extends KinematicBody
 class_name Dog
 
 export var speed: float = 16
+export var start_state: NodePath
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var view: Area = $View
@@ -20,7 +21,7 @@ var flock_furthest_sheep: Vector3
 func _ready():
 	anim_player.get_animation("run_gamified").loop = true
 	anim_player.get_animation("walk_gamified").loop = true
-	set_state($State/FollowShepherd)
+	set_state(get_node(start_state))
 
 var previous_state
 var state = null setget set_state

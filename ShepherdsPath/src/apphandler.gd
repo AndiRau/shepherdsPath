@@ -8,14 +8,17 @@ var player_position: Vector3 = Vector3()
 var dog_position: Vector3 = Vector3()
 var sheep_target: Vector3 = Vector3()
 var player_unified_position: Vector2 = Vector2()
-var day_time = 12 # 0-24
+export var day_time: float = 12 # 0-24
 var day_time_unified = 0.5
-var do_daylight_cycle: bool = false
+export var do_daylight_cycle: bool = true
 export var cycle_speed: float = 0.7
 
 func get_unified_player_position():
 	return Vector2(player_position.x, player_position.z) / current_terrain.rect_size
 	# returns player position on the current terrain on a scale of 0-1
+
+func _ready():
+	set_day_time();
 
 func set_day_time():
 	day_time = fmod(day_time, 24)

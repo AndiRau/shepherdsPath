@@ -18,7 +18,7 @@ func override_process():
 	var acceleration = cohesion_vector + align_vector + separation_vector + flag_vector
 
 	if sheep.rc_sees_obstacle.is_colliding():
-		sheep.colission_avoid_force = sheep.steer_towards( sheep.rc_obstacle.get_unoccluded_direction())
+		sheep.colission_avoid_force = sheep.steer_towards(sheep.rc_obstacle.get_distance(), sheep.rc_obstacle.get_unoccluded_direction())
 	else:
 		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
 	acceleration += sheep.colission_avoid_force

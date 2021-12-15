@@ -2,7 +2,6 @@ extends DirectionalLight
 
 export var daytime_gradient: Gradient
 export var daytime_gradient_energy: Curve 
-export var do_daylight_cycle: bool = true
 export var world_environment: NodePath
 export var fog_color: Color
 
@@ -22,7 +21,7 @@ func set_day_time():
 	light_color = daytime_gradient.interpolate(Apphandler.day_time_unified)
 	light_energy = curve_val;
 	
-	rotation_degrees.x = Apphandler.day_time_unified * 360 - 270
-	rotation_degrees.y = Apphandler.day_time_unified * 360 - 180
+	rotation_degrees.x = Apphandler.day_time_unified * 360 - 270 + 20
+	rotation_degrees.y = Apphandler.day_time_unified * 360 - 180 + 13
 	environment.background_energy = curve_val / 8
 	environment.fog_color = fog_color * curve_val / 11

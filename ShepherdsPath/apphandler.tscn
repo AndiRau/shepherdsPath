@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/apphandler.gd" type="Script" id=1]
-[ext_resource path="res://src/Actors/Flag/Flag.tscn" type="PackedScene" id=2]
 
 [node name="apphandler" type="Node"]
 script = ExtResource( 1 )
-flagscene = ExtResource( 2 )
+day_time = 8.6
+do_daylight_cycle = false

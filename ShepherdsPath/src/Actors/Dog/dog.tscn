@@ -2346,6 +2346,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
+start_state = NodePath("State/Around")
 
 [node name="game_rig" type="Spatial" parent="."]
 transform = Transform( -3.0855, 0, -2.69743e-07, 0, 3.0855, 0, 2.69743e-07, 0, -3.0855, 0, 0, 0 )

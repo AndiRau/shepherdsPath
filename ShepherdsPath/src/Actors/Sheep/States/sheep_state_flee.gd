@@ -2,6 +2,7 @@ extends SheepState
 
 var flee_from: Vector3
 var flee_to: Vector3
+var flee_vec: Vector3
 
 var enemy_avoid_force: Vector3
 
@@ -14,16 +15,19 @@ func override_process():
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
 
-	var acceleration = cohesion_vector + align_vector + separation_vector
+	if flee_to:
+		flee_vec = sheep.global_transform.origin.direction_to(flee_to) * sheep._c_speed
+		sheep.get_node("PanicVisualizer").global_transform.origin = flee_to
+	
+
+	var acceleration = cohesion_vector + align_vector + separation_vector + flee_vec
 
 	if sheep.rc_sees_obstacle.is_colliding():
-		sheep.colission_avoid_force = sheep.steer_towards(sheep.rc_obstacle.get_unoccluded_direction())
+		sheep.colission_avoid_force = sheep.steer_towards(sheep.rc_obstacle.get_distance(), sheep.rc_obstacle.get_unoccluded_direction())
 	else:
 		sheep.colission_avoid_force *= Vector3(0.95,0.95,0.95)
 
-	if flee_to:
-		sheep.colission_avoid_force = sheep.steer_towards(flee_to) * 2000
-		acceleration += sheep.colission_avoid_force
+
 
 
 
@@ -60,7 +64,7 @@ func get_near_enemies() -> PoolVector3Array:
 		if body.is_in_group("dog"):
 			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.8
-			sheep._c_speed = 7
+			sheep._c_speed = 6.2
 	return near_enemies
 
 
