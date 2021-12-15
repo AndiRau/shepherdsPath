@@ -3,7 +3,7 @@ extends Spatial
 
 export var Update: bool setget update_color
 
-enum COLOR {CYAN, YELLOW, BROWN, MAGENTA, LILA, PINK, GREEN, DARK_GREEN, BLUE, ORANGE, RED}
+enum COLOR {CYAN, YELLOW, BROWN, MAGENTA, LILA, PINK, GREEN, DARK_GREEN, BLUE, ORANGE, RED, BLACK}
 export var color1_slot: int
 export(COLOR) var color1 = COLOR.RED
 export var color2_slot: int
@@ -21,8 +21,9 @@ var colordict: Dictionary = {
 	COLOR.GREEN: Color("35C03B"),
 	COLOR.DARK_GREEN: Color("106244"),
 	COLOR.BLUE: Color("1C08AB"),
-	COLOR.ORANGE: Color("C66F17ß"),
+	COLOR.ORANGE: Color("C66F17"),
 	COLOR.RED: Color("9F1115"),
+	COLOR.BLACK: Color(0,0,0),
 }
 
 # Called when the node enters the scene tree for the first time.

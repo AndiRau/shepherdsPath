@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/3D/scenery/waystones/ws3.glb" type="PackedScene" id=1]
 [ext_resource path="res://waystone.gd" type="Script" id=2]
+[ext_resource path="res://assets/3D/scenery/rockmaterial.material" type="Material" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.623529, 0.0666667, 0.0823529, 1 )
@@ -15,5 +16,6 @@ color1_slot = 2
 color2_slot = 3
 
 [node name="Cube126" parent="." index="0"]
+material/0 = ExtResource( 3 )
 material/2 = SubResource( 1 )
 material/3 = SubResource( 2 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenery/weather_manager.gd" type="Script" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://assets/3D/scenery/flash.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://src/scenery/waystones/ws1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/level_full/Clouds.gd" type="Script" id=13]
+[ext_resource path="res://src/scenery/waystones/ws2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/scenery/waystones/ws3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/scenery/waystones/ws4.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
@@ -292,7 +295,7 @@ thundercloud_color = Color( 0.345098, 0.345098, 0.345098, 1 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.64004e-13, 13.546, -6.03983e-06, -40, 1.70872e-18, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
+transform = Transform( 1.74846e-06, -2.64e-13, 13.546, -6.03983e-06, -40, 3.0662e-18, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null
@@ -316,8 +319,41 @@ transform = Transform( 0.926062, 0, 0.377372, 0, 1, 0, -0.377372, 0, 0.926062, -
 shape = SubResource( 12 )
 
 [node name="ws1" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1354.23, -15.8852, -572.538 )
-color1 = 1
+transform = Transform( -0.00647426, -0.000688856, -0.999979, 0.000422344, 1, -0.000691614, 0.999979, -0.000426827, -0.00647396, 1540.27, -7.40841, -526.587 )
+color1 = 9
+color2 = 10
+
+[node name="ws2" parent="." instance=ExtResource( 14 )]
+transform = Transform( -1.14481, 0, 0.961594, 0, 1.49507, 0, -0.961594, 0, -1.14481, 1829.53, -0.570564, -601.833 )
+color2 = 9
+
+[node name="ws3" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.711683, 0, -0.702501, 0, 1, 0, 0.702501, 0, -0.711683, 1827.64, -58.3468, -409.512 )
+color1 = 9
+color2 = 10
+
+[node name="ws4" parent="." instance=ExtResource( 16 )]
+transform = Transform( 0.999617, 0, 0.0276774, 0, 1, 0, -0.0276774, 0, 0.999617, 1190.37, -13.0897, -415.833 )
+
+[node name="ws5" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.326014, 0, -0.945365, -0.136061, 0.989589, -0.0469213, 0.935523, 0.143924, 0.322619, 1009.76, -46.2916, -507.226 )
+color1 = 10
+color2 = 5
+
+[node name="ws6" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.494211, 0.59165, 1.73354, 0.722907, 1.58678, -0.747654, -1.68304, 0.855296, 0.187905, 564.028, -53.7634, -362.692 )
+color1 = 6
+color2 = 5
+
+[node name="ws7" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.946342, -0.127601, -0.29691, -0.12175, 0.991826, -0.0381984, 0.299357, 0, -0.954141, 267.877, -13.4618, -285.95 )
+color1 = 6
+color2 = 4
+
+[node name="ws8" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1.45382, 0, 0, 0, 1.38791, -0.297675, 0, 0.432765, 0.954667, 272.345, 6.45735, -764.957 )
+color1 = 11
+color2 = 4
 
 [connection signal="timeout" from="WeatherManager/lightning_timer" to="WeatherManager" method="_on_lightning_timer_timeout"]
 [connection signal="timeout" from="WeatherManager/weather_timer" to="WeatherManager" method="_on_weather_timer_timeout"]
