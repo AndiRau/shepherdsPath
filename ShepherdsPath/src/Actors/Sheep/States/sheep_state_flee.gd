@@ -46,8 +46,9 @@ func override_process():
 
 	sheep._velocity.y = sheep._down_force
 	
-	sheep.look_at(sheep.global_transform.origin + sheep._velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
-	sheep._velocity = sheep.move_and_slide(sheep._velocity)
+	if sheep._velocity:
+		sheep.look_at(sheep.global_transform.origin + sheep._velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
+		sheep._velocity = sheep.move_and_slide(sheep._velocity)
 
 
 func get_near_enemies() -> PoolVector3Array:
@@ -59,7 +60,7 @@ func get_near_enemies() -> PoolVector3Array:
 			cohesion_force = 0.1
 		if body.is_in_group("dog"):
 			near_enemies.append(body.global_transform.origin)
-			cohesion_force = 0.8
+			cohesion_force = 0.3
 	return near_enemies
 
 

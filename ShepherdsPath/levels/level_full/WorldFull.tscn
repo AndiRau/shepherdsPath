@@ -256,13 +256,13 @@ transform = Transform( 0.37472, 0, 0.927138, 0, 1, 0, -0.927138, 0, 0.37472, 124
 transform = Transform( 8.93484, 0, 3.47654, 0, 9.58737, 0, -3.47654, 0, 8.93484, 1281.85, -11.8869, -643.479 )
 
 [node name="flock" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1375.58, -5.75946, -602.352 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1480.54, -5.75946, -570.981 )
 script = ExtResource( 6 )
 Sheep = ExtResource( 5 )
 target_flag_path = NodePath("../target")
 
 [node name="dog" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1375.58, -13.857, -602.352 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1333.11, -13.857, -450.665 )
 
 [node name="target" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
@@ -355,9 +355,39 @@ transform = Transform( 1.45382, 0, 0, 0, 1.38791, -0.297675, 0, 0.432765, 0.9546
 color1 = 11
 color2 = 4
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 197.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnTurnRight" type="Button" parent="VBoxContainer"]
+margin_right = 197.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+text = "Round Right"
+
+[node name="BtnTurnLeft" type="Button" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 197.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+text = "Round Left"
+
+[node name="BtnFollowShepherd" type="Button" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 197.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 0, 50 )
+text = "Follow Shepherd"
+
 [connection signal="timeout" from="WeatherManager/lightning_timer" to="WeatherManager" method="_on_lightning_timer_timeout"]
 [connection signal="timeout" from="WeatherManager/weather_timer" to="WeatherManager" method="_on_weather_timer_timeout"]
 [connection signal="area_entered" from="hut_norainTrigger" to="WeatherManager/PostProcessingSphere" method="_on_hut_norainTrigger_area_entered"]
 [connection signal="area_exited" from="hut_norainTrigger" to="WeatherManager/PostProcessingSphere" method="_on_hut_norainTrigger_area_exited"]
 [connection signal="area_entered" from="barn_norainTrigger" to="WeatherManager/PostProcessingSphere" method="_on_barn_norainTrigger_area_entered"]
 [connection signal="area_exited" from="barn_norainTrigger" to="WeatherManager/PostProcessingSphere" method="_on_barn_norainTrigger_area_exited"]
+[connection signal="pressed" from="VBoxContainer/BtnTurnRight" to="dog" method="_on_set_state_from_ui" binds= [ "around_right" ]]
+[connection signal="pressed" from="VBoxContainer/BtnTurnLeft" to="dog" method="_on_set_state_from_ui" binds= [ "around_left" ]]
+[connection signal="pressed" from="VBoxContainer/BtnFollowShepherd" to="dog" method="_on_set_state_from_ui" binds= [ "follow_shepherd" ]]

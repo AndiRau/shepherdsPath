@@ -11,6 +11,7 @@ data = PoolVector3Array( -0.1038, -3.2965, 0.7948, -0.5951, 1.8757, -1.5741, -0.
 visible = false
 
 [node name="StaticBody" type="StaticBody" parent="invisible_wall" index="0"]
+collision_layer = 262145
 
 [node name="CollisionShape" type="CollisionShape" parent="invisible_wall/StaticBody" index="0"]
 shape = SubResource( 1 )
