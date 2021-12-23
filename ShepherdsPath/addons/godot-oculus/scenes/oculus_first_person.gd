@@ -22,7 +22,7 @@ func get_config():
 func _ready():
 	if not use_keyboard_movement:
 		$ARVRCamera.set_script(null)
-	else:
+		
 		# get our config object
 		var config = preload("res://addons/godot-oculus/oculus_config.gdns")
 		if config:
@@ -39,51 +39,35 @@ func _ready():
 func _process(delta):
 	# We want to set our physics to the same refresh rate as our HMD.
 	# This info isn't available immediately so..
-	if refresh_rate == 0:
-		refresh_rate = round(oculus_config.get_refresh_rate())
-		
-		if refresh_rate != 0:
-			print("Setting physics rate to " + str(refresh_rate))
-		
-			# up our physics to 90fps to get in sync with our rendering
-			Engine.iterations_per_second = refresh_rate
+	if not use_keyboard_movement:
+		if refresh_rate == 0:
+			refresh_rate = round(oculus_config.get_refresh_rate())
+			
+			if refresh_rate != 0:
+				print("Setting physics rate to " + str(refresh_rate))
+			
+				# up our physics to 90fps to get in sync with our rendering
+				Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = $ARVRCamera.global_transform.origin
 
 
+onready var items: Array = [staffObj, shaverObj, noteBookObj, mapObj]
 	
 # BEHOLD! The ItemSwap System 
-func _input(event):
-	if event.is_action("ui_swap_items"): 
-		if itemCursor < 4:
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_swap_items"):
+		if itemCursor < items.size()-1:
 			itemCursor+=1
-		if itemCursor == 4:
+		if itemCursor == items.size()-1:
 			itemCursor = 0
-		print(itemCursor)
 
-		if itemCursor == 0:      #stsaff
-			shaverObj.visible = false
-			noteBookObj.visible = false
-			mapObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			staffObj.visible = true
-		
-		if itemCursor == 1:		#sheepshaver
-			staffObj.visible = false
-			noteBookObj.visible = false
-			mapObj.visible = false
-			noteBookObj.setNotebookActivity(false)
-			shaverObj.visible = true
-
-		if itemCursor == 2:		#notebook
-			staffObj.visible = false
-			shaverObj.visible = false
-			mapObj.visible = false
-			noteBookObj.visible = true
+		for c_item in range(items.size()-1):
+			if itemCursor == c_item:
+				items[c_item].visible = true
+			else:
+				items[c_item].visible = false
+		if itemCursor == 2:
 			noteBookObj.setNotebookActivity(true)
-
-		if itemCursor == 3:		#map
-			staffObj.visible = false
-			shaverObj.visible = false
-			noteBookObj.visible = false
+			print("NOTEBOOOK")
+		else:
 			noteBookObj.setNotebookActivity(false)
-			mapObj.visible = true

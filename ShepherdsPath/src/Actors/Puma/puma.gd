@@ -14,6 +14,8 @@ onready var anim_player: AnimationPlayer = $puma_export/AnimationPlayer
 var has_eaten: bool = false
 var prey_visual: Spatial
 
+onready var home_pos: Spatial = get_node(home)
+
 signal deal_damage(ammount, sender)
 
 
@@ -67,13 +69,16 @@ func on_pick_victim():
 func dist_to_target() -> float:
 	return current_target.global_transform.origin.distance_squared_to(global_transform.origin)
 
+var returned_home: bool = false
 
 func _process(delta):
 	if rc_terrain.is_colliding():
 		global_transform.origin.y = rc_terrain.get_collision_point().y
-	if has_eaten:
-		look_at(get_node(home).global_transform.origin, Vector3(0,1, 0))
+	if has_eaten and not returned_home:
+		look_at(home_pos.global_transform.origin, Vector3(0,1, 0))
 		translate(Vector3.FORWARD * delta * speed_walk)
+		if global_transform.origin.distance_squared_to(home_pos.global_transform.origin) < 10:
+			returned_home = true
 		return
 	if sheep_in_view and is_instance_valid(current_target): # means: in view and not dead
 		if dist_to_target() > 2:
