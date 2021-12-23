@@ -22,18 +22,19 @@ func get_config():
 func _ready():
 	if not use_keyboard_movement:
 		$ARVRCamera.set_script(null)
-	# get our config object
-	var config = preload("res://addons/godot-oculus/oculus_config.gdns")
-	if config:
-		oculus_config = config.new()
-	
-	# Find the interface and initialise
-	var arvr_interface = ARVRServer.find_interface("Oculus")
-	if arvr_interface and arvr_interface.initialize():
-		get_viewport().arvr = true
+	else:
+		# get our config object
+		var config = preload("res://addons/godot-oculus/oculus_config.gdns")
+		if config:
+			oculus_config = config.new()
 		
-		# make sure vsync is disabled or we'll be limited to 60fps
-		OS.vsync_enabled = false
+		# Find the interface and initialise
+		var arvr_interface = ARVRServer.find_interface("Oculus")
+		if arvr_interface and arvr_interface.initialize():
+			get_viewport().arvr = true
+			
+			# make sure vsync is disabled or we'll be limited to 60fps
+			OS.vsync_enabled = false
 
 func _process(delta):
 	# We want to set our physics to the same refresh rate as our HMD.
@@ -48,39 +49,41 @@ func _process(delta):
 			Engine.iterations_per_second = refresh_rate
 	Apphandler.player_position = $ARVRCamera.global_transform.origin
 
+
 	
 # BEHOLD! The ItemSwap System 
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_swap_items"): 
+func _input(event):
+	if event.is_action("ui_swap_items"): 
 		if itemCursor < 4:
 			itemCursor+=1
 		if itemCursor == 4:
 			itemCursor = 0
+		print(itemCursor)
 
-	if itemCursor == 0:      #stsaff
-		shaverObj.visible = false
-		noteBookObj.visible = false
-		mapObj.visible = false
-		noteBookObj.setNotebookActivity(false)
-		staffObj.visible = true
-	
-	if itemCursor == 1:		#sheepshaver
-		staffObj.visible = false
-		noteBookObj.visible = false
-		mapObj.visible = false
-		noteBookObj.setNotebookActivity(false)
-		shaverObj.visible = true
+		if itemCursor == 0:      #stsaff
+			shaverObj.visible = false
+			noteBookObj.visible = false
+			mapObj.visible = false
+			noteBookObj.setNotebookActivity(false)
+			staffObj.visible = true
+		
+		if itemCursor == 1:		#sheepshaver
+			staffObj.visible = false
+			noteBookObj.visible = false
+			mapObj.visible = false
+			noteBookObj.setNotebookActivity(false)
+			shaverObj.visible = true
 
-	if itemCursor == 2:		#notebook
-		staffObj.visible = false
-		shaverObj.visible = false
-		mapObj.visible = false
-		noteBookObj.visible = true
-		noteBookObj.setNotebookActivity(true)
+		if itemCursor == 2:		#notebook
+			staffObj.visible = false
+			shaverObj.visible = false
+			mapObj.visible = false
+			noteBookObj.visible = true
+			noteBookObj.setNotebookActivity(true)
 
-	if itemCursor == 3:		#map
-		staffObj.visible = false
-		shaverObj.visible = false
-		noteBookObj.visible = false
-		noteBookObj.setNotebookActivity(false)
-		mapObj.visible = true
+		if itemCursor == 3:		#map
+			staffObj.visible = false
+			shaverObj.visible = false
+			noteBookObj.visible = false
+			noteBookObj.setNotebookActivity(false)
+			mapObj.visible = true

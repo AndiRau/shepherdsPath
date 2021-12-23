@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://levels/level_full/terrain_v2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenery/weather_manager.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/scenery/waystones/ws3.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/scenery/waystones/ws4.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Actors/Puma/puma.tscn" type="PackedScene" id=17]
+[ext_resource path="res://addons/godot-oculus/scenes/oculus_first_person.gd" type="Script" id=18]
 
 [sub_resource type="SphereMesh" id=1]
 flip_faces = true
@@ -270,6 +271,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 772.965, 0, -258.178 )
 
 [node name="OculusFirstPerson" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1302.26, -4.19472, -393.963 )
+script = ExtResource( 18 )
 
 [node name="WeatherManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -296,7 +298,7 @@ thundercloud_color = Color( 0.345098, 0.345098, 0.345098, 1 )
 light_energy = 0.0
 
 [node name="Flash" type="MeshInstance" parent="WeatherManager/lightning"]
-transform = Transform( 1.74846e-06, -2.63998e-13, 13.546, -6.03983e-06, -40, 3.73478e-18, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
+transform = Transform( 1.74846e-06, -2.63997e-13, 13.546, -6.03983e-06, -40, 4.07585e-18, 40, -6.03983e-06, -5.92114e-07, 195.442, 964.751, 0 )
 cast_shadow = 0
 mesh = ExtResource( 11 )
 material/0 = null
