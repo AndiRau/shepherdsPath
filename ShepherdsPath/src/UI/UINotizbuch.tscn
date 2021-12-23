@@ -1,0 +1,386 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/sprites/notebook_open.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/ThemeNoteBook.tres" type="Theme" id=2]
+[ext_resource path="res://assets/sprites/brief_kunigunde.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/brief_baerbel.jpg" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/brief_fvs2.jpg" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/brief_berta.jpg" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/brief_fvs1.jpg" type="Texture" id=7]
+[ext_resource path="res://src/UI/NoteBookTurner.gd" type="Script" id=8]
+
+[node name="Notizbuch" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Book" type="TextureRect" parent="CenterContainer"]
+margin_left = 300.0
+margin_top = 140.0
+margin_right = 1300.0
+margin_bottom = 760.0
+rect_min_size = Vector2( 1000, 620 )
+texture = ExtResource( 1 )
+expand = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pages" type="Control" parent="CenterContainer/Book"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 120.0
+margin_top = 70.0
+margin_right = -235.0
+margin_bottom = -170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Page12" type="HBoxContainer" parent="CenterContainer/Book/Pages"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Book/Pages/Page12"]
+margin_right = 320.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 14.0
+text = "Trainingsstand"
+
+[node name="TSJack" type="VBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer"]
+margin_top = 18.0
+margin_right = 320.0
+margin_bottom = 228.0
+
+[node name="LblJack" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_right = 320.0
+margin_bottom = 14.0
+text = "Jack"
+
+[node name="WalkUp" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 18.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/WalkUp"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Walk Up"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/WalkUp"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+value = 40.0
+percent_visible = false
+
+[node name="ComeBy" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 70.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/ComeBy"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Come By"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/ComeBy"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="Away" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 74.0
+margin_right = 320.0
+margin_bottom = 98.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Away"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Away"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Away"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="Speak" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 102.0
+margin_right = 320.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 0, 24 )
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Speak"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Speak"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Speak"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="Find" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 130.0
+margin_right = 320.0
+margin_bottom = 154.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Find"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Find"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Find"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="Hold" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 158.0
+margin_right = 320.0
+margin_bottom = 182.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Hold"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Hold"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/Hold"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="ThatWillDo" type="HBoxContainer" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack"]
+margin_top = 186.0
+margin_right = 320.0
+margin_bottom = 210.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/ThatWillDo"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "That Will Do"
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Book/Pages/Page12/VBoxContainer/TSJack/ThatWillDo"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+percent_visible = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/Book/Pages/Page12"]
+margin_left = 324.0
+margin_right = 645.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BriefBaerbel" type="Sprite" parent="CenterContainer/Book/Pages"]
+visible = false
+position = Vector2( 335.033, 200.464 )
+rotation = 0.0355953
+scale = Vector2( 0.300892, 0.300892 )
+texture = ExtResource( 4 )
+
+[node name="BriefBerta" type="Sprite" parent="CenterContainer/Book/Pages"]
+visible = false
+position = Vector2( 311, 226 )
+rotation = -0.0253071
+scale = Vector2( 0.31482, 0.31482 )
+texture = ExtResource( 6 )
+
+[node name="BriefFvs1" type="Sprite" parent="CenterContainer/Book/Pages"]
+visible = false
+position = Vector2( 344, 214 )
+scale = Vector2( 0.272167, 0.272167 )
+texture = ExtResource( 7 )
+
+[node name="BriefFvs2" type="Sprite" parent="CenterContainer/Book/Pages"]
+visible = false
+position = Vector2( 324.821, 204.554 )
+rotation = -0.0174216
+scale = Vector2( 0.293441, 0.293441 )
+texture = ExtResource( 5 )
+
+[node name="BriefKunigunde" type="Sprite" parent="CenterContainer/Book/Pages"]
+visible = false
+position = Vector2( 314.107, 215.056 )
+rotation = 0.0458544
+scale = Vector2( 0.303493, 0.303493 )
+texture = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Book/Pages"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/Book/Pages/HBoxContainer"]
+margin_right = 320.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_right = 320.0
+margin_bottom = 14.0
+text = "Optionen"
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 18.0
+margin_right = 320.0
+margin_bottom = 40.0
+text = "Musik"
+
+[node name="HbMusicVol" type="HBoxContainer" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 44.0
+margin_right = 320.0
+margin_bottom = 60.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3/HbMusicVol"]
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 80, 0 )
+text = "Musik"
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3/HbMusicVol"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="HbAmbientVol" type="HBoxContainer" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 64.0
+margin_right = 320.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3/HbAmbientVol"]
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 80, 0 )
+text = "Umgebung"
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3/HbAmbientVol"]
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 84.0
+margin_right = 320.0
+margin_bottom = 332.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 336.0
+margin_right = 320.0
+margin_bottom = 356.0
+text = "Zu Hauptmenü"
+
+[node name="Button2" type="Button" parent="CenterContainer/Book/Pages/HBoxContainer/VBoxContainer3"]
+margin_top = 360.0
+margin_right = 320.0
+margin_bottom = 380.0
+text = "Beenden"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/Book/Pages/HBoxContainer"]
+margin_left = 324.0
+margin_right = 645.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+
+[node name="BtnPrev" type="Button" parent="CenterContainer/Book"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 114.0
+margin_top = -167.0
+margin_right = 164.0
+margin_bottom = -117.0
+rect_min_size = Vector2( 50, 50 )
+rect_pivot_offset = Vector2( 96, -295 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnNext" type="Button" parent="CenterContainer/Book"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -281.0
+margin_top = -167.0
+margin_right = -231.0
+margin_bottom = -117.0
+rect_min_size = Vector2( 50, 50 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CenterContainer/Book/BtnPrev" to="CenterContainer/Book" method="OnChangePage" binds= [ -1 ]]
+[connection signal="pressed" from="CenterContainer/Book/BtnNext" to="CenterContainer/Book" method="OnChangePage" binds= [ 1 ]]

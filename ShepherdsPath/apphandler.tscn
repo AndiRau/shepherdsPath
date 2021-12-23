@@ -5,4 +5,4 @@
 [node name="apphandler" type="Node"]
 script = ExtResource( 1 )
 day_time = 8.6
-do_daylight_cycle = false
+cycle_speed = 0.2

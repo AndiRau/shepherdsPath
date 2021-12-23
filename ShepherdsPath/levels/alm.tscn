@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/3D/buildings/alm_inherited.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/3D/shader/fire.material" type="Material" id=2]
 [ext_resource path="res://levels/lightmaps/alm.lmbake" type="BakedLightmapData" id=3]
 [ext_resource path="res://levels/alm_collider.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/scenery/alm/alm_door.gd" type="Script" id=5]
 
 [sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 3.02497, 4.06853, 3.79076 )
 
 [node name="alm" type="Spatial"]
 
@@ -58,3 +62,16 @@ light_energy = 2.252
 light_bake_mode = 2
 light_cull_mask = 4293918722
 omni_range = 7.643
+
+[node name="DoorArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75334, 4.22293, 7.26495 )
+collision_layer = 0
+script = ExtResource( 5 )
+AlmExport = NodePath("../glb_parent/alm_export")
+
+[node name="CollisionShape" type="CollisionShape" parent="DoorArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.352665 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="DoorArea" to="DoorArea" method="_on_player_entered"]
+[connection signal="area_exited" from="DoorArea" to="DoorArea" method="_on_player_exited"]
