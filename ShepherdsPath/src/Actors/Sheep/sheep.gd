@@ -48,20 +48,24 @@ var colission_avoid_force: Vector3
 func _physics_process(_delta):
 	state.override_process()
 	
-
-# kinda dirty, string reliant method...
+# i hate everything about this code but it's 2am and I just want this shit to work
 func _on_FlockView_body_entered(body: PhysicsBody):
+	var bad: bool = false
+	if state.name == "Flee" and state.is_bad_enemy == true:
+		bad = true
 	if body.is_in_group("sheep_offenders"):
 		set_state($States/Flee)
+		state.is_bad_enemy = true
 		return
 	if body.is_in_group("dog"):
 		if !body.state.name:
 			print("Entering Dog has no state")
-		if body.state.name == "Drive" or body.state.name == "FollowShepherd":
+		if (body.state.name == "Drive" or body.state.name == "FollowShepherd") and bad == false:
 			set_state($States/Driven)
 			return
 		if body.state.name == "Around":
 			set_state($States/Flee)
+			state.is_bad_enemy = false
 			return
 	if body.is_in_group("sheep") and self != body and body:
 		_flock.append(body)

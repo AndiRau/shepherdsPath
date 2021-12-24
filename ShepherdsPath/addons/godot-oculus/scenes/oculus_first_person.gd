@@ -5,10 +5,12 @@ var refresh_rate = 0;
 var player_pos
 
 #get all the item Objects
-onready var noteBookObj = get_node("Right_Hand/notebook")
-onready var staffObj = get_node("Right_Hand/staff")
-onready var shaverObj = get_node("Right_Hand/shaver")
-onready var mapObj = get_node("Right_Hand/map")
+onready var inventory = get_node("Inventory")
+onready var noteBookObj = get_node("Inventory/notebook")
+onready var staffObj = get_node("Inventory/staff")
+onready var shaverObj = get_node("Inventory/shaver")
+onready var mapObj = get_node("Inventory/map")
+onready var right_hand = get_node("Right_Hand")
 
 export var use_keyboard_movement: bool = false
 
@@ -48,6 +50,9 @@ func _process(delta):
 			
 				# up our physics to 90fps to get in sync with our rendering
 				Engine.iterations_per_second = refresh_rate
+	inventory.transform = right_hand.transform
+	if use_keyboard_movement:
+		inventory.translation += Vector3(0,-1.5,-1.3)
 	Apphandler.player_position = $ARVRCamera.global_transform.origin
 
 
@@ -56,18 +61,18 @@ onready var items: Array = [staffObj, shaverObj, noteBookObj, mapObj]
 # BEHOLD! The ItemSwap System 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_swap_items"):
-		if itemCursor < items.size()-1:
+		if itemCursor < items.size():
 			itemCursor+=1
-		if itemCursor == items.size()-1:
+		if itemCursor == items.size():
 			itemCursor = 0
 
-		for c_item in range(items.size()-1):
+		for c_item in range(items.size()):
 			if itemCursor == c_item:
-				items[c_item].visible = true
+				items[c_item].show()
+				print(items[c_item].name)
 			else:
-				items[c_item].visible = false
+				items[c_item].hide()
 		if itemCursor == 2:
 			noteBookObj.setNotebookActivity(true)
-			print("NOTEBOOOK")
 		else:
 			noteBookObj.setNotebookActivity(false)

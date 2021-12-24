@@ -7,7 +7,7 @@
 radius = 4.0
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 14.5813, 6.16661, 22.8903 )
+extents = Vector3( 19.4258, 6.16661, 33.0558 )
 
 [sub_resource type="SphereShape" id=3]
 
@@ -38,7 +38,7 @@ collision_mask = 131072
 monitorable = false
 
 [node name="ViewShape" type="CollisionShape" parent="View"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67146, -17.1787 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67146, -33.1432 )
 shape = SubResource( 2 )
 
 [node name="TimerPickVictim" type="Timer" parent="."]

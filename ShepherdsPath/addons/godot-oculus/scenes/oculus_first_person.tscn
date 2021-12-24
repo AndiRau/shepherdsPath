@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_shader_cache.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_left_touch_controller.tscn" type="PackedScene" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Actors/Player/Notebook/notebook.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/minimap/minimap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/3D/inventory/shaver.glb" type="PackedScene" id=10]
+[ext_resource path="res://assets/3D/inventory/hirtenstab.glb" type="PackedScene" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
@@ -69,3 +73,20 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
+
+[node name="Inventory" type="Spatial" parent="."]
+
+[node name="shaver" parent="Inventory" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50521, 1.40017, 0 )
+visible = false
+
+[node name="staff" parent="Inventory" instance=ExtResource( 11 )]
+transform = Transform( -1.79328e-08, 0, -0.410255, 0, 0.410254, 0, 0.410255, 0, -1.79328e-08, 0.519494, 0.46968, 0 )
+visible = false
+
+[node name="notebook" parent="Inventory" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50521, 1.40017, 0 )
+visible = false
+
+[node name="map" parent="Inventory" instance=ExtResource( 9 )]
+transform = Transform( -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, 0.50521, 1.40017, 0 )

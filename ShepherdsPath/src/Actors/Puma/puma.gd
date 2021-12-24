@@ -80,7 +80,7 @@ func _process(delta):
 		if global_transform.origin.distance_squared_to(home_pos.global_transform.origin) < 10:
 			returned_home = true
 		return
-	if sheep_in_view and is_instance_valid(current_target): # means: in view and not dead
+	if not has_eaten and sheep_in_view and is_instance_valid(current_target): # means: in view and not dead
 		if dist_to_target() > 2:
 			look_at(current_target.global_transform.origin, Vector3(0,1, 0))
 			translate(Vector3.FORWARD * delta * speed)

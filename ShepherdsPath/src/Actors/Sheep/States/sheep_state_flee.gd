@@ -6,6 +6,7 @@ var flee_vec: Vector3
 var flee_from_dist2: float
 var enemy_avoid_force: Vector3
 var initial_speed: float
+var is_bad_enemy: bool = false
 
 func override_process():
 	sheep.rc_obstacle.rotation = -sheep.rotation
@@ -15,7 +16,7 @@ func override_process():
 	var align_vector = vectors[1] * algin_force
 	var separation_vector = vectors[2] * separate_force
 	sheep._c_speed = initial_speed
-	sheep._c_speed = sheep._c_speed / (flee_from_dist2 * 0.004 + 0.1)
+	sheep._c_speed = sheep._c_speed / (flee_from_dist2 * 0.004 + 0.13)
 
 	if flee_to:
 		flee_vec = sheep.global_transform.origin.direction_to(flee_to) / (flee_from_dist2 * 0.15 + 0.1)
@@ -46,7 +47,7 @@ func override_process():
 
 	sheep._velocity.y = sheep._down_force
 	
-	if sheep._velocity != Vector3(0,0,0):
+	if sheep.global_transform.origin + sheep._velocity * Vector3(1,0,1) != sheep.global_transform.origin:
 		sheep.look_at(sheep.global_transform.origin + sheep._velocity * Vector3(1,0,1), Vector3(0, 1, 0)) #possibly wrong order to move_and_slide
 		sheep._velocity = sheep.move_and_slide(sheep._velocity)
 
@@ -55,10 +56,12 @@ func get_near_enemies() -> PoolVector3Array:
 	var near_enemies: PoolVector3Array = []
 
 	for body in sheep.flock_view.get_overlapping_bodies():
-		if body.is_in_group("sheep_offenders"):
+		if body.is_in_group("sheep_offenders"): # hacky and ugly but idcrn.
+			is_bad_enemy = true
 			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.1
-		if body.is_in_group("dog"):
+		if body.is_in_group("dog") && body.state.name != "FollowShepherd":
+			is_bad_enemy = false
 			near_enemies.append(body.global_transform.origin)
 			cohesion_force = 0.3
 	return near_enemies
