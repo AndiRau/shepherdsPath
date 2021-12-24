@@ -24,6 +24,7 @@ func get_config():
 func _ready():
 	if not use_keyboard_movement:
 		$ARVRCamera.set_script(null)
+		$RayCast.enabled = false
 		
 		# get our config object
 		var config = preload("res://addons/godot-oculus/oculus_config.gdns")

@@ -4,6 +4,8 @@ export(float, 0.0, 1.0) var sensitivity = 0.25
 
 export var controller_path: NodePath
 onready var occulus_controller = get_node(controller_path)
+onready var rc_terrain: RayCast = get_parent().get_node("RayCast")
+var flying: bool = false
 
 # Mouse state
 var _mouse_position = Vector2(0.0, 0.0)
@@ -14,7 +16,7 @@ var _direction = Vector3(0.0, 0.0, 0.0)
 var _velocity = Vector3(0.0, 0.0, 0.0)
 var _acceleration = 45
 var _deceleration = -10
-var _vel_multiplier = 300
+var _vel_multiplier = 44
 
 # Keyboard state
 var _w = false
@@ -24,8 +26,13 @@ var _d = false
 var _q = false
 var _e = false
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event):
-	# Receives mouse motion
+	if event.is_action_pressed("toggle_flight"):
+		flying = !flying
+
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
 
@@ -33,8 +40,6 @@ func _input(event):
 	# Receives mouse button input
 	if event is InputEventMouseButton:
 		match event.button_index:
-			BUTTON_RIGHT: # Only allows rotation if right click down
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE)
 			BUTTON_WHEEL_UP: # Increases max velocity
 				_vel_multiplier = clamp(_vel_multiplier * 1.1, 0.2, 200)
 			BUTTON_WHEEL_DOWN: # Decereases max velocity
@@ -86,23 +91,24 @@ func _update_movement(delta):
 			occulus_controller.translate(_velocity * delta)
 		else:
 			translate(_velocity * delta)
+	if not flying and rc_terrain.is_colliding():
+		get_parent().global_transform.origin.y = rc_terrain.get_collision_point().y
 
 # Updates mouse look 
 func _update_mouselook():
 	# Only rotates mouse if the mouse is captured
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_mouse_position *= sensitivity
-		var yaw = _mouse_position.x
-		var pitch = _mouse_position.y
-		_mouse_position = Vector2(0, 0)
-		
-		# Prevents looking up/down too far
-		pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
-		_total_pitch += pitch
-		if is_instance_valid(occulus_controller):
-			occulus_controller.rotate_y(deg2rad(-yaw))
-			occulus_controller.rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
-		else:
-			rotate_y(deg2rad(-yaw))
-			rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+	_mouse_position *= sensitivity
+	var yaw = _mouse_position.x
+	var pitch = _mouse_position.y
+	_mouse_position = Vector2(0, 0)
+	
+	# Prevents looking up/down too far
+	pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
+	_total_pitch += pitch
+	if is_instance_valid(occulus_controller):
+		occulus_controller.rotate_y(deg2rad(-yaw))
+		occulus_controller.rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+	else:
+		rotate_y(deg2rad(-yaw))
+		rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
 			

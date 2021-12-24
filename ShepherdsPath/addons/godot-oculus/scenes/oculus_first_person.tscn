@@ -90,3 +90,9 @@ visible = false
 
 [node name="map" parent="Inventory" instance=ExtResource( 9 )]
 transform = Transform( -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, 0.50521, 1.40017, 0 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+enabled = true
+cast_to = Vector3( 0, -35, 0 )
+collision_mask = 2
